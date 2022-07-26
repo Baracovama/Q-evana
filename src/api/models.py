@@ -53,7 +53,7 @@ class Peliculas(db.Model):
     valoration = db.Column(db.String(250), unique=True, nullable=False)
     cast = db.Column(db.String(250), unique=True, nullable=False)
     studio = db.Column(db.String(250), unique=True, nullable=False)
-    duration = db.Column(db.Integer)
+    duration = db.Column(db.Integer),
 
 class Sagas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -75,5 +75,5 @@ class Series(db.Model):
     valoration = db.Column(db.String(250), unique=True, nullable=False)
     cast = db.Column(db.String(250), unique=True, nullable=False)
     studio = db.Column(db.String(250), unique=True, nullable=False)
-    ntemporadas = db.Column(db.Integer)
-    nepisodios = db.Column(db.Integer)
+    ntemporadas = db.Column(db.Integer),
+    nepisodios = db.Column(db.Integer),

@@ -1,28 +1,26 @@
 import React from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav class="navbar navbar-expand-lg bg-dark">
-			<div class="container-fluid col-12 mb-3 text-center">
-				<div className="row">
-					<a class="navbar-brand nav-link active" aria-current="page" href="#"><img src="https://c8.alamy.com/zoomses/6/18ffc9230d2a4d208dfdf33ecf623007/2j632rd.jpg" alt="" width="60" height="60"/></a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
-				</div>
-				<div className="row">
-					<form class="d-flex" role="search">
-						<input class="form-control me-8" type="search" placeholder="Search" aria-label="Search"/>
-						<button class="btn btn-outline-primary" type="submit">Search</button>
-					</form>
-				</div>
-				<div className="row">
-					<form class="d-flex" role="search">
-						<button class="btn btn-outline-primary" type="submit">Iniciar Sesion</button>
-						<button class="btn btn-outline-primary" type="submit">Registrate</button>
-					</form>
+		<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+				<a class="navbar-brand" href="#"> <img src="https://www.textbroker.es/wp-content/uploads/sites/7/2017/09/1823382-750x447.jpg" alt="" width="150px"/></a>
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+					<h3 class="nav-link active text-light" aria-current="page" href="#">Q'UEVANA</h3>
+					</li>
+				</ul>
+				<form class="d-flex">
+					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+					<a class="nav-link active me-2" aria-current="page" href="#">Login</a>
+					<a class="nav-link active me-2" aria-current="page" href="#">Registrate</a>
+				</form>
 				</div>
 			</div>
 		</nav>

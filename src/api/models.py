@@ -24,7 +24,7 @@ class User(db.Model):
 class Favourites_Sagas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    user = db.relationship(User)
+    user = db.relationship('User')
     saga_id = db.Column(db.Integer)
     
     def __repr__(self):
@@ -40,7 +40,7 @@ class Favourites_Sagas(db.Model):
 class Favourites_Peliculas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    user = db.relationship(User)
+    user = db.relationship('User')
     pelicula_id = db.Column(db.Integer)
     
     def __repr__(self):
@@ -68,7 +68,8 @@ class Sagapeli(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250), unique=True, nullable=False)
     description = db.Column(db.String(250), unique=True, nullable=False)
-    category_id = db.Column(db.Integer)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+    category = db.relationship('Category')
     #date = db.Column(db.Datetime)
     valoration = db.Column(db.Integer)
     cast_id = db.Column(db.Integer)
@@ -102,6 +103,14 @@ class Peliculas(db.Model):
             "saga_peli_id": self.saga_peli_id,
         }
 
-'''class Category(db.model):
+class Category(db.Model):
     id = db.Column(db.Integer,primary_key=True)
-    name = db.Column(db.String(250), unique=True, nullable=False)'''
+    name = db.Column(db.String(250), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f'<name {self.name}>'
+
+    def serialize(self):
+        return {
+            "name": self.name,
+        }

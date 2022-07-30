@@ -21,14 +21,16 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
  
-class Favourites_Sagas(db.Model):
+class Favorites_Sagas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User')
-    saga_id = db.Column(db.Integer)
+    saga_id = db.Column(db.Integer, db.ForeignKey('sagas.id'), nullable=False)
+    sagas = db.relationship('Sagas')
+
     
     def __repr__(self):
-        return f'<Favourites_sagas {self.user_id}>'
+        return f'<Favorites_sagas {self.user_id}>'
 
     
     def serialize(self):
@@ -37,14 +39,15 @@ class Favourites_Sagas(db.Model):
             "saga_id": self.saga_id,
         }
 
-class Favourites_Peliculas(db.Model):
+class Favorites_Peliculas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User')
-    pelicula_id = db.Column(db.Integer)
+    pelicula_id = db.Column(db.Integer, db.ForeignKey('peliculas.id'), nullable=False)
+    peliculas = db.relationship('Peliculas')
     
     def __repr__(self):
-        return f'<Favourites_peliculas {self.user_id}>'
+        return f'<Favorites_peliculas {self.user_id}>'
 
     def serialize(self):
         return {
@@ -54,17 +57,35 @@ class Favourites_Peliculas(db.Model):
 
 class Sagas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    saga_peli_id = db.Column(db.Integer, db.ForeignKey('sagapeli.id'), nullable=False)
+    title = db.Column(db.String(250), unique=True, nullable=False)
     
     def __repr__(self):
-        return f'<Sagas {self.saga_peli_id}>'
+        return f'<Sagas {self.title}>'
 
     def serialize(self):
         return {
-            "saga_peli_id": self.saga_peli_id,
+            "title": self.title,
         }
 
 class Sagapeli(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sagas_id = db.Column(db.Integer, db.ForeignKey('sagas.id'), nullable=False)
+    sagas = db.relationship('Sagas')
+    peliculas_id = db.Column(db.Integer, db.ForeignKey('peliculas.id'), nullable=False)
+    peliculas = db.relationship('Peliculas')
+
+    def __repr__(self):
+        return f'<Sagapeli {self.sagas_id}>'
+        return f'<Sagapeli {self.peliculas_id}>'
+
+    def serialize(self):
+        return {
+            "sagas_id": self.sagas_id,
+            "peliculas_id": self.peliculas_id,
+        }
+
+
+class Peliculas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250), unique=True, nullable=False)
     description = db.Column(db.String(250), unique=True, nullable=False)
@@ -90,10 +111,6 @@ class Sagapeli(db.Model):
             "studio_id": self.studio_id,
             "duration": self.duration,
         }
-
-class Peliculas(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    saga_peli_id = db.Column(db.Integer, db.ForeignKey('sagapeli.id'), nullable=False)
     
     def __repr__(self):
         return f'<Peliculas {self.saga_peli_id}>'

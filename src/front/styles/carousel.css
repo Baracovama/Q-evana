@@ -1,8 +1,15 @@
-.slide{
-    margin-top: 10px;
+.slide {
+  margin-top: 0px;
 }
 
-.slide img{
-    height: 65vh;
-    
+.slide img {
+  height: 90vh;
+}
+
+.carousel-item {
+  height: 100vh;
+  min-height: 300px;
+  background: no-repeat scroll center scroll;
+  -webkit-background-size: cover;
+  background-size: cover;
 }

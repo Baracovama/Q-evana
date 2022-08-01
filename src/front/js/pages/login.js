@@ -24,7 +24,7 @@ export const Login = () => {
     if (!password.match(/^[a-zA-Z]{8,22}$/)) {
       formIsValid = false;
       setpasswordError(
-        "Solo las letras y la longitud deben tener un mínimo de 8 caracteres y un máximo de 22 caracteres"
+        "Debe tener un mínimo de 8 caracteres y un máximo de 22 caracteres"
       );
       return false;
     } else {
@@ -51,39 +51,28 @@ export const Login = () => {
         <div className="card-body mt-3">
           <form id="loginform" className="px-4 py-3" onSubmit={loginSubmit}>
             <div className="form-group mb-3">
-                <label for="exampleDropdownFormEmail1" className="form-label">Email address</label>
-                
-                <input name="email" className="form-control" id="EmailInput" aria-describedby="emailHelp" placeholder="email@example.com" type="email" onChange={handleInputChange}/>
-                
+                <label htmlFor="exampleDropdownFormEmail1" className="form-label">Email address</label>
                 <input type="email" className="form-control" id="EmailInput" name="EmailInput" aria-describedby="emailHelp" placeholder="email@example.com" onChange={(event) => setEmail(event.target.value)}/>
                 <small id="emailHelp" className="text-light form-text">{emailError}</small>
             </div>
             <div className="form-group mb-3">
-                <label for="exampleDropdownFormPassword1" className="form-label">Password</label>
-                
-                <input type="password" className="form-control" id="PassworkInput" name="password" placeholder="Password" onChange={handleInputChange}/>
-                
+                <label htmlFor="exampleDropdownFormPassword1" className="form-label">Password</label>
                 <input type="password" className="form-control" id="PassworkInput" name="PasswordImput" placeholder="Password"/>
+                <small id="passworderror" className="text-light form-text">{passwordError}</small>
             </div>
             <div className="mb-3">
                 <div className="form-check">
                     <input type="checkbox" className="form-check-input" id="dropdownCheck"/>
-                    <label className="form-check-label" for="dropdownCheck">
+                    <label className="form-check-label" htmlFor="dropdownCheck">
                         Remember me
                     </label>
                 </div>
             </div>
-            <a className="dropdown-item text-info" href="#">New around here? Sign up</a>
+            <a className="dropdown-item text-info" href="registre">New around here? Sign up</a>
             <div className="text-center">
-              <input type="submit" value="Sing in" className="btn btn-primary mt-3 w-100 p-2" name="login-btn"
-                onChange={(event) => setPassword(event.target.value)}
-              />
-              <small id="passworderror" className="text-light form-text">
-                {passwordError}
-              </small>
+              <input type="submit" value="Sing in" href="/" className="btn btn-primary mt-3 w-100 p-2" name="login-btn" onChange={(event) => setPassword(event.target.value)}/>
             </div>
           </form>
-
           <div className="text-danger"></div>
         </div>
         <div className="card-footer p-3">

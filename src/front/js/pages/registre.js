@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../store/appContext";
-import cardlogin from "../component/cardlogin";
+import React, { useState, useEffect } from "react";
+import "../../styles/index.css";
 
-export const Login = () => {
-  const { store, actions } = useContext(Context);
+export const Registre = () => {
+  const [info, setInfo] = useState({
+    email: "",
+    password: "",
+  });
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
@@ -35,6 +37,20 @@ export const Login = () => {
     return formIsValid;
   };
 
+  const handleInputChange = (event) => {
+    //console.log(event.target.value);
+    setInfo({
+      ...info,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const sendInfo = (event) => {
+    event.preventDefault();
+    console.log(info);
+    addInfo(info);
+  };
+
   const loginSubmit = (e) => {
     e.preventDefault();
     handleValidation();
@@ -51,22 +67,17 @@ export const Login = () => {
         <div className="card-body mt-3">
           <form id="loginform" className="px-4 py-3" onSubmit={loginSubmit}>
             <div className="form-group mb-3">
-                <label for="exampleDropdownFormEmail1" className="form-label">Email address</label>
-                
+                <label for="exampleDropdownFormEmail1" className="form-label">Email address</label>      
                 <input name="email" className="form-control" id="EmailInput" aria-describedby="emailHelp" placeholder="email@example.com" type="email" onChange={handleInputChange}/>
-                
-                <input type="email" className="form-control" id="EmailInput" name="EmailInput" aria-describedby="emailHelp" placeholder="email@example.com" onChange={(event) => setEmail(event.target.value)}/>
                 <small id="emailHelp" className="text-light form-text">{emailError}</small>
             </div>
             <div className="form-group mb-3">
-                <label for="exampleDropdownFormPassword1" className="form-label">Password</label>
-                
+                <label for="exampleDropdownFormPassword1" className="form-label">Password</label>                
                 <input type="password" className="form-control" id="PassworkInput" name="password" placeholder="Password" onChange={handleInputChange}/>
-                
-                <input type="password" className="form-control" id="PassworkInput" name="PasswordImput" placeholder="Password"/>
+                <small id="passworderror" className="text-light form-text">{passwordError}</small>
             </div>
-            <div className="mb-3">
-                <div className="form-check">
+            <div class="mb-3">
+                <div class="form-check">
                     <input type="checkbox" className="form-check-input" id="dropdownCheck"/>
                     <label className="form-check-label" for="dropdownCheck">
                         Remember me
@@ -78,9 +89,7 @@ export const Login = () => {
               <input type="submit" value="Sing in" className="btn btn-primary mt-3 w-100 p-2" name="login-btn"
                 onChange={(event) => setPassword(event.target.value)}
               />
-              <small id="passworderror" className="text-light form-text">
-                {passwordError}
-              </small>
+              
             </div>
           </form>
 

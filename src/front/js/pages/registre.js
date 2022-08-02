@@ -1,68 +1,32 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/index.css";
 
 export const Registre = () => {
-  const [info, setInfo] = useState({
+  const [datos, setDatos] = useState({
     email: "",
+    username: "",
     password: "",
   });
 
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [passwordError, setpasswordError] = useState("");
-  const [emailError, setemailError] = useState("");
-
-  const handleValidation = (event) => {
-    let formIsValid = true;
-
-    if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
-      formIsValid = false;
-      setemailError("Email Not Valid");
-      return false;
-    } else {
-      setemailError("");
-      formIsValid = true;
-    }
-
-    if (!password.match(/^[a-zA-Z]{8,22}$/)) {
-      formIsValid = false;
-      setpasswordError(
-        "Debe tener un mínimo de 8 caracteres y un máximo de 22 caracteres"
-      );
-      return false;
-    } else {
-      setpasswordError("");
-      formIsValid = true;
-    }
-
-    return formIsValid;
-  };
-
   const handleInputChange = (event) => {
-    //console.log(event.target.value);
-    setInfo({
-      ...info,
+    setDatos({
+      ...datos,
       [event.target.name]: event.target.value,
     });
   };
 
-  const sendInfo = (event) => {
+  const sendDatos = (event) => {
     event.preventDefault();
-    console.log(info);
-    addInfo(info);
+    console.log(datos);
+    addDatos(datos);
   };
 
-  const loginSubmit = (e) => {
-    e.preventDefault();
-    handleValidation();
-  };
-
-  const addInfo = (info) => {
+  //llamada fetch api
+  const addDatos = (datos) => {
     fetch(
-      "https://3000-baracovama-qevana-x57xuuvit2d.ws-eu54.gitpod.io/login",
+      "https://3000-baracovama-qevana-x57xuuvit2d.ws-eu54.gitpod.io/api/user",
       {
-        method: "GET",
-        body: JSON.stringify(info),
+        method: "POST",
+        body: JSON.stringify(datos),
         headers: {
           "Content-Type": "application/json",
         },
@@ -82,34 +46,24 @@ export const Registre = () => {
   };
 
   return (
-    <div
-      id="login1 template-bg-3"
-      className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <div id="login1 template-bg-3" className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
       <div className="card mb-5 p-5 bg-dark bg-gradient text-white col-md-4">
         <div className="card-header text-center">
           <h3>LOGO </h3>
         </div>
         <div className="card-body mt-3">
-          <form id="loginform" className="px-4 py-3" onSubmit={loginSubmit}>
+          <form id="loginform" className="px-4 py-3" onSubmit={sendDatos}>
             <div className="form-group mb-3">
                 <label htmlFor="exampleDropdownFormEmail1" className="form-label">Email address</label>      
                 <input name="email" className="form-control" id="EmailInput" aria-describedby="emailHelp" placeholder="email@example.com" type="email" onChange={handleInputChange}/>
-                <small id="emailHelp" className="text-light form-text">{emailError}</small>
             </div>
             <div className="form-group mb-3">
-                <label htmlFor="exampleDropdownFormEmail1" className="form-label">Confirm email address</label>      
-                <input name="email" className="form-control" id="EmailInput" aria-describedby="emailHelp" placeholder="email@example.com" type="email" onChange={handleInputChange}/>
-                <small id="emailHelp" className="text-light form-text">{emailError}</small>
+                <label htmlFor="exampleDropdownFormUsername1" className="form-label">Username</label>      
+                <input name="username" className="form-control" id="UsernameInput" placeholder="Nickname" type="text" onChange={handleInputChange}/>
             </div>
             <div className="form-group mb-3">
                 <label htmlFor="exampleDropdownFormPassword1" className="form-label">Password</label>                
-                <input type="password" className="form-control" id="PassworkInput" name="password" placeholder="Password" onChange={handleInputChange}/>
-                <small id="passworderror" className="text-light form-text">{passwordError}</small>
-            </div>
-            <div className="form-group mb-3">
-                <label htmlFor="exampleDropdownFormPassword1" className="form-label">Confirm Password</label>                
-                <input type="password" className="form-control" id="PassworkInput" name="password" placeholder="Repeat Password" onChange={handleInputChange}/>
-                <small id="passworderror" className="text-light form-text">{passwordError}</small>
+                <input type="password" className="form-control" id="PasswordInput" name="password" placeholder="Password" onChange={handleInputChange}/>
             </div>
             <div className="mb-3">
                 <div className="form-check">

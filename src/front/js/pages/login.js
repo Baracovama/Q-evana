@@ -37,7 +37,7 @@ export const Login = () => {
       className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
       <div className="card mb-5 p-5 bg-dark bg-gradient text-white col-md-4">
         <div className="card-header text-center">
-          <h3>LOGO </h3>
+          <h3><img src="logo.png" className="logo"/></h3>
         </div>
         <div className="card-body mt-3">
           <form id="loginform" className="px-4 py-3">

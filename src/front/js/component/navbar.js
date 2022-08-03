@@ -2,6 +2,7 @@ import React from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.css";
+import logo from "../../img/logo.png";
 
 export const Navbar = () => {
 	return (
@@ -14,10 +15,10 @@ export const Navbar = () => {
 					<a className="navbar-brand" href="#"></a>
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 						<li className="nav-item">
-						<a className="nav-link active text-light" aria-current="page" href="/">Q'UEVANA</a>
+							<a className="nav-link active text-light" aria-current="page" href="/"><img src="logo.png" className="logo"/></a>
 						</li>
 						<li className="nav-item dropdown">
-							<a className="nav-link dropdown-toggle text-light" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<a className="nav-link dropdown-toggle text-light categorias" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Category 
 							</a>
 							<ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">

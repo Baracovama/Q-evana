@@ -1,35 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { actions } = useContext(Context);
-
-  const handleClick = () => {
-    const opts = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    };
-
-    fetch(process.env.BACKEND_URL + "/api/login", opts)
-      .then((resp) => {
-        if (resp.status === 200) return resp.json();
-        else alert("Error");
-      })
-      .then((data) => {
-        console.log(data.token);
-        localStorage.setItem("token", data.token);
-        actions.setToken(data.token);
-      })
-      .catch((error) => {
-        console.error("There was an error", error);
-      });
-  };
+  const { actions, store } = useContext(Context);
+  let navigate = useNavigate();
 
   return (
     <div
@@ -40,7 +17,6 @@ export const Login = () => {
           <h3><img src="logo.png" className="logo"/></h3>
         </div>
         <div className="card-body mt-3">
-          <form id="loginform" className="px-4 py-3">
             <div className="form-group mb-3">
                 <label htmlFor="exampleDropdownFormEmail1" className="form-label">Email address</label>
                 <input type="text" className="form-control" id="EmailInput" name="email" aria-describedby="emailHelp" placeholder="email@example.com" value={email} onChange={(event) => setEmail(event.target.value)}/>
@@ -59,9 +35,8 @@ export const Login = () => {
             </div>
             <a className="dropdown-item text-info" href="registre">New around here? Sign up</a>
             <div className="text-center">
-              <button type="submit" value="Sing" href="/" className="btn btn-primary mt-3 w-100 p-2" name="login-btn" onClick={handleClick}>Login</button>
+              <button type="submit" className="btn btn-primary mt-3 w-100 p-2" onClick={() => {actions.InicioSesion(email, password); if(store.auth){navigate(-1)}}}>Login</button>
             </div>
-          </form>
           <div className="text-danger"></div>
         </div>
         <div className="card-footer p-3">

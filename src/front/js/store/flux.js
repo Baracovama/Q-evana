@@ -1,24 +1,40 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			auth:false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
+			},
+
+			InicioSesion: (email, password) => {
+				console.log(email, password)
+				const opts = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+					  email: email,
+					  password: password,
+					}),
+				  };
+			  
+				  fetch(process.env.BACKEND_URL + "/api/login", opts)
+					.then((resp) => {
+						console.log(resp)
+					  if (resp.status === 200) return resp.json();
+					  else alert("Error");
+					})
+					.then((data) => {
+					  console.log(data.token);
+					  localStorage.setItem("token", data.token);
+					 // actions.setToken(data.token);
+					 setStore({auth:true})
+					})
+					.catch((error) => {
+					  console.error("There was an error", error);
+					})
 			},
 
 			getMessage: async () => {

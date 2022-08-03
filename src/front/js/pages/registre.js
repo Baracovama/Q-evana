@@ -23,7 +23,7 @@ export const Registre = () => {
   //llamada fetch api
   const addDatos = (datos) => {
     fetch(
-      "https://3000-baracovama-qevana-x57xuuvit2d.ws-eu54.gitpod.io/api/user",
+      "https://3001-baracovama-qevana-x57xuuvit2d.ws-eu54.gitpod.io/api/user",
       {
         method: "POST",
         body: JSON.stringify(datos),
@@ -56,6 +56,10 @@ export const Registre = () => {
             <div className="form-group mb-3">
                 <label htmlFor="exampleDropdownFormEmail1" className="form-label">Email address</label>      
                 <input name="email" className="form-control" id="EmailInput" aria-describedby="emailHelp" placeholder="email@example.com" type="email" onChange={handleInputChange}/>
+            </div>
+            <div className="form-group mb-3">
+                <label htmlFor="exampleDropdownFormUsername1" className="form-label">Real Name</label>      
+                <input name="username" className="form-control" id="UsernameInput" placeholder="Pepe Gonzalez" type="text" onChange={handleInputChange}/>
             </div>
             <div className="form-group mb-3">
                 <label htmlFor="exampleDropdownFormUsername1" className="form-label">Username</label>      

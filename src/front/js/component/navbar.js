@@ -1,9 +1,11 @@
-import React from "react";
+import React , {useContext} from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.css";
+import logo from "../../img/logo.png";
 
 export const Navbar = () => {
+	const{actions,store} = useContext(Context)
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light">
 			<div className="container-fluid">
@@ -14,10 +16,10 @@ export const Navbar = () => {
 					<a className="navbar-brand" href="#"></a>
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 						<li className="nav-item">
-						<a className="nav-link active text-light" aria-current="page" href="/">Q'UEVANA</a>
+							<Link to="/" ><div className="nav-link active text-light" aria-current="page"><img src="logo.png" className="logo"/></div></Link>	
 						</li>
 						<li className="nav-item dropdown">
-							<a className="nav-link dropdown-toggle text-light" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<a className="nav-link dropdown-toggle text-light categorias" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Category 
 							</a>
 							<ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -28,6 +30,15 @@ export const Navbar = () => {
 							</ul>
 						</li>
 					</ul>
+					{store.auth ? (
+						<form className="d-flex" role="search">
+							<input className="form-control me-2 dropstart" type="search" placeholder="Search" aria-label="Search"/>
+							<Link to="/login" className="me-2">
+								<button to="/login" className="btn btn-primary" type="submit"> Login</button>
+							</Link>
+						</form>
+					)
+					: (
 					<form className="d-flex" role="search">
 						<input className="form-control me-2 dropstart" type="search" placeholder="Search" aria-label="Search"/>
 						<Link to="/login" className="me-2">
@@ -37,6 +48,9 @@ export const Navbar = () => {
 							<button to="/registre" className="btn btn-primary" type="submit"> Registre</button>
 						</Link>
 					</form>
+					)	
+					}
+					
 				</div>
 			</div>
 		</nav>

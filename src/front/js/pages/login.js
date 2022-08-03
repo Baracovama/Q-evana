@@ -1,44 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import cardlogin from "../component/cardlogin";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  const { store, actions } = useContext(Context);
-  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [passwordError, setpasswordError] = useState("");
-  const [emailError, setemailError] = useState("");
-
-  const handleValidation = (event) => {
-    let formIsValid = true;
-
-    if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
-      formIsValid = false;
-      setemailError("Email Not Valid");
-      return false;
-    } else {
-      setemailError("");
-      formIsValid = true;
-    }
-
-    if (!password.match(/^[a-zA-Z]{8,22}$/)) {
-      formIsValid = false;
-      setpasswordError(
-        "Debe tener un mínimo de 8 caracteres y un máximo de 22 caracteres"
-      );
-      return false;
-    } else {
-      setpasswordError("");
-      formIsValid = true;
-    }
-
-    return formIsValid;
-  };
-
-  const loginSubmit = (e) => {
-    e.preventDefault();
-    handleValidation();
-  };
+  const [password, setPassword] = useState("");
+  const { actions, store } = useContext(Context);
+  let navigate = useNavigate();
 
   return (
     <div
@@ -46,19 +14,16 @@ export const Login = () => {
       className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
       <div className="card mb-5 p-5 bg-dark bg-gradient text-white col-md-4">
         <div className="card-header text-center">
-          <h3>LOGO </h3>
+          <h3><img src="logo.png" className="logo"/></h3>
         </div>
         <div className="card-body mt-3">
-          <form id="loginform" className="px-4 py-3" onSubmit={loginSubmit}>
             <div className="form-group mb-3">
                 <label htmlFor="exampleDropdownFormEmail1" className="form-label">Email address</label>
-                <input type="email" className="form-control" id="EmailInput" name="EmailInput" aria-describedby="emailHelp" placeholder="email@example.com" onChange={(event) => setEmail(event.target.value)}/>
-                <small id="emailHelp" className="text-light form-text">{emailError}</small>
+                <input type="text" className="form-control" id="EmailInput" name="email" aria-describedby="emailHelp" placeholder="email@example.com" value={email} onChange={(event) => setEmail(event.target.value)}/>
             </div>
             <div className="form-group mb-3">
                 <label htmlFor="exampleDropdownFormPassword1" className="form-label">Password</label>
-                <input type="password" className="form-control" id="PassworkInput" name="PasswordImput" placeholder="Password"/>
-                <small id="passworderror" className="text-light form-text">{passwordError}</small>
+                <input type="password" className="form-control" id="PassworkInput" name="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)}/>
             </div>
             <div className="mb-3">
                 <div className="form-check">
@@ -70,9 +35,8 @@ export const Login = () => {
             </div>
             <a className="dropdown-item text-info" href="registre">New around here? Sign up</a>
             <div className="text-center">
-              <input type="submit" value="Sing in" href="/" className="btn btn-primary mt-3 w-100 p-2" name="login-btn" onChange={(event) => setPassword(event.target.value)}/>
+              <button type="submit" className="btn btn-primary mt-3 w-100 p-2" onClick={() => {actions.InicioSesion(email, password); if(store.auth){navigate(-1)}}}>Login</button>
             </div>
-          </form>
           <div className="text-danger"></div>
         </div>
         <div className="card-footer p-3">

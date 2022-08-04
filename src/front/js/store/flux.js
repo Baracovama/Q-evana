@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			auth:false
+			auth:false,
+			username:""
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -27,10 +28,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					  else alert("Error");
 					})
 					.then((data) => {
-					  console.log(data.token);
+					  console.log(data);
 					  localStorage.setItem("token", data.token);
-					 // actions.setToken(data.token);
-					 setStore({auth:true})
+					  setStore({auth:true})
+					  setStore({username:data.username})
 					})
 					.catch((error) => {
 					  console.error("There was an error", error);

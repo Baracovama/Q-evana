@@ -46,7 +46,7 @@ export const Navbar = () => {
 							</div>
 							<div className="me-2">
 								<button className="favoritos" type="text" aria-expanded="false">
-									UserName
+									{store.username ? store.username : ""}
 								</button>
 							</div>
 						</form>

@@ -45,4 +45,4 @@ def login():
         return jsonify({"message": "incorrect email or password"}), 400
     access_token = create_access_token(identity=user.id)
 
-    return jsonify({"token": access_token}), 200
+    return jsonify({"token": access_token, "username": user.username}), 200

@@ -30,12 +30,25 @@ export const Navbar = () => {
 							</ul>
 						</li>
 					</ul>
+					
 					{store.auth ? (
 						<form className="d-flex" role="search">
 							<input className="form-control me-2 dropstart" type="search" placeholder="Search" aria-label="Search"/>
-							<Link to="/login" className="me-2">
-								<button to="/login" className="btn btn-primary" type="submit"> Login</button>
-							</Link>
+							<div className="me-5">
+								<div className="dropdown">
+								<button className=" dropdown-toggle favoritos" type="text" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+									Mi lista
+								</button>
+								<ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									<li>no hay contenido</li>
+								</ul>
+								</div>
+							</div>
+							<div className="me-2">
+								<button className="favoritos" type="text" aria-expanded="false">
+									UserName
+								</button>
+							</div>
 						</form>
 					)
 					: (

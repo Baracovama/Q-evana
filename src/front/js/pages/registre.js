@@ -80,6 +80,7 @@ export const Registre = () => {
             <div className="text-center">
               <input type="submit" value="Sing in" href="/" className="btn btn-primary mt-3 w-100 p-2" name="login-btn"
                 onChange={(event) => setPassword(event.target.value)}
+                onClick={() => {(store.auth)}}
               />
               
             </div>

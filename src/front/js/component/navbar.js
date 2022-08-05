@@ -45,9 +45,13 @@ export const Navbar = () => {
 								</div>
 							</div>
 							<div className="me-2">
-								<button className="favoritos" type="text" aria-expanded="false">
-									{store.username ? store.username : ""}
+								<button className="username" type="text" aria-expanded="false">
+									{store.username ? store.username : ""} 
+									<i class="far fa-user"></i>
 								</button>
+							</div>
+							<div className="me-2">
+								<button><i class="fas fa-sign-out-alt"></i></button>
 							</div>
 						</form>
 					)

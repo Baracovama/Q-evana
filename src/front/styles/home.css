@@ -1,9 +1,12 @@
 .container-fluid{
-    padding-top: 25px;
+    padding-top: 0%;
+    padding-left: 0%;
+    padding-right: 0%;
 }
 
 body{
     background-color: black;
+    overflow-x: hidden;
 }
 /*
     home.css: This website contains selectors only used in home.css

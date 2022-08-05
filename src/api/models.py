@@ -92,6 +92,7 @@ class Peliculas(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     category = db.relationship('Category')
     #date = db.Column(db.Datetime)
+    imagen = db.Column(db.String(250))
     valoration = db.Column(db.Integer)
     cast_id = db.Column(db.Integer)
     studio_id = db.Column(db.Integer)
@@ -110,6 +111,7 @@ class Peliculas(db.Model):
             "cast_id": self.cast_id,
             "studio_id": self.studio_id,
             "duration": self.duration,
+            "imagen": self.imagen,
         }
     
     def __repr__(self):

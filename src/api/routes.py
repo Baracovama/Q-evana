@@ -31,9 +31,12 @@ def get_users():
 def create_user():
     data = request.json
     user = User(username=data.get('username'),name=data.get('name'), email=data.get('email'), password=data.get('password'))
+    if not user:
+        return jsonify({"message": "incorrect email or password"}), 400
+    access_token = create_access_token(identity=user.id)
     db.session.add(user)
     db.session.commit()
-    return jsonify({"message": "everything ok"}), 200
+    return jsonify({"token": access_token, "username": user.username}), 200
 
 @api.route('/login', methods=['POST'])
 def login():
@@ -53,3 +56,13 @@ def get_peliculas():
     data = [pelicula.serialize() for peliculas in pelicula]
     
     return jsonify(data), 200
+
+@api.route('/verify', methods=['GET'])
+@jwt_required()
+def get_verify():
+    currentuser = get_jwt_identity()
+    user = User.query.get(currentuser)
+    if user : 
+        return jsonify({"logeado" : True, "username" : user.username})
+    else : 
+        return jsonify({"logeado" : False, "mesage" : "Usuario no encontrado"})

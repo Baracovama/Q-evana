@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
+import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext.js";
 
 export const Registre = () => {
+  const {store, actions} = useContext (Context)
   const [datos, setDatos] = useState({
     email: "",
     username: "",
     password: "",
   });
+
+  let navigate = useNavigate();
 
   const handleInputChange = (event) => {
     setDatos({
@@ -17,32 +22,7 @@ export const Registre = () => {
   const sendDatos = (event) => {
     event.preventDefault();
     console.log(datos);
-    addDatos(datos);
-  };
-
-  //llamada fetch api
-  const addDatos = (datos) => {
-    fetch(
-        process.env.BACKEND_URL + "/api/user",
-      {
-        method: "POST",
-        body: JSON.stringify(datos),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((resp) => {
-        return resp.json(); // (regresa una promesa) will try to parse the result as json as return a promise that you can .then for results
-      })
-      .then((data) => {
-        //Aquí es donde debe comenzar tu código después de que finalice la búsqueda
-        console.log(data); //esto imprimirá en la consola el objeto exacto recibido del servidor
-      })
-      .catch((error) => {
-        //manejo de errores
-        console.log(error);
-      });
+    actions.addDatos(datos);
   };
 
   return (
@@ -80,7 +60,7 @@ export const Registre = () => {
             <div className="text-center">
               <input type="submit" value="Sing in" href="/" className="btn btn-primary mt-3 w-100 p-2" name="login-btn"
                 onChange={(event) => setPassword(event.target.value)}
-                onClick={() => {(store.auth)}}
+                onClick={() => {if(store.auth){navigate('/')}}}
               />
               
             </div>

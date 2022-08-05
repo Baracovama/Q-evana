@@ -4,7 +4,7 @@ import "../../styles/footer.css";
 export const Footer = () => (
 	<footer className="footer mt-auto py-3 text-center">
 		<h3>Contact with us</h3>
-		<div className="container-fluid">
+		<div className="container">
 			<div className="row">
 				<div className="col-4 p-0">
 					GMAIL

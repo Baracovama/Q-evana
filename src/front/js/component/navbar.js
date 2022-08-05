@@ -47,11 +47,11 @@ export const Navbar = () => {
 							<div className="me-2">
 								<button className="username" type="text" aria-expanded="false">
 									{store.username ? store.username : ""} 
-									<i class="far fa-user"></i>
+									<i className="far fa-user"></i>
 								</button>
 							</div>
 							<div className="me-2">
-								<button><i class="fas fa-sign-out-alt"></i></button>
+								<button onClick={actions.LogOut()}><i className="fas fa-sign-out-alt"></i></button>
 							</div>
 						</form>
 					)

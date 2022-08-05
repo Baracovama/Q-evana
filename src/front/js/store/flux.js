@@ -10,6 +10,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 
+			LogOut : () => {
+				localStorage.removeItem('token');
+			},
+
+			Verify : () => {
+				const opts = {
+					method: "GET",
+					headers: { 
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + localStorage.getItem("token"),
+					},
+				  };
+			  
+				  fetch(process.env.BACKEND_URL + "/api/verify", opts)
+					.then((resp) => {
+						console.log(resp)
+					  if (resp.status === 200) return resp.json();
+					  else alert("Error");
+					})
+					.then((data) => {
+					  console.log(data);
+					  setStore({logeado : data.logeado})
+					  setStore({username:data.username})
+					})
+					.catch((error) => {
+					  console.error("There was an error", error);
+					})
+			},
+
 			InicioSesion: (email, password) => {
 				console.log(email, password)
 				const opts = {
@@ -37,6 +66,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 					  console.error("There was an error", error);
 					})
 			},
+
+			addDatos : (datos) => {
+				fetch(
+					process.env.BACKEND_URL + "/api/user",
+				  {
+					method: "POST",
+					body: JSON.stringify(datos),
+					headers: {
+					  "Content-Type": "application/json",
+					},
+				  }
+				)
+				  .then((resp) => {
+					return resp.json(); // (regresa una promesa) will try to parse the result as json as return a promise that you can .then for results
+				  })
+				  .then((data) => {
+					//Aquí es donde debe comenzar tu código después de que finalice la búsqueda
+					localStorage.setItem("token", data.token);
+					setStore({auth:true})
+					setStore({username:data.username})
+					console.log(data); //esto imprimirá en la consola el objeto exacto recibido del servidor
+				  })
+				  .catch((error) => {
+					//manejo de errores
+					console.log(error);
+				  });
+			  },
 
 			getMessage: async () => {
 				try{

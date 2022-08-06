@@ -1,5 +1,6 @@
 .login1{
     background-image: url("https://thumbs.dreamstime.com/b/fondo-del-cine-21957605.jpg");
     background-repeat: no-repeat;
-    height: 100vh;
+    background-size: contain;
+    
 }

@@ -22,7 +22,10 @@ export const Registre = () => {
   const sendDatos = (event) => {
     event.preventDefault();
     console.log(datos);
-    actions.addDatos(datos);
+    const respdata = actions.addDatos(datos);
+    if(respdata){
+      navigate('/')
+    }
   };
 
   return (
@@ -58,10 +61,9 @@ export const Registre = () => {
                 </div>
             </div>
             <div className="text-center">
-              <input type="submit" value="Sing in" href="/" className="btn btn-primary mt-3 w-100 p-2" name="login-btn"
-                onChange={(event) => setPassword(event.target.value)}
-                onClick={() => {if(store.auth){navigate('/')}}}
-              />
+              <button type="submit" value="Sing in" className="btn btn-primary mt-3 w-100 p-2" name="login-btn">
+                 Registre
+              </button>
               
             </div>
           </form>

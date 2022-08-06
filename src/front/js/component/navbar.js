@@ -32,20 +32,10 @@ export const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle text-light categorias"
-                href="#"
-                id="navbarDarkDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+              <a className="nav-link dropdown-toggle text-light categorias" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Category
               </a>
-              <ul
-                className="dropdown-menu dropdown-menu-dark"
-                aria-labelledby="navbarDarkDropdownMenuLink"
-              >
+              <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 <li>
                   <a className="dropdown-item" href="#">
                     Action
@@ -72,42 +62,27 @@ export const Navbar = () => {
 
           {store.auth ? (
             <div className="d-flex" role="search">
-              <input
-                className="form-control me-2 dropstart"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
+              <input className="form-control me-2 dropstart" type="search" placeholder="Search" aria-label="Search"/>
               <div className="me-5">
                 <div className="dropdown">
-                  <button
-                    className=" dropdown-toggle favoritos"
-                    type="text"
-                    id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
+                  <button className=" dropdown-toggle favoritos" type="text" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     Mi lista
                   </button>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton1"
-                  >
+                  <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li>no hay contenido</li>
                   </ul>
                 </div>
               </div>
               <div className="me-2">
                 <button className="username" type="text" aria-expanded="false">
-                  {store.username ? store.username : ""}
-                  <i className="far fa-user"></i>
+                  <i className="far fa-user"> <strong>{store.username ? store.username : ""}</strong></i>
                 </button>
               </div>
               <div className="me-2">
                 <button
                   onClick={() => {
                     const desconecto = actions.LogOut();
-					if(desconecto){navigate(0)}
+					          if(desconecto){navigate(0)}
                   }}
                 >
                   <i className="fas fa-sign-out-alt"></i>

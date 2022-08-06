@@ -50,13 +50,6 @@ def login():
 
     return jsonify({"token": access_token, "username": user.username}), 200
 
-@api.route('/peliculas', methods=['GET'])
-def get_peliculas():
-    pelicula = Peliculas.query.all()
-    data = [pelicula.serialize() for peliculas in pelicula]
-    
-    return jsonify(data), 200
-
 @api.route('/verify', methods=['GET'])
 @jwt_required()
 def get_verify():
@@ -66,3 +59,10 @@ def get_verify():
         return jsonify({"logeado" : True, "username" : user.username})
     else : 
         return jsonify({"logeado" : False, "mesage" : "Usuario no encontrado"})
+
+@api.route('/peliculas', methods=['GET'])
+def get_peliculas():
+    pelicula = Peliculas.query.all()
+    data = [pelicula.serialize() for peliculas in pelicula]
+    
+    return jsonify(data), 200

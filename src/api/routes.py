@@ -63,27 +63,27 @@ def get_verify():
 @api.route('/peliculas', methods=['GET'])
 def get_peliculas():
     pelicula = Peliculas.query.all()
-    data = [pelicula.serialize() for peliculas in pelicula]
+    data = [pelicula.serialize() for pelicula in pelicula]
     
     return jsonify(data), 200
 
 @api.route('/sagas', methods=['GET'])
 def get_sagas():
     saga = Sagas.query.all()
-    data = [saga.serialize() for sagas in saga]
+    data = [saga.serialize() for saga in saga]
     
     return jsonify(data), 200
 
 @api.route('/category', methods=['GET'])
 def get_category():
     categoria = Category.query.all()
-    data = [categoria.serialize() for category in categoria]
+    data = [categoria.serialize() for categoria in categoria]
     
     return jsonify(data), 200
 
 @api.route('/sagapeli', methods=['GET'])
 def get_sagapeli():
     sagapeliculas = Sagapeli.query.all()
-    data = [sagapeliculas.serialize() for sagapeli in sagapeliculas]
+    data = [sagapeliculas.serialize() for sagapeliculas in sagapeliculas]
     
     return jsonify(data), 200

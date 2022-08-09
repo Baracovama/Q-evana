@@ -1,5 +1,11 @@
 .login1{
-    background-image: url("https://thumbs.dreamstime.com/b/fondo-del-cine-21957605.jpg");
-    background-repeat: no-repeat;
-    height: 100vh;
+    background-image: url("https://images.pexels.com/photos/3945321/pexels-photo-3945321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-repeat: repeat;
+    background-size: contain;
+    
+}
+.registre{
+    background-image: url("https://images.pexels.com/photos/3945321/pexels-photo-3945321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-repeat: repeat;
+    background-size: contain;
 }

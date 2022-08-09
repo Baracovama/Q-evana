@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Peliculas
+from api.models import db, User, Peliculas, Sagas, Category, Sagapeli
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 
@@ -50,13 +50,6 @@ def login():
 
     return jsonify({"token": access_token, "username": user.username}), 200
 
-@api.route('/peliculas', methods=['GET'])
-def get_peliculas():
-    pelicula = Peliculas.query.all()
-    data = [pelicula.serialize() for peliculas in pelicula]
-    
-    return jsonify(data), 200
-
 @api.route('/verify', methods=['GET'])
 @jwt_required()
 def get_verify():
@@ -66,3 +59,31 @@ def get_verify():
         return jsonify({"logeado" : True, "username" : user.username})
     else : 
         return jsonify({"logeado" : False, "mesage" : "Usuario no encontrado"})
+
+@api.route('/peliculas', methods=['GET'])
+def get_peliculas():
+    pelicula = Peliculas.query.all()
+    data = [pelicula.serialize() for peliculas in pelicula]
+    
+    return jsonify(data), 200
+
+@api.route('/sagas', methods=['GET'])
+def get_sagas():
+    saga = Sagas.query.all()
+    data = [saga.serialize() for sagas in saga]
+    
+    return jsonify(data), 200
+
+@api.route('/category', methods=['GET'])
+def get_category():
+    categoria = Category.query.all()
+    data = [categoria.serialize() for category in categoria]
+    
+    return jsonify(data), 200
+
+@api.route('/sagapeli', methods=['GET'])
+def get_sagapeli():
+    sagapeliculas = Sagapeli.query.all()
+    data = [sagapeliculas.serialize() for sagapeli in sagapeliculas]
+    
+    return jsonify(data), 200

@@ -76,7 +76,7 @@ class Sagapeli(db.Model):
 
     def __repr__(self):
         return f'<Sagapeli {self.sagas_id}>'
-        return f'<Sagapeli {self.peliculas_id}>'
+        #return f'<Sagapeli {self.peliculas_id}>'
 
     def serialize(self):
         return {
@@ -94,12 +94,12 @@ class Peliculas(db.Model):
     #date = db.Column(db.Datetime)
     imagen = db.Column(db.String(250))
     valoration = db.Column(db.Integer)
-    cast_id = db.Column(db.Integer)
-    studio_id = db.Column(db.Integer)
-    duration = db.Column(db.Integer)
+    cast_imagen = db.Column(db.String(250))
+    studio_id = db.Column(db.String(250))
+    duration = db.Column(db.String(250))
 
     def __repr__(self):
-        return f'<Sagapeli {self.title}>'
+        return f'<Peliculas {self.title}>'
 
     def serialize(self):
         return {
@@ -108,19 +108,19 @@ class Peliculas(db.Model):
             "category_id": self.category_id,
             #"date": self.date,
             "valoration": self.valoration,
-            "cast_id": self.cast_id,
+            "cast_imagen": self.cast_imagen,
             "studio_id": self.studio_id,
             "duration": self.duration,
             "imagen": self.imagen,
         }
     
-    def __repr__(self):
+    '''def __repr__(self):
         return f'<Peliculas {self.saga_peli_id}>'
 
     def serialize(self):
         return {
             "saga_peli_id": self.saga_peli_id,
-        }
+        }'''
 
 class Category(db.Model):
     id = db.Column(db.Integer,primary_key=True)

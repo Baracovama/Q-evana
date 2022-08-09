@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Peliculas
+from api.models import db, User, Peliculas, Sagas, Category, Sagapeli
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 
@@ -63,6 +63,27 @@ def get_verify():
 @api.route('/peliculas', methods=['GET'])
 def get_peliculas():
     pelicula = Peliculas.query.all()
-    data = [pelicula.serialize() for peliculas in pelicula]
+    data = [pelicula.serialize() for pelicula in pelicula]
+    
+    return jsonify(data), 200
+
+@api.route('/sagas', methods=['GET'])
+def get_sagas():
+    saga = Sagas.query.all()
+    data = [saga.serialize() for saga in saga]
+    
+    return jsonify(data), 200
+
+@api.route('/category', methods=['GET'])
+def get_category():
+    categoria = Category.query.all()
+    data = [categoria.serialize() for categoria in categoria]
+    
+    return jsonify(data), 200
+
+@api.route('/sagapeli', methods=['GET'])
+def get_sagapeli():
+    sagapeliculas = Sagapeli.query.all()
+    data = [sagapeliculas.serialize() for sagapeliculas in sagapeliculas]
     
     return jsonify(data), 200

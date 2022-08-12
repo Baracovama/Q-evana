@@ -5,13 +5,22 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Peliculas, Sagas, Category, Sagapeli
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
-
+import requests
 
 api = Blueprint('api', __name__)
 
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
+
+    res = requests.get('https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es').json()
+    #dict(res)
+    #print(res["items"]) 
+    for pelicula in res["page"]:
+        print(pelicula["title"])
+        peli = Peliculas(title=pelicula["title"])
+        db.session.add(peli)
+        db.session.commit()
 
     response_body = {
         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
@@ -87,3 +96,15 @@ def get_sagapeli():
     data = [sagapeliculas.serialize() for sagapeliculas in sagapeliculas]
     
     return jsonify(data), 200
+
+@api.route('/allpelis', methods=['POST', 'GET'])
+def get_all_movies():
+
+    allpelis = Peliculas.query.all()
+    allList = list(map(lambda peli: peli.serialize(),allpelis))
+
+    response_body = {
+        "results": allList
+    }
+
+    return jsonify(response_body), 200

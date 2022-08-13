@@ -113,14 +113,6 @@ class Peliculas(db.Model):
             "duration": self.duration,
             "imagen": self.imagen,
         }
-    
-    '''def __repr__(self):
-        return f'<Peliculas {self.saga_peli_id}>'
-
-    def serialize(self):
-        return {
-            "saga_peli_id": self.saga_peli_id,
-        }'''
 
 class Category(db.Model):
     id = db.Column(db.Integer,primary_key=True)

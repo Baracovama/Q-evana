@@ -87,16 +87,16 @@ class Sagapeli(db.Model):
 
 class Peliculas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(250), unique=True, nullable=False)
+    title = db.Column(db.String(600), unique=True, nullable=False)
     description = db.Column(db.String(250), unique=True, nullable=False)
-    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
-    category = db.relationship('Category')
     #date = db.Column(db.Datetime)
     imagen = db.Column(db.String(250))
-    valoration = db.Column(db.Integer)
+    valoration = db.Column(db.String(250))
     cast_imagen = db.Column(db.String(250))
-    studio_id = db.Column(db.String(250))
-    duration = db.Column(db.String(250))
+    studio_id = db.Column(db.String(250), nullable=True)
+    duration = db.Column(db.String(250), nullable=True)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=True)
+    category = db.relationship('Category')
 
     def __repr__(self):
         return f'<Peliculas {self.title}>'

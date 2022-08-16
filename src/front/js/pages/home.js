@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Carousel } from "../component/carousel";
 import { Cards } from "../component/cards";
+import { Cardlistpelis } from "../component/cardlistpelis";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -10,7 +11,7 @@ export const Home = () => {
   return (
     <div className="container-fluid ">
       <Carousel />
-      <Cards />
+      <Cardlistpelis />
     </div>
   );
 };

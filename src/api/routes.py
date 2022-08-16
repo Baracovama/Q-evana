@@ -13,12 +13,12 @@ api = Blueprint('api', __name__)
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
-    res = requests.get('https://imdb-api.com/en/API/MostPopularMovies/k_6ne63i21').json()
+    res = requests.get('https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page=1').json()
     # dict(res)
     # print(res["items"]) 
-    for pelicula in res["items"]:
+    for pelicula in res["page": 1]:
         print(pelicula["title"])
-        peli = Peliculas(title=pelicula["title"],description=pelicula["fullTitle"],imagen=pelicula["image"],valoration=pelicula["imDbRating"],cast_imagen=pelicula["crew"], studio_id=pelicula["crew"],duration="",category_id=1)
+        peli = Peliculas(title=pelicula["title"],description=pelicula["overview"])
         db.session.add(peli)
         db.session.commit()
 

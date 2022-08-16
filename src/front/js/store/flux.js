@@ -1,4 +1,4 @@
-npconst getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       auth: false,

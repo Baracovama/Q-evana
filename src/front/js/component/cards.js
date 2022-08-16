@@ -9,7 +9,7 @@ export const Cards = (props) => {
   return (
     <div style={{ width: "20rem" }} className=" card  m-2">
       <img
-        src={props.poster_path}
+        src={props.img}
         className="card-img-top"
         alt="Image not found"
         width="400"
@@ -25,11 +25,6 @@ export const Cards = (props) => {
           <p className="mx-2"> {props.description2}</p>
           <p> {props.result2}</p>
         </div>
-        <div className="d-flex">
-          <p className="mx-2"> {props.description3}</p>
-          <p> {props.result3}</p>
-        </div>
-
         <div className="d-flex justify-content-between">
           <Link to={`/detail/${props.path}/${props.index}`}>
             <button className="btn btn-outline-primary">Learn more!</button>
@@ -46,8 +41,6 @@ Cards.propTypes = {
   result1: propTypes.number,
   description2: propTypes.string,
   result2: propTypes.string,
-  description3: propTypes.string,
-  result3: propTypes.string,
   path: propTypes.string,
   index: propTypes.number,
   img: propTypes.string,

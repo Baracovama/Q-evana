@@ -1,4 +1,4 @@
-const getState = ({ getStore, getActions, setStore }) => {
+npconst getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       auth: false,
@@ -86,7 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               "Content-Type": "application/json",
             },
           });
-          const data = response.json();
+          const data = await response.json();
           localStorage.setItem("token", data.token);
           setStore({
             auth: true,
@@ -101,7 +101,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      listpelis: async () => {
+      listpelis: () => {
         fetch(
           "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
         )
@@ -109,7 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => setStore({ pelis: data.results }));
       },
 
-      details: async () => {
+      details: () => {
         fetch(
           "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
         )
@@ -117,7 +117,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             if (response.ok) {
               return response.json();
             } else {
-              setStore({ error: "No se pudo obtener el personaje" });
+              setStore({ error: "No se pudo obtener la pelicula" });
             }
           })
           .then((data) => setStore({ detail: data.result.properties }));

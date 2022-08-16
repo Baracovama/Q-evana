@@ -3,6 +3,9 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 import logo from "../../img/logo.png";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCircle as fasFaCircle } from "@fortawesome/free-solid-svg-icons"; // ES Module "as" syntax
+import { faCircle as farFaCircle } from "@fortawesome/free-regular-svg-icons";
 
 export const Navbar = () => {
   const { actions, store } = useContext(Context);
@@ -32,10 +35,20 @@ export const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle text-light categorias" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a
+                className="nav-link dropdown-toggle text-light categorias"
+                href="#"
+                id="navbarDarkDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 Category
               </a>
-              <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <ul
+                className="dropdown-menu dropdown-menu-dark"
+                aria-labelledby="navbarDarkDropdownMenuLink"
+              >
                 <li>
                   <a className="dropdown-item" href="#">
                     Action
@@ -62,49 +75,101 @@ export const Navbar = () => {
 
           {store.auth ? (
             <div className="d-flex" role="search">
-              <input className="form-control me-2 dropstart" type="search" placeholder="Search" aria-label="Search"/>
-              <div className="me-5">
+              <input
+                className="form-control me-2 dropstart"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <div className="ml-auto">
                 <div className="dropdown">
-                  <button className=" dropdown-toggle favoritos" type="text" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Mi lista
+                  <button
+                    className="btn btn-primary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Favorites {store.favList.length}
                   </button>
-                  <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li>no hay contenido</li>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
+                    {store.favList.map((item, index) => {
+                      return (
+                        <li className="dropdown-item" key={item.id}>
+                          {item.title}{" "}
+                          <FontAwesomeIcon
+                            onClick={() => {
+                              actions.deleteFavorites(item);
+                            }}
+                            icon={faTrash}
+                          />
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </div>
-
               <div className="me-2">
-              <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                <strong>{store.username ? store.username : ""}</strong>
-              </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  <strong>{store.username ? store.username : ""}</strong>
+                </button>
 
-              <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                      <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      holaa
-                    </div>
-                    <div className="modal-footer">
-                      <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" className="btn btn-primary">Save changes</button>
+                <div
+                  className="modal fade"
+                  id="exampleModal"
+                  tabIndex="-1"
+                  role="dialog"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">
+                          Modal title
+                        </h5>
+                        <button
+                          type="button"
+                          className="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div className="modal-body">holaa</div>
+                      <div className="modal-footer">
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          data-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button type="button" className="btn btn-primary">
+                          Save changes
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               </div>
 
               <div className="me-2">
                 <button
                   onClick={() => {
                     const desconecto = actions.LogOut();
-					          if(desconecto){navigate(0)}
+                    if (desconecto) {
+                      navigate(0);
+                    }
                   }}
                 >
                   <i className="fas fa-sign-out-alt"></i>

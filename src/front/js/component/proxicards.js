@@ -2,18 +2,18 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Cards } from "./cards";
 
-export const Cardlistpelis = () => {
+export const Proxicards = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.listpelis();
+    actions.proxpelis();
   }, []);
 
   return (
     <div className=" container mb-5  ">
-      <h1 className="text-white">Populares</h1>
+      <h1 className="text-white">Proximamente</h1>
       <div className="row flex-row flex-nowrap overflow-auto">
-        {store.pelis.map((item, index) => {
+        {store.proxi.map((item, index) => {
           return (
             <Cards
               key={index}

@@ -2,18 +2,18 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Cards } from "./cards";
 
-export const Cardlistpelis = () => {
+export const Topcards = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.listpelis();
+    actions.toppelis();
   }, []);
 
   return (
     <div className=" container mb-5  ">
-      <h1 className="text-white">Populares</h1>
+      <h1 className="text-white">Mas valorados</h1>
       <div className="row flex-row flex-nowrap overflow-auto">
-        {store.pelis.map((item, index) => {
+        {store.top.map((item, index) => {
           return (
             <Cards
               key={index}

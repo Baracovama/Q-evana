@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 export const Cards = (props) => {
   const { store, actions } = useContext(Context);
 
+  const handleClick = () => {
+    actions.setFavorites({ name: props.title, id: props.index });
+  };
+
   return (
     <div style={{ width: "20rem" }} className=" card  m-2">
       <img
@@ -29,6 +33,16 @@ export const Cards = (props) => {
           <Link to={`/detail/${props.path}/${props.index}`}>
             <button className="btn btn-outline-primary">Learn more!</button>
           </Link>
+          <button
+            onClick={handleClick}
+            className={
+              store.favList[props.index - 1]
+                ? "btn btn-warning"
+                : " btn btn-outline-warning"
+            }
+          >
+            <i className="far fa-heart" />
+          </button>
         </div>
       </div>
     </div>

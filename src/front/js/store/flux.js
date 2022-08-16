@@ -5,6 +5,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       username: "",
       detail: {},
       pelis: [],
+      top: [],
+      proxi: [],
+      favList: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -109,6 +112,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => setStore({ pelis: data.results }));
       },
 
+      toppelis: () => {
+        fetch(
+          "https://api.themoviedb.org/3/movie/top_rated?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
+        )
+          .then((res) => res.json())
+          .then((data) => setStore({ top: data.results }));
+      },
+
+      proxpelis: () => {
+        fetch(
+          "https://api.themoviedb.org/3/movie/upcoming?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page=4"
+        )
+          .then((res) => res.json())
+          .then((data) => setStore({ proxi: data.results }));
+      },
+
       details: () => {
         fetch(
           "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
@@ -121,6 +140,19 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           })
           .then((data) => setStore({ detail: data.result.properties }));
+      },
+
+      setFavorites: (item) => {
+        const store = getStore();
+
+        setStore({ favList: [...store.favList, item] });
+      },
+      deleteFavorites: (item) => {
+        const store = getStore();
+
+        setStore({
+          favList: store.favList.filter((favList, i) => favList.id !== item.id),
+        });
       },
 
       getMessage: async () => {

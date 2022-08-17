@@ -2,42 +2,61 @@ import React from "react";
 import { Context } from "../store/appContext";
 import avatar from "../../img/avatar.png";
 import minions from "../../img/minions.png";
-import hpylpf from "../../img/hpylpf.png";
 import titanic from "../../img/titanic.png";
 import { Link } from "react-router-dom";
 import "../../styles/carousel.css";
 
 export const Carousel = () => {
 	return (
-        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
-            <div className="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <div className="container_slider">
+            <input type="radio" name="slider" id="item-1" checked/>
+            <input type="radio" name="slider" id="item-2"/>
+            <input type="radio" name="slider" id="item-3"/>
+
+            <div class="siluetas">
+                <label class="silueta" for="item-1" id="selector-1">
+                    <div className="pelicula1">
+                        <div className="container-1">
+                            <h3 className="title">Predator: La presa</h3>
+                            <p className="description"> 
+                                Ambientada hace 300 años en la Nación Comanche. Naru es una joven guerrera, feroz y altamente hábil, que se crió a la sombra de algunos de los cazadores más legendarios que deambulan por las Grandes Llanuras. Cuando el peligro amenaza su campamento, se dispone a proteger a su gente. La presa a la que acecha y, en última instancia, se enfrenta, resulta ser un depredador alienígena evolucionado con un arsenal técnicamente avanzado, lo que deriva en un enfrentamiento cruel y aterrador entre los dos adversarios.
+                            </p>
+                            <button type="button" class="btn btn-dark">
+                                Learn more!
+                            </button>
+                        </div>
+                        <img className="img-carro" src="https://image.tmdb.org/t/p/w500/k93rXVLGpFIwzbKiNqvWkVgoij.jpg"/>
+                    </div>
+                </label>
+                <label class="silueta" for="item-2" id="selector-2">
+                    <div className="pelicula2">
+                        <div className="container-2">
+                            <h3 className="title">El padrino </h3>
+                            <p className="description"> 
+                                Don Vito Corleone, conocido dentro de los círculos del hampa como 'El Padrino', es el patriarca de una de las cinco familias que ejercen el mando de la Cosa Nostra en Nueva York en los años cuarenta. Don Corleone tiene cuatro hijos: una chica, Connie, y tres varones; Sonny, Michael y Fredo. Cuando el Padrino reclina intervenir en el negocio de estupefacientes, empieza una cruenta lucha de violentos episodios entre las distintas familias del crimen organizado.
+                            </p>
+                            <button type="button" class="btn btn-dark">
+                                Learn more!
+                            </button>
+                        </div>
+                        <img className="img-carro" src="https://image.tmdb.org/t/p/w500//wLXd1Cd0XW7DhXayfC0Ok5ago9r.jpg"/>
+                    </div>
+                </label>
+                <label class="silueta" for="item-3" id="selector-3">
+                    <div className="pelicula3">
+                        <div className="container-3">
+                            <h3 className="title">Un Parcero en Nueva York</h3>
+                            <p className="description"> 
+                                Armando Pulido, a construction master, simple, good-hearted, hard-working, industrious, and a good friend, tired of the serious economic crisis in Colombia, decides to go to New York in search of the so-called "American dream".
+                            </p>
+                            <button type="button" class="btn btn-dark">
+                                Learn more!
+                            </button>
+                        </div>
+                        <img className="img-carro" src="https://image.tmdb.org/t/p/w500/rpLU2sKVvsbNdtE8ItVf89o8eXr.jpg"/>
+                    </div>
+                </label>
             </div>
-            <div className="carousel-inner">
-                <div className="carousel-item active">
-                    <img src="avatar.png" className="d-block w-100" alt="..."/>
-                </div>
-                <div className="carousel-item">
-                    <img src="minions.png" className="d-block w-100" alt="..."/>
-                </div>
-                <div className="carousel-item">
-                    <img src="hpylpf.png" className="d-block w-100" alt="..."/>
-                </div>
-                <div className="carousel-item">
-                    <img src="titanic.png" className="d-block w-100" alt="..."/>
-                </div>
-            </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Next</span>
-            </button>
         </div>
 	);
-};
+};  

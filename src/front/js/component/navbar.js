@@ -1,15 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 import logo from "../../img/logo.png";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCircle as fasFaCircle } from "@fortawesome/free-solid-svg-icons"; // ES Module "as" syntax
-import { faCircle as farFaCircle } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export const Navbar = () => {
   const { actions, store } = useContext(Context);
   const navigate = useNavigate();
+  const [busqueda, setBusqueda] = useState("");
+  console.log(busqueda);
+  console.log(store.pelis);
+  useEffect(() => {
+    actions.searchPelis(busqueda);
+  }, [busqueda]);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
@@ -76,11 +82,13 @@ export const Navbar = () => {
           {store.auth ? (
             <div className="d-flex" role="search">
               <input
+                onChange={(e) => setBusqueda(e.target.value)}
                 className="form-control me-2 dropstart"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
               />
+
               <div className="ml-auto">
                 <div className="dropdown">
                   <button
@@ -99,7 +107,7 @@ export const Navbar = () => {
                     {store.favList.map((item, index) => {
                       return (
                         <li className="dropdown-item" key={item.id}>
-                          {item.title}{" "}
+                          {item.title}
                           <FontAwesomeIcon
                             onClick={() => {
                               actions.deleteFavorites(item);
@@ -179,11 +187,13 @@ export const Navbar = () => {
           ) : (
             <div className="d-flex" role="search">
               <input
+                onChange={(e) => setBusqueda(e.target.value)}
                 className="form-control me-2 dropstart"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
               />
+
               <Link to="/login" className="me-2">
                 <button to="/login" className="btn btn-primary" type="submit">
                   {" "}

@@ -13,7 +13,7 @@ export const Cardlistpelis = () => {
     <div className=" container mb-5  ">
       <h1 className="text-white">Populares</h1>
       <div className="row flex-row flex-nowrap overflow-auto">
-        {store.pelis.map((item, index) => {
+        {store.pelis.map((item, index) => { 
           return (
             <Cards
               key={index}

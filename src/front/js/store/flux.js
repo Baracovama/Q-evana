@@ -155,6 +155,34 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+      searchPelis: (value) => {
+        console.log(value);
+        const store = getStore();
+        const filterPelis = store.pelis.filter((peli, i) =>
+          peli.title.toLowerCase().indexOf(value.toLowerCase()) > -1
+        );
+        const filterTop = store.top.filter((peli, i) =>
+          peli.title.toLowerCase().includes(value.toLowerCase())
+        );
+        const filterProxi = store.proxi.filter((peli, i) =>
+          peli.title.toLowerCase().includes(value.toLowerCase())
+        );
+        if (filterPelis.length > 0) {
+          setStore({
+            pelis: filterPelis
+          });
+        } 
+        /* else if (filterTop.length > 0) {
+          setStore({
+            top: filterTop
+          });
+        } else if (filterProxi.length > 0) {
+          setStore({
+            proxi: filterProxi
+          });
+        }*/
+      },
+
       getMessage: async () => {
         try {
           // fetching data from the backend

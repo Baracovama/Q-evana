@@ -3,11 +3,12 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       auth: false,
       username: "",
-      detail: {},
+      details: {},
       pelis: [],
       top: [],
       proxi: [],
       favList: [],
+      peliculon: {},
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -128,18 +129,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => setStore({ proxi: data.results }));
       },
 
-      details: () => {
+      pelicula: () => {
         fetch(
           "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
         )
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            } else {
-              setStore({ error: "No se pudo obtener la pelicula" });
-            }
-          })
-          .then((data) => setStore({ detail: data.result.properties }));
+          .then((res) => res.json())
+          .then((data) => setStore({ peliculon: data.results }));
       },
 
       setFavorites: (item) => {
@@ -158,8 +153,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       searchPelis: (value) => {
         console.log(value);
         const store = getStore();
-        const filterPelis = store.pelis.filter((peli, i) =>
-          peli.title.toLowerCase().indexOf(value.toLowerCase()) > -1
+        const filterPelis = store.pelis.filter(
+          (peli, i) =>
+            peli.title.toLowerCase().indexOf(value.toLowerCase()) > -1
         );
         const filterTop = store.top.filter((peli, i) =>
           peli.title.toLowerCase().includes(value.toLowerCase())
@@ -169,9 +165,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
         if (filterPelis.length > 0) {
           setStore({
-            pelis: filterPelis
+            pelis: filterPelis,
           });
-        } 
+        }
         /* else if (filterTop.length > 0) {
           setStore({
             top: filterTop

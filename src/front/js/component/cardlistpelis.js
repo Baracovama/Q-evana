@@ -13,10 +13,11 @@ export const Cardlistpelis = () => {
     <div className=" container mb-5  ">
       <h1 className="text-white">Populares</h1>
       <div className="row flex-row flex-nowrap overflow-auto">
-        {store.pelis.map((item, index) => { 
+        {store.pelis.map((item, index) => {
           return (
             <Cards
               key={index}
+              id={item.id}
               title={item.title}
               description1={"Valoracion: "}
               result1={item.vote_average}

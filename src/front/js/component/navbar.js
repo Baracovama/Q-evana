@@ -3,8 +3,8 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 import logo from "../../img/logo.png";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar = () => {
   const { actions, store } = useContext(Context);
@@ -40,47 +40,91 @@ export const Navbar = () => {
                 </div>
               </Link>
             </li>
-            <li class="nav-item categorias">
-              <a class="nav-link text-light" href="#"><i class="fas fa-film"> Populares</i></a>
+            <li className="nav-item categorias">
+              <a className="nav-link text-light" href="#">
+                <i className="fas fa-film"> Populares</i>
+              </a>
+            </li>
+            <li className="nav-item categorias">
+              <a className="nav-link text-light" href="#">
+                <i className="fas fa-medal"> Mejor Valoradas</i>
+              </a>
+            </li>
+            <li className="nav-item categorias">
+              <a className="nav-link text-light" href="#">
+                <i className="fas fa-plus-circle"> Proximamente</i>
+              </a>
             </li>
             <li class="nav-item categorias">
-              <a class="nav-link text-light" href="#"><i class="fas fa-medal"> Mejor Valoradas</i></a>
-            </li>
-            <li class="nav-item categorias">
-              <a class="nav-link text-light" href="#"><i class="fas fa-plus-circle"> Proximamente</i></a>
-            </li>
-            <li class="nav-item categorias">
-              <a class="nav-link text-light" href="#"><i class="fas fa-phone"> Contactanos</i></a>
+              <Link class="nav-link text-light" to="/contacta" ><i class="fas fa-phone"> Contactanos</i></Link>
             </li>
           </ul>
 
           {store.auth ? (
             <div className="d-flex" role="search">
-              <form class="formInput me-2">
-                    <button className="botonInput">
-                        <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
-                            <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </button>
-                    <input placeholder="Search..." required="" type="text" 
-                      onChange={(e) => setBusqueda(e.target.value)} className="form-control me-2 " />
-                    <button className="reset" type="reset">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </form>
+              <form className="formInput me-2">
+                <button className="botonInput">
+                  <svg
+                    width="17"
+                    height="16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    role="img"
+                    aria-labelledby="search"
+                  >
+                    <path
+                      d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                      stroke="currentColor"
+                      stroke-width="1.333"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </button>
+                <input
+                  placeholder="Search..."
+                  required=""
+                  type="text"
+                  onChange={(e) => setBusqueda(e.target.value)}
+                  className="form-control me-2 "
+                />
+                <button className="reset" type="reset">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </button>
+              </form>
 
               <div className="ml-auto me-2">
                 <div className="dropdown">
-                  <button className="btn btn-dark dropdown-toggle milist" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <button
+                    className="btn btn-dark dropdown-toggle milist"
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
                     Mi lista {store.favList.length}
                   </button>
-                  <ul className="dropdown-menu listado" aria-labelledby="dropdownMenuButton1">
+                  <ul
+                    className="dropdown-menu listado"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
                     {store.favList.map((item, index) => {
                       return (
                         <li className="dropdown-item" key={item.id}>
-                          {item.title}
+                          {item.name}
                           <FontAwesomeIcon
                             onClick={() => {
                               actions.deleteFavorites(item);
@@ -95,9 +139,22 @@ export const Navbar = () => {
               </div>
 
               <div className="me-2">
-                <button class="noselect botonLogOut" onClick={() => { const desconecto = actions.LogOut();if (desconecto) { navigate(0);}}} >
-                  <span class="text">{store.username ? store.username : ""}</span>
-                  <span class="icon"> <i className="fas fa-sign-out-alt"></i> </span>
+                <button
+                  className="noselect botonLogOut"
+                  onClick={() => {
+                    const desconecto = actions.LogOut();
+                    if (desconecto) {
+                      navigate(0);
+                    }
+                  }}
+                >
+                  <span className="text">
+                    {store.username ? store.username : ""}
+                  </span>
+                  <span className="icon">
+                    {" "}
+                    <i className="fas fa-sign-out-alt"></i>{" "}
+                  </span>
                 </button>
               </div>
             </div>
@@ -106,7 +163,9 @@ export const Navbar = () => {
               <Link to="/login" className="me-2">
                 <button to="/login" className="botonEntrar" type="submit">
                   {" "}
-                  <span class="text"><i class="fas fa-user-astronaut"> Entrar</i></span>
+                  <span className="text">
+                    <i className="fas fa-user-astronaut"> Entrar</i>
+                  </span>
                 </button>
               </Link>
             </div>

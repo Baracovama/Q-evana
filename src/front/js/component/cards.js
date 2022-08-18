@@ -30,7 +30,7 @@ export const Cards = (props) => {
           <p> {props.result2}</p>
         </div>
         <div className="d-flex justify-content-between">
-          <Link to={`/detail/${props.path}/${props.index}`}>
+          <Link to={`/peliculas/${props.id}`}>
             <button className="btn btn-outline-primary">Learn more!</button>
           </Link>
           <button

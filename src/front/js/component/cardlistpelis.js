@@ -17,6 +17,7 @@ export const Cardlistpelis = () => {
           return (
             <Cards
               key={index}
+              id={item.id}
               title={item.title}
               id={item.id}
               description1={"Valoracion: "}

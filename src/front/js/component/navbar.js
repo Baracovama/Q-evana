@@ -3,8 +3,8 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 import logo from "../../img/logo.png";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar = () => {
   const { actions, store } = useContext(Context);
@@ -40,74 +40,91 @@ export const Navbar = () => {
                 </div>
               </Link>
             </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle text-light categorias"
-                href="#"
-                id="navbarDarkDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Category
+            <li className="nav-item categorias">
+              <a className="nav-link text-light" href="#">
+                <i className="fas fa-film"> Populares</i>
               </a>
-              <ul
-                className="dropdown-menu dropdown-menu-dark"
-                aria-labelledby="navbarDarkDropdownMenuLink"
-              >
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Romance
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Thriller
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Science Fiction
-                  </a>
-                </li>
-              </ul>
+            </li>
+            <li className="nav-item categorias">
+              <a className="nav-link text-light" href="#">
+                <i className="fas fa-medal"> Mejor Valoradas</i>
+              </a>
+            </li>
+            <li className="nav-item categorias">
+              <a className="nav-link text-light" href="#">
+                <i className="fas fa-plus-circle"> Proximamente</i>
+              </a>
+            </li>
+            <li class="nav-item categorias">
+              <Link class="nav-link text-light" to="/contacta" ><i class="fas fa-phone"> Contactanos</i></Link>
             </li>
           </ul>
 
           {store.auth ? (
             <div className="d-flex" role="search">
-              <input
-                onChange={(e) => setBusqueda(e.target.value)}
-                className="form-control me-2 dropstart"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
+              <form className="formInput me-2">
+                <button className="botonInput">
+                  <svg
+                    width="17"
+                    height="16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    role="img"
+                    aria-labelledby="search"
+                  >
+                    <path
+                      d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                      stroke="currentColor"
+                      stroke-width="1.333"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </button>
+                <input
+                  placeholder="Search..."
+                  required=""
+                  type="text"
+                  onChange={(e) => setBusqueda(e.target.value)}
+                  className="form-control me-2 "
+                />
+                <button className="reset" type="reset">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </button>
+              </form>
 
-              <div className="ml-auto">
+              <div className="ml-auto me-2">
                 <div className="dropdown">
                   <button
-                    className="btn btn-primary dropdown-toggle"
+                    className="btn btn-dark dropdown-toggle milist"
                     type="button"
                     id="dropdownMenuButton1"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    Favorites {store.favList.length}
+                    Mi lista {store.favList.length}
                   </button>
                   <ul
-                    className="dropdown-menu"
+                    className="dropdown-menu listado"
                     aria-labelledby="dropdownMenuButton1"
                   >
                     {store.favList.map((item, index) => {
                       return (
                         <li className="dropdown-item" key={item.id}>
-                          {item.title}
+                          {item.name}
                           <FontAwesomeIcon
                             onClick={() => {
                               actions.deleteFavorites(item);
@@ -120,59 +137,10 @@ export const Navbar = () => {
                   </ul>
                 </div>
               </div>
-              <div className="me-2">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  data-toggle="modal"
-                  data-target="#exampleModal"
-                >
-                  <strong>{store.username ? store.username : ""}</strong>
-                </button>
-
-                <div
-                  className="modal fade"
-                  id="exampleModal"
-                  tabIndex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">
-                          Modal title
-                        </h5>
-                        <button
-                          type="button"
-                          className="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div className="modal-body">holaa</div>
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button type="button" className="btn btn-primary">
-                          Save changes
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
               <div className="me-2">
                 <button
+                  className="noselect botonLogOut"
                   onClick={() => {
                     const desconecto = actions.LogOut();
                     if (desconecto) {
@@ -180,34 +148,24 @@ export const Navbar = () => {
                     }
                   }}
                 >
-                  <i className="fas fa-sign-out-alt"></i>
+                  <span className="text">
+                    {store.username ? store.username : ""}
+                  </span>
+                  <span className="icon">
+                    {" "}
+                    <i className="fas fa-sign-out-alt"></i>{" "}
+                  </span>
                 </button>
               </div>
             </div>
           ) : (
             <div className="d-flex" role="search">
-              <input
-                onChange={(e) => setBusqueda(e.target.value)}
-                className="form-control me-2 dropstart"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-
               <Link to="/login" className="me-2">
-                <button to="/login" className="btn btn-primary" type="submit">
+                <button to="/login" className="botonEntrar" type="submit">
                   {" "}
-                  Login
-                </button>
-              </Link>
-              <Link to="/registre">
-                <button
-                  to="/registre"
-                  className="btn btn-primary"
-                  type="submit"
-                >
-                  {" "}
-                  Registre
+                  <span className="text">
+                    <i className="fas fa-user-astronaut"> Entrar</i>
+                  </span>
                 </button>
               </Link>
             </div>

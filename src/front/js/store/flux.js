@@ -142,6 +142,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({ favList: [...store.favList, item] });
       },
+      
       deleteFavorites: (item) => {
         const store = getStore();
 

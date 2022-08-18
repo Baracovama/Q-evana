@@ -7,7 +7,7 @@ export const Cards = (props) => {
   const { store, actions } = useContext(Context);
 
   const handleClick = () => {
-    actions.setFavorites({ name: props.title, id: props.index });
+    actions.setFavorites({ name: props.title, id: props.id });
   };
 
   return (

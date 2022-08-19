@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       proxi: [],
       favList: [],
       peliculon: {},
+      notfound: false,
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -18,10 +19,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       LogOut: () => {
         localStorage.removeItem("token");
-        return true;
+        getActions().Verify();
+        // return true;
       },
 
-      Verify: () => {
+      Verify: async () => {
         const opts = {
           method: "GET",
           headers: {
@@ -29,24 +31,28 @@ const getState = ({ getStore, getActions, setStore }) => {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         };
-
-        fetch(process.env.BACKEND_URL + "/api/verify", opts)
-          .then((resp) => {
-            console.log(resp);
-            if (resp.status === 200) return resp.json();
-          })
-          .then((data) => {
-            console.log(data);
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/verify",
+            opts
+          );
+          const data = await resp.json();
+          console.log(data);
+          if (resp.status === 200) {
             setStore({
               logeado: data.logeado,
             });
             setStore({
               username: data.username,
             });
-          })
-          .catch((error) => {
-            console.error("There was an error", error);
-          });
+          } else if (resp.status === 404) {
+            setStore({
+              logeado: data.logeado,
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
       },
 
       InicioSesion: async (email, password) => {
@@ -142,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({ favList: [...store.favList, item] });
       },
-      
+
       deleteFavorites: (item) => {
         const store = getStore();
 
@@ -156,17 +162,21 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         const filterPelis = store.pelis.filter(
           (peli, i) =>
-            peli.title.toLowerCase().indexOf(value.toLowerCase()) > -1
+            peli.title.toLowerCase().indexOf(value.toLowerCase()) !== -1
         );
-        const filterTop = store.top.filter((peli, i) =>
-          peli.title.toLowerCase().includes(value.toLowerCase())
-        );
-        const filterProxi = store.proxi.filter((peli, i) =>
-          peli.title.toLowerCase().includes(value.toLowerCase())
-        );
+        // const filterTop = store.top.filter((peli, i) =>
+        //   peli.title.toLowerCase().includes(value.toLowerCase())
+        // );
+        // const filterProxi = store.proxi.filter((peli, i) =>
+        //   peli.title.toLowerCase().includes(value.toLowerCase())
+        // );
         if (filterPelis.length > 0) {
           setStore({
             pelis: filterPelis,
+          });
+        } else {
+          setStore({
+            notfound: true,
           });
         }
         /* else if (filterTop.length > 0) {

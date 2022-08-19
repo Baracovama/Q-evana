@@ -65,9 +65,9 @@ def get_verify():
     currentuser = get_jwt_identity()
     user = User.query.get(currentuser)
     if user : 
-        return jsonify({"logeado" : True, "username" : user.username})
+        return jsonify({"logeado" : True, "username" : user.username}), 200
     else : 
-        return jsonify({"logeado" : False, "mesage" : "Usuario no encontrado"})
+        return jsonify({"logeado" : False, "mesage" : "Usuario no encontrado"}), 404
 
 @api.route('/peliculas', methods=['GET'])
 def get_peliculas():

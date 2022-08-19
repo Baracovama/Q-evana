@@ -13,22 +13,26 @@ export const Cardlistpelis = () => {
     <div className=" container mb-5  ">
       <h1 className="text-white">Populares</h1>
       <div className="row flex-row flex-nowrap overflow-auto">
-        {store.pelis.map((item, index) => {
-          return (
-            <Cards
-              key={index}
-              id={item.id}
-              title={item.title}
-              id={item.id}
-              description1={"Valoracion: "}
-              result1={item.vote_average}
-              description2={"Fecha de lanzamiento: "}
-              result2={item.release_date}
-              path={"poster_path"}
-              img={"https://image.tmdb.org/t/p/w500" + item.poster_path}
-            />
-          );
-        })}
+        {store.notfound !== true ? (
+          store.pelis.map((item, index) => {
+            return (
+              <Cards
+                key={index}
+                id={item.id}
+                title={item.title}
+                id={item.id}
+                description1={"Valoracion: "}
+                result1={item.vote_average}
+                description2={"Fecha de lanzamiento: "}
+                result2={item.release_date}
+                path={"poster_path"}
+                img={"https://image.tmdb.org/t/p/w500" + item.poster_path}
+              />
+            );
+          })
+        ) : (
+          <p className="text-white text-center">no hubo coincidencias</p>
+        )}
       </div>
     </div>
   );

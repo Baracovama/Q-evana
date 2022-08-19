@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Peliculas, Sagas, Category, Sagapeli
+from api.models import db, User, Peliculas, Sagas, Category, Sagapeli, Favorites_Peliculas
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 import requests
@@ -15,10 +15,10 @@ def handle_hello():
 
     res = requests.get('https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page=1').json()
     # dict(res)
-    # print(res["items"]) 
-    for pelicula in res["page": 1]:
+    # print(res["results"]) 
+    for pelicula in res["results"]:
         print(pelicula["title"])
-        peli = Peliculas(title=pelicula["title"],description=pelicula["overview"])
+        peli = Peliculas(title=pelicula["title"],description=pelicula["overview"],category_id=0, valoration=pelicula["vote_average"],cast_imagen="",studio_id=0,duration=0, imagen=pelicula["poster_path"])
         db.session.add(peli)
         db.session.commit()
 
@@ -57,7 +57,7 @@ def login():
         return jsonify({"message": "incorrect email or password"}), 400
     access_token = create_access_token(identity=user.id)
 
-    return jsonify({"token": access_token, "username": user.username}), 200
+    return jsonify({"token": access_token, "username": user.username, "id_user": user.id}), 200
 
 @api.route('/verify', methods=['GET'])
 @jwt_required()
@@ -108,3 +108,21 @@ def get_all_movies():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/addPelisFav', methods=['POST'])
+def create_fav():
+    data = request.json
+    listFav = Favorites_Peliculas(user_id=data.get('user_id'),pelicula_id=data.get('pelicula_id'))
+    if not listFav:
+        return jsonify({"message": "Aun no se a añadido ninguna pelicula"}), 400
+        db.session.add(listFav)
+        db.session.commit()
+    return jsonify({"msg": "Se añadio correctmente"}), 200
+
+@api.route('/favoritos', methods=['GET'])
+def get_favoritos():
+    data = request.args
+    favoritos = Favorites_Peliculas.query.filter_by(user_id=data.get('user_id'))
+   # user = User.query.filter_by(email=data['email'], password=data['password']).first()
+    data = [favoritos.serialize() for favoritos in favoritos]
+    return jsonify(data), 200

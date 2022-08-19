@@ -4,6 +4,7 @@ import "../../styles/home.css";
 import { Carousel } from "../component/carousel";
 import { Cards } from "../component/cards";
 import { Cardlistpelis } from "../component/cardlistpelis";
+import { CardFavs } from "../component/cardFavs";
 import { Topcards } from "../component/topcards";
 import { Proxicards } from "../component/proxicards";
 
@@ -16,6 +17,7 @@ export const Home = () => {
       <Cardlistpelis />
       <Topcards />
       <Proxicards />
+      <CardFavs />
     </div>
   );
 };

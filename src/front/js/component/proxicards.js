@@ -17,6 +17,7 @@ export const Proxicards = () => {
           return (
             <Cards
               key={index}
+              id={item.id}
               title={item.title}
               description1={"Valoracion: "}
               result1={item.vote_average}

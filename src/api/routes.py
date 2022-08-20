@@ -123,6 +123,5 @@ def create_fav():
 def get_favoritos():
     data = request.args
     favoritos = Favorites_Peliculas.query.filter_by(user_id=data.get('user_id'))
-   # user = User.query.filter_by(email=data['email'], password=data['password']).first()
     data = [favoritos.serialize() for favoritos in favoritos]
     return jsonify(data), 200

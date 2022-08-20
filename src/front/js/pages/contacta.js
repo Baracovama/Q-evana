@@ -7,9 +7,9 @@ export const Contacta = () => {
     <div className="body">
        <div className="slide-container">
             <div className="slide-content"> 
-                <div class="container mt-auto">
-                    <div class="row">
-                        <div class="col-6">
+                <div className="container mt-auto">
+                    <div className="row">
+                        <div className="col-6">
                             <div className="card-wrapper">
                                 <div className="cardContact">
                                     <div className="image-content">
@@ -29,7 +29,7 @@ export const Contacta = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div className="col-6">
                             <div className="card-wrapper">
                                 <div className="cardContact">
                                     <div className="image-content">

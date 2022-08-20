@@ -87,8 +87,8 @@ class Sagapeli(db.Model):
 
 class Peliculas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(600), unique=True, nullable=False)
-    description = db.Column(db.String(250), unique=True, nullable=False)
+    title = db.Column(db.String(250), unique=True, nullable=False)
+    description = db.Column(db.String(900), unique=True, nullable=False)
     #date = db.Column(db.Datetime)
     imagen = db.Column(db.String(250))
     valoration = db.Column(db.String(250))

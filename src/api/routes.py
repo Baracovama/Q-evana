@@ -18,7 +18,7 @@ def handle_hello():
     # print(res["results"]) 
     for pelicula in res["results"]:
         print(pelicula["title"])
-        peli = Peliculas(title=pelicula["title"],description=pelicula["overview"],category_id=0, valoration=pelicula["vote_average"],cast_imagen="",studio_id=0,duration=0, imagen=pelicula["poster_path"])
+        peli = Peliculas(title=pelicula["title"],description=pelicula["overview"],category_id=1, valoration=pelicula["vote_average"],cast_imagen="",studio_id=0,duration=0, imagen=pelicula["poster_path"])
         db.session.add(peli)
         db.session.commit()
 

@@ -20,8 +20,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       LogOut: () => {
         localStorage.removeItem("token");
-        getActions().Verify();
-        // return true;
+        // getActions().Verify();
+        return true;
       },
 
       Verify: async () => {

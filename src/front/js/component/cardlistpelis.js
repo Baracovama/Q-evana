@@ -19,7 +19,6 @@ export const Cardlistpelis = () => {
               <Cards
                 key={index}
                 title={item.title}
-                id={item.id}
                 description1={"Valoracion: "}
                 result1={item.vote_average}
                 description2={"Fecha de lanzamiento: "}

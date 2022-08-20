@@ -20,8 +20,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       LogOut: () => {
         localStorage.removeItem("token");
-        getActions().Verify();
-        // return true;
+        // getActions().Verify();
+        return true;
       },
 
       Verify: async () => {
@@ -200,19 +200,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           (peli, i) =>
             peli.title.toLowerCase().indexOf(value.toLowerCase()) !== -1
         );
-        // const filterTop = store.top.filter((peli, i) =>
-        //   peli.title.toLowerCase().includes(value.toLowerCase())
-        // );
-        // const filterProxi = store.proxi.filter((peli, i) =>
-        //   peli.title.toLowerCase().includes(value.toLowerCase())
-        // );
+        const filterTop = store.top.filter((peli, i) =>
+          peli.title.toLowerCase().includes(value.toLowerCase())
+        );
+        const filterProxi = store.proxi.filter((peli, i) =>
+          peli.title.toLowerCase().includes(value.toLowerCase())
+        );
         if (filterPelis.length > 0) {
           setStore({
             pelis: filterPelis,
           });
         } else {
           setStore({
-            notfound: true,
+            notfound: false,
           });
         }
         /* else if (filterTop.length > 0) {

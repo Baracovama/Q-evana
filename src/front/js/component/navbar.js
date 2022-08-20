@@ -65,7 +65,13 @@ export const Navbar = () => {
 
           {store.auth ? (
             <div className="d-flex" role="search">
-              <form className="formInput me-2">
+              <form
+                className="formInput me-2"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  actions.searchPelis(busqueda);
+                }}
+              >
                 <button className="botonInput">
                   <svg
                     width="17"
@@ -85,7 +91,6 @@ export const Navbar = () => {
                   </svg>
                 </button>
                 <input
-                  onKeyPress={() => actions.searchPelis(busqueda)}
                   value={busqueda}
                   placeholder="Search..."
                   required=""

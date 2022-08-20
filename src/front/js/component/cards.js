@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -6,8 +7,22 @@ import { Link } from "react-router-dom";
 export const Cards = (props) => {
   const { store, actions } = useContext(Context);
 
-  const handleClick = () => {
-    actions.setFavorites({ name: props.title, id: props.id });
+  const [datos, setDatos] = useState({
+    user_id: -1,
+    pelicula_id: "",
+  });
+
+  let navigate = useNavigate();
+
+  const sendFav = (event) => {
+    datos.user_id=store.id_user;
+    datos.pelicula_id=props.id;
+    event.preventDefault();
+    console.log(datos);
+    const respdata = actions.addFavorites(datos);
+    if(respdata){
+      navigate('/')
+    }
   };
 
   return (
@@ -33,16 +48,21 @@ export const Cards = (props) => {
           <Link to={`/peliculas/${props.id}`}>
             <button className="btn btn-outline-primary">Learn more!</button>
           </Link>
-          <button
-            onClick={handleClick}
-            className={
-              store.favList[props.index - 1]
-                ? "btn btn-warning"
-                : " btn btn-outline-warning"
-            }
-          >
-            <i className="far fa-heart" />
-          </button>
+          <form onSubmit={sendFav}>
+              <input name="user_id" className="form-control" id="UsernameInput" type="hidden" value={store.id_user ? store.id_user : ""}/>
+              <input name="pelicula_id" className="form-control" id="UsernameInput" type="hidden" value={props.id}/>
+            <button type="submit" value="Sing in" name="login-btn"
+              className={
+                store.favList[props.id]
+                  ? "btn btn-warning"
+                  : " btn btn-outline-warning"
+              }
+            >
+              <i className="far fa-heart" />
+            </button>
+          </form>
+
+          
         </div>
       </div>
     </div>

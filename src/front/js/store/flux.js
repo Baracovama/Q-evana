@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       auth: false,
       username: "",
+      id_user: -1,
       details: {},
       pelis: [],
       top: [],
@@ -45,6 +46,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({
               username: data.username,
             });
+            setStore({
+              id_user: data.id_user,
+            });
           } else if (resp.status === 404) {
             setStore({
               logeado: data.logeado,
@@ -80,6 +84,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             username: data.username,
           });
+          setStore({
+            id_user: data.id_user,
+          });
           return true;
         } catch (error) {
           console.error("There was an error", error);
@@ -104,7 +111,28 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             username: data.username,
           });
+          setStore({
+            id_user: data.id_user,
+          });
           return true;
+        } catch (error) {
+          console.log(error);
+          return false;
+        }
+      },
+
+      addFavorites: async (datos) => {
+        try {
+          const response = await fetch(process.env.BACKEND_URL + "/api/addPelisFav", {
+            method: "POST",
+            body: JSON.stringify(datos),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          const data = await response.json();
+          return true;
+
         } catch (error) {
           console.log(error);
           return false;
@@ -133,6 +161,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         )
           .then((res) => res.json())
           .then((data) => setStore({ proxi: data.results }));
+      },
+
+      favPelis: (id_user) => {
+        fetch(
+          "https://3001-baracovama-qevana-3zwvya53hy8.ws-eu62.gitpod.io/api/favoritos?user_id=" + id_user
+        )
+          .then((res) => res.json())
+          .then((data) => setStore({ favList: data.results }));
       },
 
       pelicula: () => {

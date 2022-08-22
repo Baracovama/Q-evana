@@ -13,8 +13,8 @@ export const Carousel = () => {
             <input type="radio" name="slider" id="item-2"/>
             <input type="radio" name="slider" id="item-3"/>
 
-            <div class="siluetas">
-                <label class="silueta" for="item-1" id="selector-1">
+            <div className="siluetas">
+                <label className="silueta" htmlFor="item-1" id="selector-1">
                     <div className="pelicula1">
                         <div className="container-1">
                             <h3 className="title">Predator: La presa</h3>
@@ -25,7 +25,7 @@ export const Carousel = () => {
                         <img className="img-carro" src="https://image.tmdb.org/t/p/w500/k93rXVLGpFIwzbKiNqvWkVgoij.jpg"/>
                     </div>
                 </label>
-                <label class="silueta" for="item-2" id="selector-2">
+                <label className="silueta" htmlFor="item-2" id="selector-2">
                     <div className="pelicula2">
                         <div className="container-2">
                             <h3 className="title">El padrino </h3>
@@ -36,7 +36,7 @@ export const Carousel = () => {
                         <img className="img-carro" src="https://image.tmdb.org/t/p/w500//wLXd1Cd0XW7DhXayfC0Ok5ago9r.jpg"/>
                     </div>
                 </label>
-                <label class="silueta" for="item-3" id="selector-3">
+                <label className="silueta" htmlFor="item-3" id="selector-3">
                     <div className="pelicula3">
                         <div className="container-3">
                             <h3 className="title">Un Parcero en Nueva York</h3>

@@ -17,6 +17,7 @@ export const Topcards = () => {
           return (
             <Cards
               key={index}
+              id={item.id}
               title={item.title}
               description1={"Valoracion: "}
               result1={item.vote_average}
@@ -27,6 +28,7 @@ export const Topcards = () => {
             />
           );
         })}
+        <i class="fa fa-hourglass-start" aria-hidden="true"></i>
       </div>
     </div>
   );

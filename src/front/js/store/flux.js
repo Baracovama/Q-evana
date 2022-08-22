@@ -3,12 +3,14 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       auth: false,
       username: "",
+      id_user: -1,
       details: {},
       pelis: [],
       top: [],
       proxi: [],
       favList: [],
       peliculon: {},
+      notfound: false,
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -18,10 +20,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       LogOut: () => {
         localStorage.removeItem("token");
+        // getActions().Verify();
         return true;
       },
 
-      Verify: () => {
+      Verify: async () => {
         const opts = {
           method: "GET",
           headers: {
@@ -29,24 +32,31 @@ const getState = ({ getStore, getActions, setStore }) => {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         };
-
-        fetch(process.env.BACKEND_URL + "/api/verify", opts)
-          .then((resp) => {
-            console.log(resp);
-            if (resp.status === 200) return resp.json();
-          })
-          .then((data) => {
-            console.log(data);
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/verify",
+            opts
+          );
+          const data = await resp.json();
+          console.log(data);
+          if (resp.status === 200) {
             setStore({
               logeado: data.logeado,
             });
             setStore({
               username: data.username,
             });
-          })
-          .catch((error) => {
-            console.error("There was an error", error);
-          });
+            setStore({
+              id_user: data.id_user,
+            });
+          } else if (resp.status === 404) {
+            setStore({
+              logeado: data.logeado,
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
       },
 
       InicioSesion: async (email, password) => {
@@ -74,6 +84,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             username: data.username,
           });
+          setStore({
+            id_user: data.id_user,
+          });
           return true;
         } catch (error) {
           console.error("There was an error", error);
@@ -98,6 +111,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             username: data.username,
           });
+          setStore({
+            id_user: data.id_user,
+          });
+          return true;
+        } catch (error) {
+          console.log(error);
+          return false;
+        }
+      },
+
+      addFavorites: async (datos) => {
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/addPelisFav",
+            {
+              method: "POST",
+              body: JSON.stringify(datos),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const data = await response.json();
           return true;
         } catch (error) {
           console.log(error);
@@ -107,7 +143,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       listpelis: () => {
         fetch(
-          "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
+          "https://3001-baracovama-qevana-rtl4m9jxk5b.ws-eu62.gitpod.io/api/populares"
         )
           .then((res) => res.json())
           .then((data) => setStore({ pelis: data.results }));
@@ -115,7 +151,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       toppelis: () => {
         fetch(
-          "https://api.themoviedb.org/3/movie/top_rated?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
+          "https://3001-baracovama-qevana-rtl4m9jxk5b.ws-eu62.gitpod.io/api/toprated"
         )
           .then((res) => res.json())
           .then((data) => setStore({ top: data.results }));
@@ -123,26 +159,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       proxpelis: () => {
         fetch(
-          "https://api.themoviedb.org/3/movie/upcoming?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page=4"
+          "https://3001-baracovama-qevana-rtl4m9jxk5b.ws-eu62.gitpod.io/api/proximamente"
         )
           .then((res) => res.json())
           .then((data) => setStore({ proxi: data.results }));
       },
 
-      pelicula: () => {
+      favPelis: (id_user) => {
         fetch(
-          "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
+          "https://3001-baracovama-qevana-3zwvya53hy8.ws-eu62.gitpod.io/api/favoritos?user_id=" +
+            id_user
         )
           .then((res) => res.json())
-          .then((data) => setStore({ peliculon: data.results }));
+          .then((data) => setStore({ favList: data.results }));
       },
+
+      // pelicula: () => {
+      //   fetch(
+      //     "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
+      //   )
+      //     .then((res) => res.json())
+      //     .then((data) => setStore({ peliculon: data.results }));
+      // },
 
       setFavorites: (item) => {
         const store = getStore();
 
         setStore({ favList: [...store.favList, item] });
       },
-      
+
       deleteFavorites: (item) => {
         const store = getStore();
 
@@ -156,7 +201,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         const filterPelis = store.pelis.filter(
           (peli, i) =>
-            peli.title.toLowerCase().indexOf(value.toLowerCase()) > -1
+            peli.title.toLowerCase().indexOf(value.toLowerCase()) !== -1
         );
         const filterTop = store.top.filter((peli, i) =>
           peli.title.toLowerCase().includes(value.toLowerCase())
@@ -167,6 +212,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         if (filterPelis.length > 0) {
           setStore({
             pelis: filterPelis,
+          });
+        } else {
+          setStore({
+            notfound: false,
           });
         }
         /* else if (filterTop.length > 0) {

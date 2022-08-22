@@ -16,6 +16,7 @@ export const Navbar = () => {
     actions.searchPelis(busqueda);
   }, [busqueda]);
 
+  console.log(store.auth);
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
@@ -55,14 +56,22 @@ export const Navbar = () => {
                 <i className="fas fa-plus-circle"> Proximamente</i>
               </a>
             </li>
-            <li class="nav-item categorias">
-              <Link class="nav-link text-light" to="/contacta" ><i class="fas fa-phone"> Contactanos</i></Link>
+            <li className="nav-item categorias">
+              <Link className="nav-link text-light" to="/contacta">
+                <i className="fas fa-phone"> Contactanos</i>
+              </Link>
             </li>
           </ul>
 
           {store.auth ? (
             <div className="d-flex" role="search">
-              <form className="formInput me-2">
+              <form
+                className="formInput me-2"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  actions.searchPelis(busqueda);
+                }}
+              >
                 <button className="botonInput">
                   <svg
                     width="17"
@@ -82,13 +91,14 @@ export const Navbar = () => {
                   </svg>
                 </button>
                 <input
+                  value={busqueda}
                   placeholder="Search..."
                   required=""
                   type="text"
                   onChange={(e) => setBusqueda(e.target.value)}
                   className="form-control me-2 "
                 />
-                <button className="reset" type="reset">
+                {/* <button className="reset" type="reset">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -103,7 +113,7 @@ export const Navbar = () => {
                       d="M6 18L18 6M6 6l12 12"
                     ></path>
                   </svg>
-                </button>
+                </button> */}
               </form>
 
               <div className="ml-auto me-2">

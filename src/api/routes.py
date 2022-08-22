@@ -2,33 +2,13 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Populares, Category, Toprated, Proximamente
+from api.models import db, User, Populares, Category, Toprated, Proximamente, Favorites_Peliculas
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 import requests
 
-# Se elimino de la linea 5 : Favorites_Peliculas,
 
 api = Blueprint('api', __name__)
-# ----------------------------------------------------------------
-# @api.route('/hello', methods=['POST', 'GET'])
-# def handle_hello():
-
-#     res = requests.get('https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page=1').json()
-#     # dict(res)
-#     # print(res["results"]) 
-#     for pelicula in res["results"]:
-#         print(pelicula["title"])
-#         peli = Peliculas(title=pelicula["title"],description=pelicula["overview"],category_id=1, valoration=pelicula["vote_average"],cast_imagen="",studio_id=0,duration=0, imagen=pelicula["poster_path"])
-#         db.session.add(peli)
-#         db.session.commit()
-
-#     response_body = {
-#         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-#     }
-
-#     return jsonify(response_body), 200
-# ----------------------------------------------------------------
 @api.route('/user', methods=['GET'])
 def get_users():
     users = User.query.all()
@@ -140,6 +120,44 @@ def handle_category():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/addPelisFav', methods=['POST'])
+def create_fav():
+    data = request.json
+    listFav = Favorites_Peliculas(user_id=data.get('user_id'),populares_id=data.get('populares_id'))
+    if not listFav:
+        return jsonify({"message": "Aun no se a añadido ninguna pelicula"}), 400
+        db.session.add(listFav)
+        db.session.commit()
+    return jsonify({"msg": "Se añadio correctmente"}), 200
+# ----------------------------------------------------------------
+
+@api.route('/favoritos', methods=['GET'])
+def get_favoritos():
+    data = request.args
+    favoritos = Favorites_Peliculas.query.filter_by(user_id=data.get('user_id'))
+    data = [favoritos.serialize() for favoritos in favoritos]
+    return jsonify(data), 200
+# ----------------------------------------------------------------
+# ----------------------------------------------------------------
+# ----------------------------------------------------------------
+# @api.route('/hello', methods=['POST', 'GET'])
+# def handle_hello():
+
+#     res = requests.get('https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page=1').json()
+#     # dict(res)
+#     # print(res["results"]) 
+#     for pelicula in res["results"]:
+#         print(pelicula["title"])
+#         peli = Peliculas(title=pelicula["title"],description=pelicula["overview"],category_id=1, valoration=pelicula["vote_average"],cast_imagen="",studio_id=0,duration=0, imagen=pelicula["poster_path"])
+#         db.session.add(peli)
+#         db.session.commit()
+
+#     response_body = {
+#         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+#     }
+
+#     return jsonify(response_body), 200
 # ----------------------------------------------------------------
 # @api.route('/peliculas', methods=['GET'])
 # def get_peliculas():
@@ -183,21 +201,5 @@ def handle_category():
 
 #     return jsonify(response_body), 200
 # ----------------------------------------------------------------
-
-@api.route('/addPelisFav', methods=['POST'])
-def create_fav():
-    data = request.json
-    listFav = Favorites_Peliculas(user_id=data.get('user_id'),populares_id=data.get('populares_id'))
-    if not listFav:
-        return jsonify({"message": "Aun no se a añadido ninguna pelicula"}), 400
-        db.session.add(listFav)
-        db.session.commit()
-    return jsonify({"msg": "Se añadio correctmente"}), 200
 # ----------------------------------------------------------------
-
-@api.route('/favoritos', methods=['GET'])
-def get_favoritos():
-    data = request.args
-    favoritos = Favorites_Peliculas.query.filter_by(user_id=data.get('user_id'))
-    data = [favoritos.serialize() for favoritos in favoritos]
-    return jsonify(data), 200
+# ----------------------------------------------------------------

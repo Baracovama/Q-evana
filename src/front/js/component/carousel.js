@@ -21,9 +21,6 @@ export const Carousel = () => {
                             <p className="description"> 
                                 Ambientada hace 300 años en la Nación Comanche. Naru es una joven guerrera, feroz y altamente hábil, que se crió a la sombra de algunos de los cazadores más legendarios que deambulan por las Grandes Llanuras. Cuando el peligro amenaza su campamento, se dispone a proteger a su gente. La presa a la que acecha y, en última instancia, se enfrenta, resulta ser un depredador alienígena evolucionado con un arsenal técnicamente avanzado, lo que deriva en un enfrentamiento cruel y aterrador entre los dos adversarios.
                             </p>
-                            <button type="button" className="btn btn-dark">
-                                Learn more!
-                            </button>
                         </div>
                         <img className="img-carro" src="https://image.tmdb.org/t/p/w500/k93rXVLGpFIwzbKiNqvWkVgoij.jpg"/>
                     </div>
@@ -35,9 +32,6 @@ export const Carousel = () => {
                             <p className="description"> 
                                 Don Vito Corleone, conocido dentro de los círculos del hampa como 'El Padrino', es el patriarca de una de las cinco familias que ejercen el mando de la Cosa Nostra en Nueva York en los años cuarenta. Don Corleone tiene cuatro hijos: una chica, Connie, y tres varones; Sonny, Michael y Fredo. Cuando el Padrino reclina intervenir en el negocio de estupefacientes, empieza una cruenta lucha de violentos episodios entre las distintas familias del crimen organizado.
                             </p>
-                            <button type="button" clasclassNames="btn btn-dark">
-                                Learn more!
-                            </button>
                         </div>
                         <img className="img-carro" src="https://image.tmdb.org/t/p/w500//wLXd1Cd0XW7DhXayfC0Ok5ago9r.jpg"/>
                     </div>
@@ -49,9 +43,6 @@ export const Carousel = () => {
                             <p className="description"> 
                                 Armando Pulido, a construction master, simple, good-hearted, hard-working, industrious, and a good friend, tired of the serious economic crisis in Colombia, decides to go to New York in search of the so-called "American dream".
                             </p>
-                            <button type="button" className="btn btn-dark">
-                                Learn more!
-                            </button>
                         </div>
                         <img className="img-carro" src="https://image.tmdb.org/t/p/w500/rpLU2sKVvsbNdtE8ItVf89o8eXr.jpg"/>
                     </div>

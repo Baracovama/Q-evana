@@ -123,16 +123,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       addFavorites: async (datos) => {
         try {
-          const response = await fetch(process.env.BACKEND_URL + "/api/addPelisFav", {
-            method: "POST",
-            body: JSON.stringify(datos),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/addPelisFav",
+            {
+              method: "POST",
+              body: JSON.stringify(datos),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
           const data = await response.json();
           return true;
-
         } catch (error) {
           console.log(error);
           return false;
@@ -141,7 +143,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       listpelis: () => {
         fetch(
-          "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
+          "https://3001-baracovama-qevana-rtl4m9jxk5b.ws-eu62.gitpod.io/api/populares"
         )
           .then((res) => res.json())
           .then((data) => setStore({ pelis: data.results }));
@@ -149,7 +151,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       toppelis: () => {
         fetch(
-          "https://api.themoviedb.org/3/movie/top_rated?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
+          "https://3001-baracovama-qevana-rtl4m9jxk5b.ws-eu62.gitpod.io/api/toprated"
         )
           .then((res) => res.json())
           .then((data) => setStore({ top: data.results }));
@@ -157,7 +159,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       proxpelis: () => {
         fetch(
-          "https://api.themoviedb.org/3/movie/upcoming?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page=4"
+          "https://3001-baracovama-qevana-rtl4m9jxk5b.ws-eu62.gitpod.io/api/proximamente"
         )
           .then((res) => res.json())
           .then((data) => setStore({ proxi: data.results }));
@@ -165,19 +167,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       favPelis: (id_user) => {
         fetch(
-          "https://3001-baracovama-qevana-3zwvya53hy8.ws-eu62.gitpod.io/api/favoritos?user_id=" + id_user
+          "https://3001-baracovama-qevana-3zwvya53hy8.ws-eu62.gitpod.io/api/favoritos?user_id=" +
+            id_user
         )
           .then((res) => res.json())
           .then((data) => setStore({ favList: data.results }));
       },
 
-      pelicula: () => {
-        fetch(
-          "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
-        )
-          .then((res) => res.json())
-          .then((data) => setStore({ peliculon: data.results }));
-      },
+      // pelicula: () => {
+      //   fetch(
+      //     "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
+      //   )
+      //     .then((res) => res.json())
+      //     .then((data) => setStore({ peliculon: data.results }));
+      // },
 
       setFavorites: (item) => {
         const store = getStore();

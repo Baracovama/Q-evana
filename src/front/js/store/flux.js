@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       top: [],
       proxi: [],
       favList: [],
+      generos: [],
       peliculon: {},
       notfound: false,
     },
@@ -143,27 +144,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       listpelis: () => {
         fetch(
-          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/populares"
+          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/peliculas/novedades"
         )
           .then((res) => res.json())
-          .then((data) => setStore({ pelis: data.results }));
+          .then((data) => setStore({ pelis: data }));
       },
 
       toppelis: () => {
         fetch(
-          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/toprated"
+          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/peliculas/top"
         )
           .then((res) => res.json())
-          .then((data) => setStore({ top: data.results }));
+          .then((data) => setStore({ top: data }));
       },
 
-      proxpelis: () => {
+      generoslist: () => {
+        fetch(
+          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/peliculas/generos"
+        )
+          .then((res) => res.json())
+          .then((data) => setStore({ generos: data }));
+      },
+
+  /*    proxpelis: () => {
         fetch(
           "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/proximamente"
         )
           .then((res) => res.json())
           .then((data) => setStore({ proxi: data.results }));
       },
+  */
 
       favPelis: (id_user) => {
         fetch(

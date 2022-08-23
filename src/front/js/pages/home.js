@@ -6,7 +6,7 @@ import { Cards } from "../component/cards";
 import { Cardlistpelis } from "../component/cardlistpelis";
 import { CardFavs } from "../component/cardFavs";
 import { Topcards } from "../component/topcards";
-// import { Proxicards } from "../component/proxicards";
+import { CardGeneros } from "../component/cardgeneros";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -14,6 +14,7 @@ export const Home = () => {
   return (
     <div className="container-fluid ">
       <Carousel />
+      <CardGeneros />
       <Cardlistpelis />
       <Topcards />
       <CardFavs />

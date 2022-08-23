@@ -6,7 +6,7 @@ import { Cards } from "../component/cards";
 import { Cardlistpelis } from "../component/cardlistpelis";
 import { CardFavs } from "../component/cardFavs";
 import { Topcards } from "../component/topcards";
-import { Proxicards } from "../component/proxicards";
+// import { Proxicards } from "../component/proxicards";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -16,7 +16,6 @@ export const Home = () => {
       <Carousel />
       <Cardlistpelis />
       <Topcards />
-      <Proxicards />
       <CardFavs />
     </div>
   );

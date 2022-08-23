@@ -9,14 +9,18 @@ export const Cards = (props) => {
 
   const [datos, setDatos] = useState({
     user_id: -1,
-    pelicula_id: "",
+    populares_id: "",
+    toprated_id: "",
+    proximamente_id: "",
   });
 
   let navigate = useNavigate();
 
   const sendFav = (event) => {
     datos.user_id=store.id_user;
-    datos.pelicula_id=props.id;
+    datos.populares_id=props.id;
+    datos.toprated_id=props.id;
+    datos.proximamente_id=props.id;
     event.preventDefault();
     console.log(datos);
     const respdata = actions.addFavorites(datos);
@@ -50,7 +54,9 @@ export const Cards = (props) => {
           </Link>
           <form onSubmit={sendFav}>
               <input name="user_id" className="form-control" id="UsernameInput" type="hidden" value={store.id_user ? store.id_user : ""}/>
-              <input name="pelicula_id" className="form-control" id="UsernameInput" type="hidden" value={props.id}/>
+              <input name="populares_id" className="form-control" id="UsernameInput" type="hidden" value={props.id}/>
+              <input name="toprated_id" className="form-control" id="UsernameInput" type="hidden" value={props.id}/>
+              <input name="proximamente_id" className="form-control" id="UsernameInput" type="hidden" value={props.id}/>
             <button type="submit" value="Sing in" name="login-btn"
               className={
                 store.favList[props.id]

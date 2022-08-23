@@ -143,7 +143,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       listpelis: () => {
         fetch(
-          "https://3001-baracovama-qevana-rtl4m9jxk5b.ws-eu62.gitpod.io/api/populares"
+          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/populares"
         )
           .then((res) => res.json())
           .then((data) => setStore({ pelis: data.results }));
@@ -151,7 +151,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       toppelis: () => {
         fetch(
-          "https://3001-baracovama-qevana-rtl4m9jxk5b.ws-eu62.gitpod.io/api/toprated"
+          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/toprated"
         )
           .then((res) => res.json())
           .then((data) => setStore({ top: data.results }));
@@ -159,7 +159,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       proxpelis: () => {
         fetch(
-          "https://3001-baracovama-qevana-rtl4m9jxk5b.ws-eu62.gitpod.io/api/proximamente"
+          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/proximamente"
         )
           .then((res) => res.json())
           .then((data) => setStore({ proxi: data.results }));

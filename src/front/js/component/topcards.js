@@ -28,7 +28,7 @@ export const Topcards = () => {
             />
           );
         })}
-        <i class="fa fa-hourglass-start" aria-hidden="true"></i>
+        <i className="fa fa-hourglass-start" aria-hidden="true"></i>
       </div>
     </div>
   );

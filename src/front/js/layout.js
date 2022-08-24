@@ -6,7 +6,7 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import Peliculas from "./pages/peliculas";
-import Category from "./pages/category";
+import { Category } from "./pages/category";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";

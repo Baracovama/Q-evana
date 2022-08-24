@@ -12,6 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       generos: [],
       peliculon: {},
       notfound: false,
+      genrepage: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -166,7 +167,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => setStore({ generos: data }));
       },
 
-  /*    proxpelis: () => {
+      pagenre: () => {
+        fetch(process.env.BACKEND_URL + "/peliculas/genero/3")
+          .then((res) => res.json())
+          .then((data) => setStore({ genrepage: data }));
+      },
+      /*    proxpelis: () => {
         fetch(
           "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/proximamente"
         )

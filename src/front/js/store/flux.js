@@ -167,11 +167,13 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => setStore({ generos: data }));
       },
 
-      pagenre: () => {
-        fetch(process.env.BACKEND_URL + "/peliculas/genero/3")
+      pagenre: (id) => {
+        console.log(id);
+        fetch(`${process.env.BACKEND_URL}/api/peliculas/genero/${id}`)
           .then((res) => res.json())
           .then((data) => setStore({ genrepage: data }));
       },
+
       /*    proxpelis: () => {
         fetch(
           "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/proximamente"

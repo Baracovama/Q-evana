@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/cardgeneros.css";
+import { Link } from "react-router-dom";
 
 export const CardGeneros = () => {
   const { store, actions } = useContext(Context);
@@ -16,7 +17,9 @@ export const CardGeneros = () => {
         {store.generos.map((item, index) => {
           return (
             <div className="card-generos  m-2" style={{ width: "20rem" }}>
-               <h2>{store.generos.name} hola</h2> 
+              <Link to={`/peliculas/genero/${item.id}`}>
+                <h2>{item.name}</h2>
+              </Link>
             </div>
           );
         })}

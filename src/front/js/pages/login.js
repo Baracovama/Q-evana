@@ -11,11 +11,8 @@ export const Login = () => {
 
   return (
     <div className="login1 w-100">
-      <div
-        id="login1 template-bg-3"
-        className="d-flex flex-column min-vh-100 justify-content-center align-items-center"
-      >
-        <div className="card mb-5 p-5 bg-dark bg-gradient text-white col-md-4">
+      <div id="login1 template-bg-3" className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div className="card-login mb-5 p-5 text-white col-md-4">
           <div className="card-header text-center">
             <h3>
               <img src="logo.png" className="logo" />
@@ -26,41 +23,21 @@ export const Login = () => {
               <label htmlFor="exampleDropdownFormEmail1" className="form-label">
                 Email address
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="EmailInput"
-                name="email"
-                aria-describedby="emailHelp"
-                placeholder="email@example.com"
-                value={email}
+              <input type="text" className="form-control" id="EmailInput" name="email" aria-describedby="emailHelp" placeholder="email@example.com" value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className="form-group mb-3">
-              <label
-                htmlFor="exampleDropdownFormPassword1"
-                className="form-label"
-              >
+              <label htmlFor="exampleDropdownFormPassword1" className="form-label">
                 Password
               </label>
-              <input
-                type="password"
-                className="form-control"
-                id="PassworkInput"
-                name="password"
-                placeholder="Password"
-                value={password}
+              <input type="password" className="form-control" id="PassworkInput" name="password" placeholder="Password" value={password}
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
             <div className="mb-3">
               <div className="form-check">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="dropdownCheck"
-                />
+                <input type="checkbox" className="form-check-input" id="dropdownCheck"/>
                 <label className="form-check-label" htmlFor="dropdownCheck">
                   Remember me
                 </label>

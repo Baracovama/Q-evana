@@ -32,7 +32,7 @@ export const Registre = () => {
   return (
     <div className="registre">
       <div id="login1 template-bg-3" className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-        <div className="card mb-5 p-5 bg-dark bg-gradient text-white col-md-4">
+        <div className="card-registre mb-5 p-5 text-white col-md-4">
           <div className="card-header text-center">
             <h3><img src="logo.png" className="logo"/></h3>
           </div>

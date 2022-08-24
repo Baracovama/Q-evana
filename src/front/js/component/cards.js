@@ -31,7 +31,7 @@ export const Cards = (props) => {
   };
 
   return (
-    <div style={{ width: "20rem" }} className=" card-pelis  m-2">
+    <div style={{ width: "32rem" }} className=" card-pelis  m-2">
       <div className="blog-posts">
         <div className="post">
           <img

@@ -6,6 +6,7 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import Peliculas from "./pages/peliculas";
+import Category from "./pages/category";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -31,10 +32,11 @@ const Layout = () => {
             <Route element={<Contacta />} path="/contacta" />
             <Route element={<Demo />} path="/demo" />
             <Route element={<Single />} path="/single/:theid" />
-            <Route
+            <Route element={<Category />} path="/peliculas/genero/:id" />
+            {/* <Route
               element={<Peliculas id={766507} nombre={"juan"} />}
               path="/peliculas/:id"
-            />
+            /> */}
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />

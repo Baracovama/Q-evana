@@ -121,19 +121,22 @@ def get_generos():
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
 @api.route('/addPelisFav', methods=['POST'])
+@jwt_required()
 def create_fav():
+    currentuser = get_jwt_identity()
     data = request.json
-    listFav = Favorites_Peliculas(user_id=data.get('user_id'),populares_id=data.get('populares_id'), toprated_id=data.get('toprated_id'), proximamente_id=data.get('proximamente_id'))
-    if not listFav:
+    if not data.get("pelicula_id"):
         return jsonify({"message": "Aun no se a añadido ninguna pelicula"}), 400
-        db.session.add(listFav)
-        db.session.commit()
+    listFav = Favoritos(user_id=user_id, pelicula_id=data.get("pelicula_id"))
+    db.session.add(listFav)
+    db.session.commit()
     return jsonify({"msg": "Se añadio correctmente"}), 200
 # ----------------------------------------------------------------
 @api.route('/favoritos', methods=['GET'])
+@jwt_required()
 def get_favoritos():
-    data = request.args
-    favoritos = Favorites_Peliculas.query.filter_by(user_id=data.get('user_id'))
+    currentuser = get_jwt_identity()
+    favoritos = Favoritos.query.filter_by(user_id=user_id)
     data = [favoritos.serialize() for favoritos in favoritos]
     return jsonify(data), 200
 # ----------------------------------------------------------------

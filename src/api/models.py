@@ -38,6 +38,7 @@ class Peliculas(db.Model):
         return f'<Pelicula {self.title}>'
 
     def serialize(self):
+        print(type(self.release_date))
         return {
             "id": self.id,
             "id_api": self.id_api,
@@ -47,7 +48,7 @@ class Peliculas(db.Model):
             "original_language": self.original_language,
             "vote_average": self.vote_average,
             "vote_count": self.vote_count,
-            "release_date": self.release_date,
+            "release_date": f"{self.release_date.day}/{self.release_date.month}/{self.release_date.year}",
             "backdrop_path": self.backdrop_path,
             "generos": [generopeli.genero.serialize() for generopeli in self.genero_peli],
             # "genre_id": self.genre_id,

@@ -17,7 +17,6 @@ export const Home = () => {
       <CardGeneros />
       <Cardlistpelis />
       <Topcards />
-      <CardFavs />
     </div>
   );
 };

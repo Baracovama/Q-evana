@@ -123,15 +123,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      addFavorites: async (datos) => {
+      addFavorites: async (id) => {
         try {
           const response = await fetch(
             process.env.BACKEND_URL + "/api/addPelisFav",
             {
               method: "POST",
-              body: JSON.stringify(datos),
+              body: JSON.stringify({pelicula_id: id}),
               headers: {
                 "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
               },
             }
           );
@@ -168,15 +169,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => setStore({ genrepage: data }));
       },
 
-      /*    proxpelis: () => {
-        fetch(
-          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/proximamente"
-        )
-          .then((res) => res.json())
-          .then((data) => setStore({ proxi: data.results }));
-      },
-  */
-
       favPelis: (id_user) => {
         fetch(
           "https://3001-baracovama-qevana-3zwvya53hy8.ws-eu62.gitpod.io/api/favoritos?user_id=" +
@@ -185,15 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((res) => res.json())
           .then((data) => setStore({ favList: data.results }));
       },
-
-      // pelicula: () => {
-      //   fetch(
-      //     "https://api.themoviedb.org/3/movie/popular?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&page="
-      //   )
-      //     .then((res) => res.json())
-      //     .then((data) => setStore({ peliculon: data.results }));
-      // },
-
+      
       setFavorites: (item) => {
         const store = getStore();
 

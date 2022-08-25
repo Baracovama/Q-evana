@@ -8,4 +8,4 @@ export const Generos = () => {
     useEffect(() => {
       actions.listpelis();
     }, []);
-  
+}

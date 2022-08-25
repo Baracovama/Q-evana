@@ -144,25 +144,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       listpelis: () => {
-        fetch(
-          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/peliculas/novedades"
-        )
+        fetch(`${process.env.BACKEND_URL}/api/peliculas/novedades`)
           .then((res) => res.json())
           .then((data) => setStore({ pelis: data }));
       },
 
       toppelis: () => {
-        fetch(
-          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/peliculas/top"
-        )
+        fetch(`${process.env.BACKEND_URL}/api/peliculas/top`)
           .then((res) => res.json())
           .then((data) => setStore({ top: data }));
       },
 
       generoslist: () => {
-        fetch(
-          "https://3001-baracovama-qevana-hdj4ksxslx6.ws-eu62.gitpod.io/api/peliculas/generos"
-        )
+        fetch(`${process.env.BACKEND_URL}/api/peliculas/generos`)
           .then((res) => res.json())
           .then((data) => setStore({ generos: data }));
       },

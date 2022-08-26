@@ -89,7 +89,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             id_user: data.id_user,
           });
-          return true;
+          if (getActions().listpelis() && getActions().toppelis()) {
+            return true;
+          }
+          return false;
         } catch (error) {
           console.error("There was an error", error);
           return false;
@@ -147,32 +150,63 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       // -------------------------------------------------------------------------
 
-      listpelis: () => {
-        fetch(`${process.env.BACKEND_URL}/api/peliculas/novedades`)
-          .then((res) => res.json())
-          .then((data) => setStore({ pelis: data }));
+      listpelis: async () => {
+        let header = {
+          "Content-Type": "application/json",
+        };
+        if (getStore().auth) {
+          header["Authorization"] = "Bearer " + localStorage.getItem("token");
+        }
+        const result = await fetch(
+          `${process.env.BACKEND_URL}/api/peliculas/novedades`,
+          {
+            method: "GET",
+            headers: header,
+          }
+        );
+        const data = await result.json();
+        setStore({ pelis: data });
+        return true;
       },
       // -------------------------------------------------------------------------
 
-      toppelis: () => {
-        fetch(`${process.env.BACKEND_URL}/api/peliculas/top`)
-          .then((res) => res.json())
-          .then((data) => setStore({ top: data }));
+      toppelis: async () => {
+        let header = {
+          "Content-Type": "application/json",
+        };
+        if (getStore().auth) {
+          header["Authorization"] = "Bearer " + localStorage.getItem("token");
+        }
+        const result = await fetch(
+          `${process.env.BACKEND_URL}/api/peliculas/top`,
+          {
+            method: "GET",
+            headers: header,
+          }
+        );
+        const data = await result.json();
+        setStore({ top: data });
+        return true;
       },
       // -------------------------------------------------------------------------
 
-      generoslist: () => {
-        fetch(`${process.env.BACKEND_URL}/api/peliculas/generos`)
-          .then((res) => res.json())
-          .then((data) => setStore({ generos: data }));
+      generoslist: async () => {
+        const result = await fetch(
+          `${process.env.BACKEND_URL}/api/peliculas/generos`
+        );
+        const data = await result.json();
+        setStore({ generos: data });
+        return true;
       },
       // -------------------------------------------------------------------------
 
-      pagenre: (id) => {
-        console.log(id);
-        fetch(`${process.env.BACKEND_URL}/api/peliculas/genero/${id}`)
-          .then((res) => res.json())
-          .then((data) => setStore({ genrepage: data }));
+      pagenre: async (id) => {
+        const result = await fetch(
+          `${process.env.BACKEND_URL}/api/peliculas/genero/${id}`
+        );
+        const data = await result.json();
+        setStore({ genrepage: data });
+        return true;
       },
       // -------------------------------------------------------------------------
       // -------------------------------------------------------------------------
@@ -190,28 +224,15 @@ const getState = ({ getStore, getActions, setStore }) => {
       // -------------------------------------------------------------------------
 
       favPelis: (id_user) => {
-        fetch(
-          "https://3001-baracovama-qevana-3zwvya53hy8.ws-eu62.gitpod.io/api/favoritos?user_id=" +
-            id_user
-        )
+        fetch(process.env.BACKEND_URL + "/api/favoritos", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
           .then((res) => res.json())
-          .then((data) => setStore({ favList: data.results }));
-      },
-      // -------------------------------------------------------------------------
-
-      setFavorites: (item) => {
-        const store = getStore();
-
-        setStore({ favList: [...store.favList, item] });
-      },
-      // -------------------------------------------------------------------------
-
-      deleteFavorites: (item) => {
-        const store = getStore();
-
-        setStore({
-          favList: store.favList.filter((favList, i) => favList.id !== item.id),
-        });
+          .then((data) => setStore({ favList: data }));
       },
       // -------------------------------------------------------------------------
 

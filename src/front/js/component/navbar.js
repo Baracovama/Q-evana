@@ -117,35 +117,13 @@ export const Navbar = () => {
               </form>
 
               <div className="ml-auto me-2">
-                <div className="dropdown">
-                  <button
-                    className="btn btn-dark dropdown-toggle milist"
-                    type="button"
-                    id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Mi lista {store.favList.length}
-                  </button>
-                  <ul
-                    className="dropdown-menu listado"
-                    aria-labelledby="dropdownMenuButton1"
-                  >
-                    {store.favList.map((item, index) => {
-                      return (
-                        <li className="dropdown-item" key={item.id}>
-                          {item.name}
-                          <FontAwesomeIcon
-                            onClick={() => {
-                              actions.deleteFavorites(item);
-                            }}
-                            icon={faTrash}
-                          />
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
+                <Link
+                  to={"/favoritos"}
+                  className="btn btn-dark milist"
+                  id="dropdownMenuButton1"
+                >
+                  Mi lista
+                </Link>
               </div>
 
               <div className="me-2">

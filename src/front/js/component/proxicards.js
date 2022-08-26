@@ -19,7 +19,7 @@ export const Proxicards = () => {
               key={index}
               id={item.id}
               title={item.title}
-              id={item.id}
+              is_favorite={item.is_favorite}
               description1={"Valoracion: "}
               result1={item.vote_average}
               description2={"Fecha de lanzamiento: "}

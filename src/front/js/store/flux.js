@@ -4,13 +4,12 @@ const getState = ({ getStore, getActions, setStore }) => {
       auth: false,
       username: "",
       id_user: -1,
-      details: {},
       pelis: [],
       top: [],
       proxi: [],
       favList: [],
       generos: [],
-      peliculon: {},
+      peliculon: [],
       notfound: false,
       genrepage: [],
     },
@@ -19,13 +18,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
-
+      // -------------------------------------------------------------------------
       LogOut: () => {
         localStorage.removeItem("token");
         // getActions().Verify();
         return true;
       },
-
+      // -------------------------------------------------------------------------
       Verify: async () => {
         const opts = {
           method: "GET",
@@ -60,6 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
         }
       },
+      // -------------------------------------------------------------------------
 
       InicioSesion: async (email, password) => {
         console.log(email, password);
@@ -95,6 +95,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
+      // -------------------------------------------------------------------------
 
       addDatos: async (datos) => {
         try {
@@ -122,6 +123,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
+      // -------------------------------------------------------------------------
 
       addFavorites: async (id) => {
         try {
@@ -129,7 +131,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             process.env.BACKEND_URL + "/api/addPelisFav",
             {
               method: "POST",
-              body: JSON.stringify({pelicula_id: id}),
+              body: JSON.stringify({ pelicula_id: id }),
               headers: {
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + localStorage.getItem("token"),
@@ -143,24 +145,28 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
+      // -------------------------------------------------------------------------
 
       listpelis: () => {
         fetch(`${process.env.BACKEND_URL}/api/peliculas/novedades`)
           .then((res) => res.json())
           .then((data) => setStore({ pelis: data }));
       },
+      // -------------------------------------------------------------------------
 
       toppelis: () => {
         fetch(`${process.env.BACKEND_URL}/api/peliculas/top`)
           .then((res) => res.json())
           .then((data) => setStore({ top: data }));
       },
+      // -------------------------------------------------------------------------
 
       generoslist: () => {
         fetch(`${process.env.BACKEND_URL}/api/peliculas/generos`)
           .then((res) => res.json())
           .then((data) => setStore({ generos: data }));
       },
+      // -------------------------------------------------------------------------
 
       pagenre: (id) => {
         console.log(id);
@@ -168,6 +174,20 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((res) => res.json())
           .then((data) => setStore({ genrepage: data }));
       },
+      // -------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
+
+      details: (id) => {
+        fetch(`${process.env.BACKEND_URL}/api/peliculas/novedades/${id}`)
+          .then((res) => res.json())
+          .then((data) => setStore({ peliculon: data }));
+      },
+
+      // hay que arreglarlo
+      // -------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
 
       favPelis: (id_user) => {
         fetch(
@@ -177,12 +197,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((res) => res.json())
           .then((data) => setStore({ favList: data.results }));
       },
-      
+      // -------------------------------------------------------------------------
+
       setFavorites: (item) => {
         const store = getStore();
 
         setStore({ favList: [...store.favList, item] });
       },
+      // -------------------------------------------------------------------------
 
       deleteFavorites: (item) => {
         const store = getStore();
@@ -191,6 +213,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           favList: store.favList.filter((favList, i) => favList.id !== item.id),
         });
       },
+      // -------------------------------------------------------------------------
 
       searchPelis: (value) => {
         console.log(value);
@@ -224,6 +247,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
         }*/
       },
+      // -------------------------------------------------------------------------
 
       getMessage: async () => {
         try {
@@ -239,6 +263,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
+      // -------------------------------------------------------------------------
+
       changeColor: (index, color) => {
         //get the store
         const store = getStore();
@@ -260,3 +286,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
+// -------------------------------------------------------------------------
+// -------------------------------------------------------------------------
+// -------------------------------------------------------------------------

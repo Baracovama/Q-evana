@@ -1,34 +1,56 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
-import Details from "../component/details";
-import { Context } from "../store/appContext";
-import propTypes from "prop-types";
+// import React, { useState, useEffect, useContext } from "react";
+// import { useParams } from "react-router-dom";
+// import { Context } from "../store/appContext";
+// import "../../styles/cards.css";
 
-const Peliculas = (props) => {
-  const { store, actions } = useContext(Context);
-  const params = useParams();
-  useEffect(() => {
-    actions.pelicula(params.item, params.id);
-  }, []);
+// export const Peliculas = () => {
+//   const params = useParams();
+//   const { store, actions } = useContext(Context);
 
-  return (
-    <div className="col-4 col-md-2 mt-3">
-      <p className="fw-bold text-danger">Fecha de lanzamiento</p>
-      <p className="text-danger">{props.title}</p>
-    </div>
-  );
-};
+//   useEffect(() => {
+//     actions.details(params.id);
+//   }, []);
 
-export default Peliculas;
+//   return (
+//     <>
+//       <div className="container mb-5 ">
+//         <div className="row g-0">
+//           {store.peliculon.length > 0 ? (
+//             store.peliculon.map((item, index) => {
+//               return (
+//                 <div
+//                   className="card-pelis m-1 mb-3"
+//                   style="max-width: 540px;"
+//                   key={index}
+//                 >
+//                   <div className="blog-posts">
+//                     <div className="post">
+//                       <img
+//                         src={
+//                           "https://image.tmdb.org/t/p/w500" + item.poster_path
+//                         }
+//                         className="post-img"
+//                         alt="..."
+//                       />
+//                       <div className="post-content">
+//                         <h5 className="card-title">{item.title}</h5>
+//                         <p className="card-text">{item.release_date}</p>
+//                         <p className="card-text">{item.vote_average}</p>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               );
+//             })
+//           ) : (
+//             <section class="area">
+//               <div class="ball"></div>
+//             </section>
+//           )}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
 
-Peliculas.propTypes = {
-  title: propTypes.string,
-  description1: propTypes.string,
-  result1: propTypes.number,
-  description2: propTypes.string,
-  result2: propTypes.string,
-  path: propTypes.string,
-  index: propTypes.number,
-  img: propTypes.string,
-  id: propTypes.number,
-};
+// hay que arreglarlo

@@ -121,6 +121,7 @@ export const Navbar = () => {
                   to={"/favoritos"}
                   className="btn btn-dark milist"
                   id="dropdownMenuButton1"
+
                 >
                   Mi lista
                 </Link>

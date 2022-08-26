@@ -30,6 +30,7 @@ const injectContext = (PassedComponent) => {
        **/
       state.actions.Verify(); // <---- calling this function from the flux.js actions
       state.actions.pagenre();
+      state.actions.details();
     }, []);
 
     // The initial value for the context is not null anymore, but the current state of this component,

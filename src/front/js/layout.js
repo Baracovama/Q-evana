@@ -37,7 +37,7 @@ const Layout = () => {
             <Route element={<Category />} path="/peliculas/genero/:id" />
             <Route element={<Favoritos />} path="/favoritos" />
             <Route element={<Miperfil />} path="/miperfil" />
-            {/* hay que arreglarlo  <Route element={<Peliculas />} path="/peliculas/:id" /> */}
+            <Route element={<Peliculas />} path="/peliculas/:id" /> 
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />

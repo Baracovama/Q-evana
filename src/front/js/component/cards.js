@@ -11,9 +11,9 @@ export const Cards = (props) => {
   let navigate = useNavigate();
 
   return (
-    <div style={{ width: "20rem" }} className=" card-pelis  m-2">
+    <div style={{ width: "20rem" }} className=" card-pelis ">
       <div className="blog-posts">
-        <div className="post">
+        <div className="post ">
           <img src={props.img} className="post-img" alt="Image not found" />
           <div className="post-content">
             <h5>{props.title}</h5>
@@ -30,21 +30,24 @@ export const Cards = (props) => {
                 <button className="btn btn-outline-primary">Learn more!</button>
               </Link>
               {store.auth ? (
-
-              <button
-                type="submit"
-                value="Sing in"
-                name="login-btn"
-                className={
-                  props.is_favorite ? "btn btn-warning" : " btn btn-outline-warning"
-                }
-                onClick={() => {
-                  actions.addFavorites(props.id);
-                }}
-              >
-                <i className="far fa-heart" />
-              </button>
-              ) : "" }
+                <button
+                  type="submit"
+                  value="Sing in"
+                  name="login-btn"
+                  className={
+                    props.is_favorite
+                      ? "btn btn-warning"
+                      : " btn btn-outline-warning"
+                  }
+                  onClick={() => {
+                    actions.addFavorites(props.id);
+                  }}
+                >
+                  <i className="far fa-heart" />
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

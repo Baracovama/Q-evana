@@ -34,10 +34,8 @@ const Layout = () => {
             <Route element={<Demo />} path="/demo" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<Category />} path="/peliculas/genero/:id" />
-
             <Route element={<Favoritos />} path="/favoritos" />
-            {/* hay que arreglarlo  <Route element={<Peliculas />} path="/peliculas/:id" /> */}
-
+            <Route element={<Peliculas />} path="/peliculas/:id" /> 
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />

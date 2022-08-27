@@ -159,3 +159,9 @@ def get_favoritos():
     data = [favoritos.pelicula.serialize() for favoritos in favoritos]
     return jsonify(data), 200
 # ----------------------------------------------------------------
+@api.route('/pelicula/<id>', methods=['GET'])
+def get_peliculas_by_id(id):
+    pelicula = Peliculas.query.filter_by(id=id).first()
+    if not pelicula:
+        return jsonify("error"), 400
+    return jsonify(pelicula.serialize()), 200

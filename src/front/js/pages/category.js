@@ -14,10 +14,11 @@ export const Category = () => {
 
   return (
     <>
-      <div className="container mb-5 ">
+      <div className="container mb-1 ">
         <div className="row">
           {store.genrepage.length > 0 ? (
             store.genrepage.map((item, index) => {
+              <h1 className="text-white">Categoria</h1>;
               return (
                 <Cards
                   key={index}

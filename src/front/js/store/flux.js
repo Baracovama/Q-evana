@@ -213,7 +213,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // -------------------------------------------------------------------------
 
       details: (id) => {
-        fetch(`${process.env.BACKEND_URL}/api/peliculas/novedades/${id}`)
+        fetch(`${process.env.BACKEND_URL}/api/pelicula/${id}`)
           .then((res) => res.json())
           .then((data) => setStore({ peliculon: data }));
       },

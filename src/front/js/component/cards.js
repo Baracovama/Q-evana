@@ -8,37 +8,13 @@ import "../../styles/cards.css";
 export const Cards = (props) => {
   const { store, actions } = useContext(Context);
 
-  const [datos, setDatos] = useState({
-    user_id: -1,
-    populares_id: "",
-    toprated_id: "",
-    proximamente_id: "",
-  });
-
   let navigate = useNavigate();
-
-  const sendFav = (event) => {
-    datos.user_id=store.id_user;
-    datos.populares_id=props.id;
-    datos.toprated_id=props.id;
-    datos.proximamente_id=props.id;
-    event.preventDefault();
-    console.log(datos);
-    const respdata = actions.addFavorites(datos);
-    if(respdata){
-      navigate('/')
-    }
-  };
 
   return (
     <div style={{ width: "20rem" }} className=" card-pelis  m-2">
       <div className="blog-posts">
         <div className="post">
-          <img
-            src={props.img}
-            className="post-img"
-            alt="Image not found"
-          />
+          <img src={props.img} className="post-img" alt="Image not found" />
           <div className="post-content">
             <h5>{props.title}</h5>
             <div className="d-flex date">
@@ -53,27 +29,24 @@ export const Cards = (props) => {
               <Link to={`/peliculas/${props.id}`}>
                 <button className="btn btn-outline-primary">Learn more!</button>
               </Link>
-              <form onSubmit={sendFav}>
-                  <input name="user_id" className="form-control" id="UsernameInput" type="hidden" value={store.id_user ? store.id_user : ""}/>
-                  <input name="populares_id" className="form-control" id="UsernameInput" type="hidden" value={props.id}/>
-                  <input name="toprated_id" className="form-control" id="UsernameInput" type="hidden" value={props.id}/>
-                  <input name="proximamente_id" className="form-control" id="UsernameInput" type="hidden" value={props.id}/>
-                <button type="submit" value="Sing in" name="login-btn"
-                  className={
-                    store.favList[props.id]
-                      ? "btn btn-warning"
-                      : " btn btn-outline-warning"
-                  }
-                >
-                  <i className="far fa-heart" />
-                </button>
-              </form>
-
-              
+              {store.auth ? (
+              <button
+                type="submit"
+                value="Sing in"
+                name="login-btn"
+                className={
+                  props.is_favorite ? "btn btn-warning" : " btn btn-outline-warning"
+                }
+                onClick={() => {
+                  actions.addFavorites(props.id);
+                }}
+              >
+                <i className="far fa-heart" />
+              </button>
+              ) : "" }
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );

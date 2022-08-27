@@ -38,7 +38,6 @@ class Peliculas(db.Model):
         return f'<Pelicula {self.title}>'
 
     def serialize(self):
-        print(type(self.release_date))
         return {
             "id": self.id,
             "id_api": self.id_api,

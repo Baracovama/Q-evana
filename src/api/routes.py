@@ -31,7 +31,6 @@ def create_user():
 @api.route('/login', methods=['POST'])
 def login():
     data = request.json
-    print(data)
 
     user = User.query.filter_by(email=data['email'], password=data['password']).first()
     if not user:
@@ -58,7 +57,6 @@ def handle_populares():
     for page in [1, 2, 3, 4, 5]:
         res = requests.get(f'https://api.themoviedb.org/3/discover/movie?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es&sort_by=popularity.desc&include_adult=false&include_video=false&page={page}&with_watch_monetization_types=flatrate').json()
         for peli in res["results"]:
-            print(peli["title"])
             pelicula = Peliculas( id_api=peli["id"],title=peli["title"],overview=peli["overview"], vote_average=peli["vote_average"],vote_count=peli["vote_count"],release_date=peli["release_date"],backdrop_path=peli["backdrop_path"],poster_path=peli["poster_path"],original_language=peli["original_language"])
             db.session.add(pelicula)
             db.session.commit()
@@ -75,7 +73,6 @@ def handle_category():
 
     res = requests.get('https://api.themoviedb.org/3/genre/movie/list?api_key=4420fdc66e8fbaa810cbb4c5a36fb67c&language=es').json()
     for genre in res["genres"]:
-        print(genre["name"])
         categorias = Genero(name=genre["name"], id_api=genre["id"])
         db.session.add(categorias)
         db.session.commit()
@@ -84,30 +81,50 @@ def handle_category():
 
 # ----------------------------------------------------------------
 @api.route('/peliculas/top', methods=['GET'])
+@jwt_required(optional=True)
 def get_toppelis():
-
     peliculas = Peliculas.query.order_by(desc(Peliculas.vote_average)).limit(10).all()
-    data= [pelicula.serialize() for pelicula in peliculas]
+    data = [pelicula.serialize() for pelicula in peliculas]
+    user_id = get_jwt_identity()
+    if user_id:
+        favoritos = Favoritos.query.filter_by(user_id=user_id)
+        favoritos = [pelicula.pelicula_id for pelicula in favoritos]
+        for pelicula in data:
+            pelicula["is_favorite"] = True if pelicula.get("id") in favoritos else False
     return jsonify(data), 200
 
 # ----------------------------------------------------------------
 @api.route('/peliculas/novedades', methods=['GET'])
+@jwt_required(optional=True)
 def get_novedadespelis():
-
     peliculas = Peliculas.query.order_by(desc(Peliculas.release_date)).limit(10).all()
-    data= [pelicula.serialize() for pelicula in peliculas]
+    data = [pelicula.serialize() for pelicula in peliculas]
+    user_id = get_jwt_identity()
+    print(user_id)
+    if user_id:
+        favoritos = Favoritos.query.filter_by(user_id=user_id)
+        favoritos = [pelicula.pelicula_id for pelicula in favoritos]
+        for pelicula in data:
+            pelicula["is_favorite"] = True if pelicula.get("id") in favoritos else False
     return jsonify(data), 200
 
 # ----------------------------------------------------------------
 
 @api.route('/peliculas/genero/<id>', methods=['GET'])
+@jwt_required(optional=True)
 def get_generopelis(id):
 
     genero= Genero.query.filter_by(id=id).first()
     if not genero:
         return jsonify("no existe el genero"), 400
     generosPeli = GeneroPeli.query.filter_by(genero_id= genero.id).limit(10)
-    data= [generoPeli.pelicula.serialize() for generoPeli in generosPeli]
+    data = [generoPeli.pelicula.serialize() for generoPeli in generosPeli]
+    user_id = get_jwt_identity()
+    if user_id:
+        favoritos = Favoritos.query.filter_by(user_id=user_id)
+        favoritos = [pelicula.pelicula_id for pelicula in favoritos]
+        for pelicula in data:
+            pelicula["is_favorite"] = True if pelicula.get("id") in favoritos else False
     return jsonify(data), 200
 # ----------------------------------------------------------------
 
@@ -123,20 +140,22 @@ def get_generos():
 @api.route('/addPelisFav', methods=['POST'])
 @jwt_required()
 def create_fav():
-    currentuser = get_jwt_identity()
+    user_id = get_jwt_identity()
     data = request.json
     if not data.get("pelicula_id"):
         return jsonify({"message": "Aun no se a añadido ninguna pelicula"}), 400
-    listFav = Favoritos(user_id=user_id, pelicula_id=data.get("pelicula_id"))
-    db.session.add(listFav)
-    db.session.commit()
+    is_favorite= Favoritos.query.filter_by(user_id=user_id, pelicula_id=data.get("pelicula_id")).first()
+    if not is_favorite:
+        listFav = Favoritos(user_id=user_id, pelicula_id=data.get("pelicula_id"))
+        db.session.add(listFav)
+        db.session.commit()
     return jsonify({"msg": "Se añadio correctmente"}), 200
 # ----------------------------------------------------------------
 @api.route('/favoritos', methods=['GET'])
 @jwt_required()
 def get_favoritos():
-    currentuser = get_jwt_identity()
+    user_id = get_jwt_identity()
     favoritos = Favoritos.query.filter_by(user_id=user_id)
-    data = [favoritos.serialize() for favoritos in favoritos]
+    data = [favoritos.pelicula.serialize() for favoritos in favoritos]
     return jsonify(data), 200
 # ----------------------------------------------------------------

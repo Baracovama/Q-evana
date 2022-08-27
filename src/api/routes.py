@@ -37,7 +37,7 @@ def login():
         return jsonify({"message": "incorrect email or password"}), 400
     access_token = create_access_token(identity=user.id)
 
-    return jsonify({"token": access_token, "username": user.username, "id_user": user.id}), 200
+    return jsonify({"token": access_token, "username": user.username, "id_user": user.id, "user": user.serialize()}), 200
 # ----------------------------------------------------------------
 @api.route('/verify', methods=['GET'])
 @jwt_required()
@@ -45,7 +45,7 @@ def get_verify():
     currentuser = get_jwt_identity()
     user = User.query.get(currentuser)
     if user : 
-        return jsonify({"logeado" : True, "username" : user.username}), 200
+        return jsonify({"logeado" : True, "username" : user.username, "user" : user.serialize()}), 200
     else : 
         return jsonify({"logeado" : False, "mesage" : "Usuario no encontrado"}), 404
 # ----------------------------------------------------------------
@@ -165,3 +165,19 @@ def get_peliculas_by_id(id):
     if not pelicula:
         return jsonify("error"), 400
     return jsonify(pelicula.serialize()), 200
+
+# ----------------------------------------------------------------
+@api.route('/cambiouser', methods=['PUT'])
+@jwt_required()
+def put_cambiouser():
+    user_id = get_jwt_identity()
+    data = request.json
+    user = User.query.get(user_id)   
+    user.name = data.get("name")
+    user.username = data.get("username")
+    user.email = data.get("email")
+    user.password = data.get("password")
+
+    db.session.commit()
+
+    return jsonify({"message": "user_profile updated"}), 200

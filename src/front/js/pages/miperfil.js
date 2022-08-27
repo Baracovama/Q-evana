@@ -6,6 +6,8 @@ import "../../styles/perfil.css";
 export const Miperfil = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const { actions, store } = useContext(Context);
   let navigate = useNavigate();
 
@@ -19,7 +21,7 @@ export const Miperfil = () => {
           <div className="card-header text-center">
             <h4>
               <img src="logo.png" className="logo" />
-              <p>Hola Rocky32</p>
+              <p>Hola {store.username}</p>
             </h4>
           </div>
           <div className="card-body mt-3">
@@ -34,10 +36,45 @@ export const Miperfil = () => {
                 name="email"
                 aria-describedby="emailHelp"
                 placeholder="email@example.com"
-                value={email}
+                defaultValue={store.user.email}
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
+            <div className="form-group mb-3">
+              <label
+                htmlFor="exampleDropdownFormPassword1"
+                className="form-label"
+              >
+                Username
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="PassworkInput"
+                name="password"
+                placeholder="Password"
+                defaultValue={store.user.username}
+                onChange={(event) => setUsername(event.target.value)}
+              />
+            </div>
+            <div className="form-group mb-3">
+              <label
+                htmlFor="exampleDropdownFormPassword1"
+                className="form-label"
+              >
+                Name
+              </label>
+              <input
+                type="name"
+                className="form-control"
+                id="PassworkInput"
+                name="password"
+                placeholder="Nombre"
+                defaultValue={store.user.name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </div>
+
             <div className="form-group mb-3">
               <label
                 htmlFor="exampleDropdownFormPassword1"
@@ -51,10 +88,19 @@ export const Miperfil = () => {
                 id="PassworkInput"
                 name="password"
                 placeholder="Password"
-                value={password}
+                defaultValue={password}
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
+
+            <button
+              onClick={() => {
+                actions.CambiosUser(email, username, name, password);
+              }}
+            >
+              Realizar cambios
+            </button>
+
             <div className="text-danger"></div>
           </div>
           <div className="card-footer p-3">

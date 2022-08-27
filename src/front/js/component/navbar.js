@@ -145,6 +145,9 @@ export const Navbar = () => {
                     <i className="fas fa-sign-out-alt"></i>{" "}
                   </span>
                 </button>
+                <Link to={"/miperfil"}>
+                    <button>Hola</button>
+                </Link>
               </div>
             </div>
           ) : (

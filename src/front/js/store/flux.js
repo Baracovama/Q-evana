@@ -12,6 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       peliculon: [],
       notfound: false,
       genrepage: [],
+      user: {},
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -49,6 +50,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
             setStore({
               id_user: data.id_user,
+            });
+            setStore({
+              user: data.user,
             });
           } else if (resp.status === 404) {
             setStore({
@@ -88,6 +92,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
           setStore({
             id_user: data.id_user,
+          });
+          setStore({
+            user: data.user,
           });
           if (getActions().listpelis() && getActions().toppelis()) {
             return true;
@@ -267,6 +274,39 @@ const getState = ({ getStore, getActions, setStore }) => {
             proxi: filterProxi
           });
         }*/
+      },
+
+      CambiosUser: async (email, username, name, password) => {
+        console.log(email, password);
+        const opts = {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            username : username,
+            name : name,
+          }),
+        };
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/cambiouser",
+            opts
+          );
+          const data = await response.json();
+          setStore({
+            username: data.username,
+          });
+          setStore({
+            id_user: data.id_user,
+          });
+        } catch (error) {
+          console.error("There was an error", error);
+          return false;
+        }
       },
       // -------------------------------------------------------------------------
 

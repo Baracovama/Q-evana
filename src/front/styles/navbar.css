@@ -244,3 +244,7 @@ nav {
       width: 17px;
       margin-top: 3px;
     }
+
+    .perfil{
+      border-color: rgba(140, 0, 255, 0);
+    }

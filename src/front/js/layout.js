@@ -15,6 +15,7 @@ import { Footer } from "./component/footer";
 import { Login } from "./pages/login";
 import { Registre } from "./pages/registre";
 import { Contacta } from "./pages/contacta";
+import { Miperfil } from "./pages/miperfil";
 
 //create your first component
 const Layout = () => {
@@ -35,6 +36,7 @@ const Layout = () => {
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<Category />} path="/peliculas/genero/:id" />
             <Route element={<Favoritos />} path="/favoritos" />
+            <Route element={<Miperfil />} path="/miperfil" />
             <Route element={<Peliculas />} path="/peliculas/:id" /> 
             <Route element={<h1>Not found!</h1>} />
           </Routes>

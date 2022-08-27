@@ -30,6 +30,7 @@ export const Cards = (props) => {
                 <button className="btn btn-outline-primary">Learn more!</button>
               </Link>
               {store.auth ? (
+
               <button
                 type="submit"
                 value="Sing in"

@@ -19,51 +19,53 @@ export const Navbar = () => {
   console.log(store.auth);
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
-      <div className="container-fluid">
-        <a
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </a>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a className="navbar-brand" href="#"></a>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link to="/">
-                <div className="nav-link active text-light" aria-current="page">
-                  <img src="logo.png" className="logo" />
-                </div>
-              </Link>
-            </li>
-            <li className="nav-item categorias">
-              <a className="nav-link text-light" href="#">
-                <i className="fas fa-film"> Populares</i>
-              </a>
-            </li>
-            <li className="nav-item categorias">
-              <a className="nav-link text-light" href="#">
-                <i className="fas fa-medal"> Mejor Valoradas</i>
-              </a>
-            </li>
-            <li className="nav-item categorias">
-              <a className="nav-link text-light" href="#">
-                <i className="fas fa-plus-circle"> Proximamente</i>
-              </a>
-            </li>
-            <li className="nav-item categorias">
-              <Link className="nav-link text-light" to="/contacta">
-                <i className="fas fa-phone"> Contactanos</i>
-              </Link>
-            </li>
-          </ul>
-
-          {store.auth ? (
+      {store.auth ? (
+        <div className="container-fluid">
+          <a
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </a>
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a className="navbar-brand" href="#"></a>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link to="/">
+                  <div
+                    className="nav-link active text-light"
+                    aria-current="page"
+                  >
+                    <img src="logo.png" className="logo" />
+                  </div>
+                </Link>
+              </li>
+              <li className="nav-item categorias">
+                <a className="nav-link text-light" href="#">
+                  <i className="fas fa-film"> Populares</i>
+                </a>
+              </li>
+              <li className="nav-item categorias">
+                <a className="nav-link text-light" href="#">
+                  <i className="fas fa-medal"> Mejor Valoradas</i>
+                </a>
+              </li>
+              <li className="nav-item categorias">
+                <Link to={"/favoritos"} className="nav-link text-light">
+                  <i class="fas fa-plus"> Mi lista</i>
+                </Link>
+              </li>
+              <li className="nav-item categorias">
+                <Link className="nav-link text-light" to="/contacta">
+                  <i className="fas fa-phone"> Contactanos</i>
+                </Link>
+              </li>
+            </ul>
             <div className="d-flex" role="search">
               <form
                 className="formInput me-2"
@@ -96,36 +98,9 @@ export const Navbar = () => {
                   required=""
                   type="text"
                   onChange={(e) => setBusqueda(e.target.value)}
-                  className="form-control me-2 "
+                  className="form-control me-10 "
                 />
-                {/* <button className="reset" type="reset">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    ></path>
-                  </svg>
-                </button> */}
               </form>
-
-              <div className="ml-auto me-2">
-                <Link
-                  to={"/favoritos"}
-                  className="btn btn-dark milist"
-                  id="dropdownMenuButton1"
-
-                >
-                  Mi lista
-                </Link>
-              </div>
 
               <div className="me-2">
                 <button
@@ -146,8 +121,59 @@ export const Navbar = () => {
                   </span>
                 </button>
               </div>
+
+              <div className="me-2">
+                <button className="perfil">
+                  <Link className="nav-link text-dark" to="/miperfil">
+                    <i class="fas fa-user-astronaut"></i>
+                  </Link>
+                </button>
+              </div>
             </div>
-          ) : (
+          </div>
+        </div>
+      ) : (
+        <div className="container-fluid">
+          <a
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </a>
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a className="navbar-brand" href="#"></a>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link to="/">
+                  <div
+                    className="nav-link active text-light"
+                    aria-current="page"
+                  >
+                    <img src="logo.png" className="logo" />
+                  </div>
+                </Link>
+              </li>
+              <li className="nav-item categorias">
+                <a className="nav-link text-light" href="#">
+                  <i className="fas fa-film"> Populares</i>
+                </a>
+              </li>
+              <li className="nav-item categorias">
+                <a className="nav-link text-light" href="#">
+                  <i className="fas fa-medal"> Mejor Valoradas</i>
+                </a>
+              </li>
+              <li className="nav-item categorias">
+                <Link className="nav-link text-light" to="/contacta">
+                  <i className="fas fa-phone"> Contactanos</i>
+                </Link>
+              </li>
+            </ul>
             <div className="d-flex" role="search">
               <Link to="/login" className="me-2">
                 <button to="/login" className="botonEntrar" type="submit">
@@ -158,9 +184,9 @@ export const Navbar = () => {
                 </button>
               </Link>
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };

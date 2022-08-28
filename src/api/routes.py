@@ -181,3 +181,14 @@ def put_cambiouser():
     db.session.commit()
 
     return jsonify({"message": "user_profile updated"}), 200
+# ----------------------------------------------------------------
+@api.route('/search', methods=['POST'])
+def search_bar():
+    data = request.json
+    print(data)
+    text = data.get("text")
+    if not data.get("text"):
+        return jsonify({"message": "No se han encontrado resultados"}), 400
+    peliculas = Peliculas.query.filter(Peliculas.title.ilike(f"{text}%"))
+    data = [pelicula.serialize() for pelicula in peliculas]
+    return jsonify(data), 200

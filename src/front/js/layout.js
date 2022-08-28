@@ -9,6 +9,7 @@ import { Peliculas } from "./pages/peliculas";
 import { Category } from "./pages/category";
 import { Favoritos } from "./pages/favoritos";
 import injectContext from "./store/appContext";
+import { Searchingpage } from "./pages/searchingpage";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -37,7 +38,8 @@ const Layout = () => {
             <Route element={<Category />} path="/peliculas/genero/:id" />
             <Route element={<Favoritos />} path="/favoritos" />
             <Route element={<Miperfil />} path="/miperfil" />
-            <Route element={<Peliculas />} path="/peliculas/:id" /> 
+            <Route element={<Searchingpage />} path="/searchingpage" />
+            <Route element={<Peliculas />} path="/peliculas/:id" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />

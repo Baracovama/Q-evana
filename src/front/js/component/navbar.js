@@ -10,11 +10,13 @@ export const Navbar = () => {
   const { actions, store } = useContext(Context);
   const navigate = useNavigate();
   const [busqueda, setBusqueda] = useState("");
-  console.log(busqueda);
-  console.log(store.pelis);
-  useEffect(() => {
-    actions.searchPelis(busqueda);
-  }, [busqueda]);
+
+  const handlesubmit = (e) => {
+    if (e.key == "Enter" && busqueda.length) {
+      actions.search(busqueda);
+      navigate(`/searchingpage`);
+    }
+  };
 
   console.log(store.auth);
   return (
@@ -65,13 +67,7 @@ export const Navbar = () => {
 
           {store.auth ? (
             <div className="d-flex" role="search">
-              <form
-                className="formInput me-2"
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  actions.searchPelis(busqueda);
-                }}
-              >
+              <div className="formInput me-2">
                 <button className="botonInput">
                   <svg
                     width="17"
@@ -96,6 +92,7 @@ export const Navbar = () => {
                   required=""
                   type="text"
                   onChange={(e) => setBusqueda(e.target.value)}
+                  onKeyPress={(e) => handlesubmit(e)}
                   className="form-control me-2 "
                 />
                 {/* <button className="reset" type="reset">
@@ -114,14 +111,13 @@ export const Navbar = () => {
                     ></path>
                   </svg>
                 </button> */}
-              </form>
+              </div>
 
               <div className="ml-auto me-2">
                 <Link
                   to={"/favoritos"}
                   className="btn btn-dark milist"
                   id="dropdownMenuButton1"
-
                 >
                   Mi lista
                 </Link>
@@ -146,7 +142,7 @@ export const Navbar = () => {
                   </span>
                 </button>
                 <Link to={"/miperfil"}>
-                    <button>Hola</button>
+                  <button>Hola</button>
                 </Link>
               </div>
             </div>

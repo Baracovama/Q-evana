@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       notfound: false,
       genrepage: [],
       user: {},
+      search: null,
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -287,8 +288,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           body: JSON.stringify({
             email: email,
             password: password,
-            username : username,
-            name : name,
+            username: username,
+            name: name,
           }),
         };
         try {
@@ -342,6 +343,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           demo: demo,
         });
       },
+
+      search: (text) =>
+        setStore({
+          search: text,
+        }),
     },
   };
 };

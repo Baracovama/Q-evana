@@ -149,7 +149,12 @@ def create_fav():
         listFav = Favoritos(user_id=user_id, pelicula_id=data.get("pelicula_id"))
         db.session.add(listFav)
         db.session.commit()
-    return jsonify({"msg": "Se añadio correctmente"}), 200
+    elif is_favorite:
+        db.session.delete(is_favorite)
+        db.session.commit()
+    favoritos = Favoritos.query.filter_by(user_id=user_id)
+    data = [favoritos.pelicula.serialize() for favoritos in favoritos]
+    return jsonify(data), 200
 # ----------------------------------------------------------------
 @api.route('/favoritos', methods=['GET'])
 @jwt_required()

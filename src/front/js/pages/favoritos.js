@@ -6,10 +6,6 @@ import "../../styles/cards.css";
 export const Favoritos = () => {
   const { store, actions } = useContext(Context);
 
-  useEffect(() => {
-    actions.favPelis();
-  }, []);
-
   return (
     <>
       <div className="container mb-5 ">
@@ -42,8 +38,8 @@ export const Favoritos = () => {
               );
             })
           ) : (
-            <section class="area">
-              <div class="ball"></div>
+            <section className="area">
+              <div className="ball"></div>
             </section>
           )}
         </div>

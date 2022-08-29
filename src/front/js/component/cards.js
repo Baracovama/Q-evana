@@ -33,11 +33,13 @@ export const Cards = (props) => {
                     value="Sing in"
                     name="login-btn"
                     className={
-                      props.is_favorite
+                      store.favList.map((x) => x.id).includes(props.id)
                         ? "btn btn-warning"
                         : " btn btn-outline-warning"
                     }
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
                       actions.addFavorites(props.id);
                     }}
                   >

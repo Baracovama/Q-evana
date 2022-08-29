@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       proxi: [],
       favList: [],
       generos: [],
-      peliculon: [],
+      peliculon: {},
       notfound: false,
       genrepage: [],
       user: {},

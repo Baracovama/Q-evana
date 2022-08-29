@@ -10,53 +10,49 @@ export const Peliculas = () => {
   const [pelicula, setPelicula] = useState(null);
 
   useEffect(() => {
-    fetch(process.env.BACKEND_URL + "/api/pelicula" + id), {
+    fetch(process.env.BACKEND_URL + "/api/pelicula/" + id, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
-    }})
-    .then((response) => {
-        return response.json()
+    })
+      .then((response) => {
+        return response.json();
       })
       .then((data) => {
-        setPelicula(data)
-      })
-  }, [pelicula]);
+        setPelicula(data);
+      });
+  }, []);
 
-  if (!pelicula) {
-    return null;
-  }
+  // if (!pelicula) {
+  //   return null;
+  // };
 
   return (
     <>
       <div className="container mb-1 ">
         <div className="row">
-          {store.peliculon.length > 0 ? (
-            store.peliculon.map((item, index) => {
-              return (
-                <div className={styles.detailsContainer}>
-                  <img
-                    className={`${styles.col} ${styles.peliculaImagen}`}
-                    src={"https://image.tmdb.org/t/p/w500" + item.poster_path}
-                  />
-                  <div className={`${styles.col} ${styles.peliculaDetalles}`}>
-                    <p className={styles.title}>
-                      <strong>Titulo: </strong>
-                      {pelicula.title}
-                    </p>
-                    <p>
-                      <strong>Generos: </strong>
-                      {item.genres.map((genre) => genre.name).join(", ")}
-                    </p>
-                    <p>
-                      <strong>Descripcion: </strong>
-                      {item.overview}
-                    </p>
-                  </div>
-                </div>
-              );
-            })
+          {pelicula ? (
+            <div className="detailsContainer">
+              <img
+                className="separ peliculaImagen"
+                src={"https://image.tmdb.org/t/p/w500" + pelicula.poster_path}
+              />
+              <div className="separ peliculaDetalles">
+                <p className="title">
+                  <strong>Titulo: </strong>
+                  {pelicula.title}
+                </p>
+                <p>
+                  <strong>Generos: </strong>
+                  {pelicula.generos.map((genre) => genre.name).join(", ")}
+                </p>
+                <p>
+                  <strong>Descripcion: </strong>
+                  {pelicula.overview}
+                </p>
+              </div>
+            </div>
           ) : (
             <section className="area">
               <div className="ball"></div>

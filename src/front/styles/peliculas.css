@@ -1,19 +1,19 @@
 .detailsCotainer {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .separ {
   max-width: 400px;
-  /* width: 80%; */
+  width: 80%;
   margin: 15px;
   height: auto;
   height: 80%;
 }
 
-.peliculaImagen {
-  border: 15px;
+.content-img {
+  border: 15px !important;
+  filter: drop-shadow(4px 8px 16px #575757);
 }
 
 .peliculaDetalles {
@@ -22,4 +22,12 @@
 
 .title {
   margin-top: 0;
+}
+
+.card-fondo {
+  background-color: rgba(250, 250, 250, 0.3) !important;
+}
+
+.card-background {
+  background-color: rgba(250, 250, 250, 0) !important;
 }

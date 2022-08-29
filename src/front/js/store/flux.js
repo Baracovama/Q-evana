@@ -150,6 +150,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           );
           const data = await response.json();
+          setStore({ favList: data });
           return true;
         } catch (error) {
           console.log(error);

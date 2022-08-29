@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/cards.css";
-import styles from "../../styles/peliculas.css";
+import "../../styles/peliculas.css";
 
 export const Peliculas = () => {
   const { id } = useParams();
@@ -24,21 +23,71 @@ export const Peliculas = () => {
       });
   }, []);
 
-  // if (!pelicula) {
-  //   return null;
-  // };
+  if (!pelicula) {
+    return null;
+  }
 
   return (
     <>
-      <div className="container mb-1 ">
+      <div className="container ">
         <div className="row">
           {pelicula ? (
-            <div className="detailsContainer">
+            <div className="card card-background">
               <img
-                className="separ peliculaImagen"
-                src={"https://image.tmdb.org/t/p/w500" + pelicula.poster_path}
+                src={"https://image.tmdb.org/t/p/w500" + pelicula.backdrop_path}
+                className="card-img"
+                alt="Fondo de Pelicula"
               />
-              <div className="separ peliculaDetalles">
+              <div className="card-img-overlay">
+                <div className="card-fondo card mb-3">
+                  <div className="row g-0">
+                    <div className="col-md-4 ">
+                      <img
+                        src={
+                          "https://image.tmdb.org/t/p/w500" +
+                          pelicula.poster_path
+                        }
+                        className="img-fluid rounded-start content-img "
+                        alt="imagen original"
+                      />
+                    </div>
+                    <div class="col-md-8 ">
+                      <div className="card-body ">
+                        <h1 className="card-title title ">
+                          <strong>Titulo: </strong>
+                          {pelicula.title}
+                        </h1>
+                        <p className="card-text">
+                          <strong>Descripcion: </strong>
+                          {pelicula.overview}
+                        </p>
+                        <p>
+                          <strong>Generos: </strong>
+                          {pelicula.generos
+                            .map((genre) => genre.name)
+                            .join(", ")}
+                        </p>
+                        <p>
+                          <strong>Fecha de lanzamiento: </strong>
+                          {pelicula.release_date}
+                        </p>
+                        <p>
+                          <strong>Valoracion: </strong>
+                          {pelicula.vote_average}
+                        </p>
+                        <p>
+                          <strong>Lenguaje Original: </strong>
+                          {pelicula.original_language}
+                        </p>
+                        <p className="card-text">
+                          <small className="text-muted">
+                            <strong>Votos: </strong>
+                            {pelicula.vote_count}
+                          </small>
+                        </p>
+                      </div>
+                    </div>
+                    {/* <div className="separ peliculaDetalles">
                 <p className="title">
                   <strong>Titulo: </strong>
                   {pelicula.title}
@@ -51,6 +100,21 @@ export const Peliculas = () => {
                   <strong>Descripcion: </strong>
                   {pelicula.overview}
                 </p>
+                <p>
+                  <strong>Fecha de lanzamiento: </strong>
+                  {pelicula.release_date}
+                </p>
+                <p>
+                  <strong>Valoracion: </strong>
+                  {pelicula.vote_average}
+                </p>
+                <p>
+                  <strong>Lenguaje Original: </strong>
+                  {pelicula.original_language}
+                </p>
+              </div> */}
+                  </div>
+                </div>
               </div>
             </div>
           ) : (

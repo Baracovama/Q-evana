@@ -220,10 +220,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       // -------------------------------------------------------------------------
       // -------------------------------------------------------------------------
 
-      details: (id) => {
-        fetch(`${process.env.BACKEND_URL}/api/pelicula/${id}`)
-          .then((res) => res.json())
-          .then((data) => setStore({ peliculon: data }));
+      details: async (id) => {
+        const result = await fetch(
+          `${process.env.BACKEND_URL}/api/pelicula/${id}`
+        );
+        const data = await result.json();
+        setStore({ peliculon: data });
+        return true;
       },
 
       // hay que arreglarlo

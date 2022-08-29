@@ -35,8 +35,8 @@ export const Category = () => {
               );
             })
           ) : (
-            <section class="area">
-              <div class="ball"></div>
+            <section className="area">
+              <div className="ball"></div>
             </section>
           )}
         </div>

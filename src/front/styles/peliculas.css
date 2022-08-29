@@ -1,0 +1,25 @@
+.detailsCotainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.col {
+  max-width: 400px;
+  /* width: 80%; */
+  margin: 15px;
+  height: auto;
+  height: 80%;
+}
+
+.peliculaImagen {
+  border: 15px;
+}
+
+.peliculaDetalles {
+  font-size: 1.5rem;
+}
+
+.title {
+  margin-top: 0;
+}

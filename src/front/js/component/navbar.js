@@ -59,7 +59,7 @@ export const Navbar = () => {
               </li>
               <li className="nav-item categorias">
                 <Link to={"/favoritos"} className="nav-link text-light">
-                  <i class="fas fa-plus">Mi lista</i>
+                  <i class="fas fa-plus"> Mi lista</i>
                 </Link>
               </li>
               <li className="nav-item categorias">

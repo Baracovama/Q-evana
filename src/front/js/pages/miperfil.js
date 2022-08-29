@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/perfil.css";
 
 export const Miperfil = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
   const { actions, store } = useContext(Context);
+  const [email, setEmail] = useState(store.user.email);
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState(store.user.username);
+  const [name, setName] = useState(store.user.name);
   let navigate = useNavigate();
 
   return (
@@ -52,7 +52,7 @@ export const Miperfil = () => {
                 className="form-control"
                 id="PassworkInput"
                 name="password"
-                placeholder="Password"
+                placeholder="Username"
                 defaultValue={store.user.username}
                 onChange={(event) => setUsername(event.target.value)}
               />

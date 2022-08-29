@@ -176,7 +176,8 @@ def put_cambiouser():
     user.name = data.get("name")
     user.username = data.get("username")
     user.email = data.get("email")
-    user.password = data.get("password")
+    if data.get("password") : 
+        user.password = data.get("password")
 
     db.session.commit()
 

@@ -12,46 +12,45 @@ export const Cards = (props) => {
 
   return (
     <div style={{ width: "20rem" }} className=" card-pelis ">
-      <div className="blog-posts">
-        <div className="post ">
-          <img src={props.img} className="post-img" alt="Image not found" />
-          <div className="post-content">
-            <h5>{props.title}</h5>
-            <div className="d-flex date">
-              <p className="mx-2"> {props.description1}</p>
-              <p> {props.result1}</p>
-            </div>
-            <div className="d-flex date">
-              <p className="mx-2"> {props.description2}</p>
-              <p> {props.result2}</p>
-            </div>
-            <div className="d-flex justify-content-between">
-              <Link to={`/peliculas/${props.id}`}>
-                <button className="btn btn-outline-primary">Learn more!</button>
-              </Link>
-              {store.auth ? (
-                <button
-                  type="submit"
-                  value="Sing in"
-                  name="login-btn"
-                  className={
-                    props.is_favorite
-                      ? "btn btn-warning"
-                      : " btn btn-outline-warning"
-                  }
-                  onClick={() => {
-                    actions.addFavorites(props.id);
-                  }}
-                >
-                  <i className="far fa-heart" />
-                </button>
-              ) : (
-                ""
-              )}
+      <Link to={`/peliculas/${props.id}`}>
+        <div className="blog-posts">
+          <div className="post ">
+            <img src={props.img} className="post-img" alt="Image not found" />
+            <div className="post-content text-dark">
+              <h5>{props.title}</h5>
+              <div className="d-flex date">
+                <p className="mx-2"> {props.description1}</p>
+                <p> {props.result1}</p>
+              </div>
+              <div className="d-flex date">
+                <p className="mx-2"> {props.description2}</p>
+                <p> {props.result2}</p>
+              </div>
+              <div className="d-flex justify-content-between">
+                {store.auth ? (
+                  <button
+                    type="submit"
+                    value="Sing in"
+                    name="login-btn"
+                    className={
+                      props.is_favorite
+                        ? "btn btn-warning"
+                        : " btn btn-outline-warning"
+                    }
+                    onClick={() => {
+                      actions.addFavorites(props.id);
+                    }}
+                  >
+                    <i className="far fa-heart" />
+                  </button>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

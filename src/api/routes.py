@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Genero, Peliculas, GeneroPeli, Favoritos
+from api.models import db, User, Genero, Peliculas, GeneroPeli, Favoritos, Comments
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 import requests
@@ -167,9 +167,11 @@ def get_favoritos():
 @api.route('/pelicula/<id>', methods=['GET'])
 def get_peliculas_by_id(id):
     pelicula = Peliculas.query.filter_by(id=id).first()
+    serialized = pelicula.serialize()
+    serialized ['comments'] = list(map(lambda comment : comment.serialize(),pelicula.comments))
     if not pelicula:
         return jsonify("error"), 400
-    return jsonify(pelicula.serialize()), 200
+    return jsonify(serialized), 200
 
 # ----------------------------------------------------------------
 @api.route('/cambiouser', methods=['PUT'])
@@ -198,3 +200,17 @@ def search_bar():
     peliculas = Peliculas.query.filter(Peliculas.title.ilike(f"{text}%"))
     data = [pelicula.serialize() for pelicula in peliculas]
     return jsonify(data), 200
+
+@api.route('/addComment/<int:pelicula_id>', methods=['POST'])
+# @jwt_required()
+def create_comment(pelicula_id):
+    # user_id = get_jwt_identity()
+    user = User.query.get(1)
+    pelicula = Peliculas.query.get(pelicula_id)
+    data = request.json
+    if not data.get("text"):
+        return jsonify({"message": "Aun no se ha agregado ningun comentario."}), 400
+    comment = Comments(user=user, pelicula=pelicula, text=data.get('text'))
+    db.session.add(comment)
+    db.session.commit()
+    return jsonify({'message': 'El comentario se ha agregado con exito.'}), 200

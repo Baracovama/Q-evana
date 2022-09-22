@@ -98,6 +98,22 @@ class Favoritos(db.Model):
         return {
             
         }
+
+class Comments(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user = db.relationship('User' , backref="comments")
+    pelicula_id = db.Column(db.Integer, db.ForeignKey('peliculas.id'), nullable=True)
+    pelicula = db.relationship('Peliculas', backref="comments")
+    text = db.Column(db.Text, nullable=False)
+
+    def serialize(self):
+        return {
+            'username': self.user.username,
+            'user_id':self.user.id,
+            'text':self.text
+        }
+
 # ----------------------------------------------------------------
 
 

@@ -1,58 +1,55 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/carousel.css";
 
 export const Carousel = () => {
-    const {store , actions} = useContext(Context)
+  const { store, actions } = useContext(Context);
+  const [ carta, setCarta] = useState([]);
 
+  useEffect(() => {
+    setCarta([...store.pelis.slice(0,3), ...store.top.slice(0,2)])
+  }, [store.pelis, store.top]);
 
-    useEffect(() => {
-        actions.listpelis();
-        actions.toppelis();
-      }, []);
-
-    const randomPelis = Math.floor(Math.random()*store.pelis.length);
-    const randomTop = Math.floor(Math.random()*store.top.length);
-    
-    for(let i= 0; i<randomPelis.length; i++){
-        arr.push(randomPelis + randomTop)
-    }
-
-    const arr = [];
-    arr.push(randomPelis + randomTop)
-    console.log(arr);
-    
-	return (
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    {store.pelis.map((peli) => {
-                        return(
-                            <div key={peli.id}>
-                            <div className="pelicula1">
-                                <div className="container-1">
-                                    <h3 className="title">{peli.title}</h3>
-                                    <p className="description"> 
-                                        {peli.overview}
-                                    </p>
-                                    <button className="info"><i class="fas fa-info-circle"> Info</i></button>
+  return (
+    <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+        <div className="carousel-inner">
+            {carta.map((peli, index) => {
+                return (
+                    <div className= {index == 0 ? "carousel-item active" : "carousel-item"} key={index}>
+                        <div className="card text-bg-dark" >
+                            <img src={ "https://image.tmdb.org/t/p/w500" + peli.backdrop_path } className="card-img"/>
+                            <div className="card-img-overlay">
+                                <div className=" card mb-3 card-fondo">
+                                    <div className="row g-0">
+                                        <div className="col-md-4">
+                                            <img className="img-fluid rounded-start" src={ "https://image.tmdb.org/t/p/w500" + peli.poster_path}/>
+                                        </div>
+                                        <div className="col-md-8">
+                                            <div className="card-body">
+                                                <h3 className="title">{peli.title}</h3>
+                                                <p className="description"> {peli.overview} </p>
+                                                <button className="info"> <i className="fas fa-info-circle"> Info</i></button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <img className="img-carro" src={"https://image.tmdb.org/t/p/w500" + peli.poster_path}/>
                             </div>
-                            </div>
-                        )
-                    })}   
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>  
+                        </div>
+                    </div>
+                        
+                    
+                );
+            })}
         </div>
-	);
-};  
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+        </button>
+    </div>
+  );
+};

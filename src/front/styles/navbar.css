@@ -248,3 +248,9 @@ nav {
     .perfil{
       border-color: rgba(140, 0, 255, 0);
     }
+
+#navbarTogglerDemo01{
+  z-index: 10;
+  position: relative;
+  background-color: ;
+}

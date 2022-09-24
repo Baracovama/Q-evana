@@ -6,6 +6,8 @@ nav {
   .navbar {
     background: linear-gradient(90deg, rgb(51, 49, 49) 50%, rgb(255, 255, 255));
     height: 100px;
+    z-index: 10;
+    position: relative;
   }
   
   .logo {
@@ -250,7 +252,5 @@ nav {
     }
 
 #navbarTogglerDemo01{
-  z-index: 10;
-  position: relative;
-  background-color: ;
+  background: linear-gradient(90deg, rgb(51, 49, 49) 50%, rgb(255, 255, 255));
 }

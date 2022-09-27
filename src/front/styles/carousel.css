@@ -19,6 +19,10 @@ body {
   max-height: 550px;
 }
 
+.img-fluid{
+  height: 550px;
+}
+
 
 
 /* @media only screen and (max-width: 1250px){} */

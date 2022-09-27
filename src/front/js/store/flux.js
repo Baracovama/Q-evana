@@ -97,6 +97,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             user: data.user,
           });
+          getActions.favPelis();
           if (getActions().listpelis() && getActions().toppelis()) {
             return true;
           }

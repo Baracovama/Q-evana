@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, forwardRef, useRef } from "react";
 import { Context } from "../store/appContext";
 import { Cards } from "./cards";
 
-export const Cardlistpelis = () => {
+export const Cardlistpelis = forwardRef((ref) => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ export const Cardlistpelis = () => {
   }, []);
 
   return (
-    <div className=" container mb-5  ">
+    <div className=" container mb-5" id="popular" ref={ref}>
       <h1 className="text-white">Populares</h1>
       <div className="row flex-row flex-nowrap overflow-auto">
         {store.pelis.map((item, index) => {
@@ -32,4 +32,4 @@ export const Cardlistpelis = () => {
       </div>
     </div>
   );
-};
+});

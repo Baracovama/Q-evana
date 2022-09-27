@@ -1,10 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, Component } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 import logo from "../../img/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Cardlistpelis from "./cardlistpelis";
 
 export const Navbar = () => {
   const { actions, store } = useContext(Context);
@@ -17,12 +18,18 @@ export const Navbar = () => {
       navigate(`/searchingpage`);
     }
   };
+  
+  const scroll = useRef();
+
+  function handleBackClick() {
+    scroll.current.scrollIntoView({ behavior: 'smooth' })
+}
 
   console.log(store.auth);
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       {store.auth ? (
-        <div className="container-fluid">
+        <div className="container-fluid navbar1">
           <a
             className="navbar-toggler"
             type="button"
@@ -34,7 +41,7 @@ export const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </a>
-          <div className="collapse navbar-collapse " id="navbarTogglerDemo01">
+          <div className="collapse navbar-collapse offcanvas" id="navbarTogglerDemo01">
             <a className="navbar-brand" href="#"></a>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -48,7 +55,7 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item categorias">
-                <a className="nav-link text-light" href="#">
+                <a className="nav-link text-light"  ref={articleRef}>
                   <i className="fas fa-film"> Populares</i>
                 </a>
               </li>

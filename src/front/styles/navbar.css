@@ -1,23 +1,30 @@
-.navbar1 {
+.nav {
     padding-left: 5px;
     padding-right: 25px;
     height: 100px;
   }
   
   .navbar {
-    background: linear-gradient(90deg, rgb(51, 49, 49) 50%, rgb(255, 255, 255));
+    padding-top: 0px;
     z-index: 10;
     position: relative;
   }
 
   #navbarTogglerDemo01{
-    background: linear-gradient(90deg, rgb(51, 49, 49) 50%, rgb(255, 255, 255));
+    padding-top: 0px;
+    background: linear-gradient(180deg, rgb(51, 49, 49) 50%, rgb(255, 255, 255,0));
   }
   
   .logo {
     margin-top: 10px;
     width: 190px;
     height: 90px;
+  }
+
+  .botonperfil{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
   }
   
   .container-fluid {

@@ -202,15 +202,16 @@ def search_bar():
     return jsonify(data), 200
 
 @api.route('/addComment/<int:pelicula_id>', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def create_comment(pelicula_id):
-    # user_id = get_jwt_identity()
-    user = User.query.get(1)
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)
+    print(user)
     pelicula = Peliculas.query.get(pelicula_id)
     data = request.json
     if not data.get("text"):
         return jsonify({"message": "Aun no se ha agregado ningun comentario."}), 400
-    comment = Comments(user=user, pelicula=pelicula, text=data.get('text'))
+    comment = Comments(user_id=user.id, pelicula_id=pelicula_id, text=data.get('text'))
     db.session.add(comment)
     db.session.commit()
     return jsonify({'message': 'El comentario se ha agregado con exito.'}), 200

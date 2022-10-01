@@ -1,12 +1,15 @@
-.container-fluid{
-    padding-top: 0%;
-    padding-left: 0%;
-    padding-right: 0%;
+.home{
+    max-width: 2000px;
 }
 
 body{
     background-color: black;
     overflow-x: hidden;
+}
+
+@media (min-width: 1400px){
+    max-width: 2000px;
+    padding: 20px;
 }
 /*
     home.css: This website contains selectors only used in home.css

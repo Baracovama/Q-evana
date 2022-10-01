@@ -1,15 +1,40 @@
-.card-generos{
-    background-image: url(https://media.istockphoto.com/photos/red-dark-abstract-background-blurred-empty-rays-light-gradient-studio-picture-id1213881115?b=1&k=20&m=1213881115&s=170667a&w=0&h=R8PjZ67IpjbS2WDSxonGizlaZOro15XeelV8icjHsqE=);
-    width: 300px;
-    height: 200px;
-    text-align: center;
-    padding-top: 80px;
-    color: white;
+.card-generos {
+  background-image: url(https://media.istockphoto.com/photos/red-dark-abstract-background-blurred-empty-rays-light-gradient-studio-picture-id1213881115?b=1&k=20&m=1213881115&s=170667a&w=0&h=R8PjZ67IpjbS2WDSxonGizlaZOro15XeelV8icjHsqE=);
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  padding-top: 80px;
+  color: white;
 }
 
 a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
+.swiper {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  height: calc((100% - 30px) / 2) !important;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}

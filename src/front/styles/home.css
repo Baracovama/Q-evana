@@ -1,20 +1,40 @@
-.home{
-    max-width: 2000px;
-}
-
 body{
     background-color: black;
     overflow-x: hidden;
 }
 
-@media (min-width: 1400px){
-    max-width: 2000px;
-    padding: 20px;
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    width: 100%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
 }
-/*
-    home.css: This website contains selectors only used in home.css
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+@media (min-width: 576px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        max-width: 540px;
+    } 
+}
+
+@media (min-width: 768px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px){
+    .container, .container-lg, .container-md, .container-sm {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px){
+    .container, .container-md, .container-sm {
+        max-width: 1140;
+    }
+}
+    
+@media (min-width: 1400px){
+    .container, .container-sm {
+        max-width: 1900px;
+    }
+}

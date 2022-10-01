@@ -10,7 +10,7 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container home ">
+    <div className="container home">
       <Carousel />
       <CardGeneros />
       <Cardlistpelis />

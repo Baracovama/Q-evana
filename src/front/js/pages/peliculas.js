@@ -81,7 +81,7 @@ export const Peliculas = () => {
                           {pelicula.original_language}
                         </p>
                         <p className="card-text">
-                          <small className="text-muted">
+                          <small>
                             <strong>Votos: </strong>
                             {pelicula.vote_count}
                           </small>

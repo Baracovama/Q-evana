@@ -12,7 +12,7 @@ export const Carousel = () => {
   }, [store.pelis, store.top]);
 
   return (
-    <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" className="container carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner">
             {carta.map((peli, index) => {
                 return (
@@ -29,7 +29,7 @@ export const Carousel = () => {
                                             <div className="card-body">
                                                 <h3 className="title">{peli.title}</h3>
                                                 <p className="description"> {peli.overview} </p>
-                                                <button className="info"> <i className="fas fa-info-circle"> Info</i></button>
+                                                <Link to={"peliculas/"+peli.id}><button className="info"> <i className="fas fa-info-circle"> Info</i></button></Link>
                                             </div>
                                         </div>
                                     </div>

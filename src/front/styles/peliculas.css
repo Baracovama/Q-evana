@@ -25,9 +25,13 @@
 }
 
 .card-fondo {
-  background-color: rgba(250, 250, 250, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.397) !important;
 }
 
 .card-background {
   background-color: rgba(250, 250, 250, 0) !important;
+}
+
+.card-body{
+  color: white;
 }

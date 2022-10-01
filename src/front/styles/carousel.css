@@ -10,7 +10,23 @@ body {
 }
 
 .carousel-item{
-  height: 800px;
+  height: auto;
+}
+
+.card{
+  height: auto;
+}
+
+.img-fluid{
+  height: auto;
+}
+
+.card-img{
+  height: auto;
+}
+
+.card-fondo{
+  background-color: black;
 }
 
 

@@ -93,7 +93,7 @@ export const Miperfil = () => {
               />
             </div>
 
-            <button
+            <button className="cambios"
               onClick={() => {
                 actions.CambiosUser(email, username, name, password);
               }}

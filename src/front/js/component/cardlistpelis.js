@@ -17,7 +17,7 @@ export const Cardlistpelis = () => {
   }, []);
 
   return (
-    <div className=" container mb-5  ">
+    <div className=" container mb-5" id="popular">
       <h1 className="text-white">Populares</h1>
       <div className="swiper mySwiper ">
         <Swiper

@@ -42,7 +42,7 @@ button {
   font-size: inherit;
   font-family: inherit;
   background-color: white;
-  
+  border-radius: 25px;
  }
  
  button.info {

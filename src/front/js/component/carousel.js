@@ -29,7 +29,14 @@ export const Carousel = () => {
                                             <div className="card-body">
                                                 <h3 className="title">{peli.title}</h3>
                                                 <p className="description"> {peli.overview} </p>
-                                                <Link to={"peliculas/"+peli.id}><button className="info"> <i className="fas fa-info-circle"> Info</i></button></Link>
+                                                <Link to={"peliculas/"+peli.id}>
+                                                    <button class="info">
+                                                        <span class="circle" aria-hidden="true">
+                                                        <span class="icon arrow"></span>
+                                                        </span>
+                                                        <span class="button-text"> + Info</span>
+                                                    </button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>

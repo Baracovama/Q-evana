@@ -29,6 +29,8 @@
   
   .container-fluid {
     padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
   
   .categorias {
@@ -261,3 +263,5 @@
     .perfil{
       border-color: rgba(140, 0, 255, 0);
     }
+
+    /* @media only screen and (max-width: 992px){} */

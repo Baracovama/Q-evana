@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Cards } from "./cards";
+import "../../styles/scroll-pelis.css";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
@@ -8,6 +9,7 @@ import { Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+
 
 export const Cardlistpelis = () => {
   const { store, actions } = useContext(Context);
@@ -54,8 +56,6 @@ export const Cardlistpelis = () => {
               </div>
             );
           })}
-          <div className="swiper-button-next"></div>
-          <div className="swiper-button-prev"></div>
           <div className="swiper-pagination"></div>
         </Swiper>
       </div>

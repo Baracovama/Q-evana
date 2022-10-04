@@ -219,6 +219,7 @@ export const Navbar = () => {
             <div className="sidebar close">
 
                 <div className="logo-details">
+
                     <img src="logo.png" className="logo" />
                 </div>
 

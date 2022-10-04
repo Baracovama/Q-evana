@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/peliculas.css";
+import { Forms } from "../component/form";
 
 export const Peliculas = () => {
   const { id } = useParams();
@@ -87,6 +88,7 @@ export const Peliculas = () => {
                         </p>
                       </div>
                     </div>
+                    <Forms />
                     {/* <div className="separ peliculaDetalles">
                 <p className="title">
                   <strong>Titulo: </strong>

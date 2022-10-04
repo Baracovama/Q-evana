@@ -160,6 +160,29 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       // -------------------------------------------------------------------------
 
+      addComment: async (id, text) => {
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/addComment/" + id,
+            {
+              method: "POST",
+              body: JSON.stringify({ text: text }),
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          );
+          const data = await response.json();
+          // setStore({ favList: data });
+          return true;
+        } catch (error) {
+          console.log(error);
+          return false;
+        }
+      },
+      // -------------------------------------------------------------------------
+
       listpelis: async () => {
         let header = {
           "Content-Type": "application/json",

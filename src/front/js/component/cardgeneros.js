@@ -28,9 +28,7 @@ export const CardGeneros = () => {
         <h1 className="title_tvshow">Generos</h1>
         <Slider {...settings}>
             {store.generos.map((item, index) => {
-              return (
-                <div className="swiper-wrapper">
-                  <div className="swiper-slide">
+                <div className="item_slidetv"key={index}>
                     <SwiperSlide>
                       <div
                         className="card-generos m-2"
@@ -43,10 +41,8 @@ export const CardGeneros = () => {
                     </SwiperSlide>
                   </div>
                 </div>
-              );
             })}
             <div className="swiper-pagination"></div>
-          </Swiper>
         </div>
       </div>
     </>

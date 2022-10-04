@@ -17,24 +17,16 @@ export const CardGeneros = () => {
     actions.generoslist();
   }, []);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(allMovies());
+  }, [dispatch]);
+
   return (
     <>
-      <div className=" container mb-5  ">
-        <h1 className="text-white">Generos</h1>
-        <div className="swiper mySwiper ">
-          <Swiper
-            slidesPerView={4}
-            grid={{
-              rows: 1,
-            }}
-            spaceBetween={30}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Grid, Pagination]}
-            className="mySwiper"
-            navigation={true}
-          >
+      <div className=" tv_slide ">
+        <h1 className="title_tvshow">Generos</h1>
+        <Slider {...settings}>
             {store.generos.map((item, index) => {
               return (
                 <div className="swiper-wrapper">

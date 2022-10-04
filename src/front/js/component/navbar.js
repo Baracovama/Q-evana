@@ -237,7 +237,7 @@ export const Navbar = () => {
                     <li>
                         <div className="icon-link">
                             <Link to={"/search"} className="linkS">
-                                <i className='bx bx-search' ></i>
+                                <i className="fas fa-search"></i>
                             </Link>
                         </div>
                         <ul className="sub-menu">
@@ -247,7 +247,7 @@ export const Navbar = () => {
                     <li>
                         <div className="icon-link">
                             <Link to={"/favoritos"} className="linkS">
-                                <i className='bx bx-star'></i>
+                                <i class="far fa-star"></i>
                             </Link>
                         </div>
                         <ul className="sub-menu">
@@ -256,23 +256,22 @@ export const Navbar = () => {
                     </li>
                     <li>
                         <div className="icon-link">
-                            <Link to={"/users"} className="linkS">
-                                <i className='bx bx-group'></i>
+                            <Link to={"/miperfil"} className="linkS">
+                                <i class="far fa-user"></i>
                             </Link>
                         </div>
                         <ul className="sub-menu">
-                            <li>Users</li>
+                            <li>User</li>
                         </ul>
                     </li>
                     <li>
                         <div className="icon-link">
                             <Link to={"/logout"} className="linkS"  >
-                                <i onClick={() => {
-    //                 const desconecto = actions.LogOut();
-    //                 if (desconecto) {
-    //                   navigate(0);
-    //                 }
-    //               }} className='bx bx-log-out-circle' >
+                                <i onClick={() => {const desconecto = actions.LogOut();
+                                    if (desconecto) {
+                                       navigate(0);
+                                    }
+                                    }} className="fas fa-sign-out-alt">
                                 </i>
                             </Link>
                         </div>

@@ -30,11 +30,11 @@ export const Carousel = () => {
                                                 <h3 className="title">{peli.title}</h3>
                                                 <p className="description"> {peli.overview} </p>
                                                 <Link to={"peliculas/"+peli.id}>
-                                                    <button class="info">
-                                                        <span class="circle" aria-hidden="true">
-                                                        <span class="icon arrow"></span>
+                                                    <button className="info">
+                                                        <span className="circle" aria-hidden="true">
+                                                        <span className="icon arrow"></span>
                                                         </span>
-                                                        <span class="button-text"> + Info</span>
+                                                        <span className="button-text"> + Info</span>
                                                     </button>
                                                 </Link>
                                             </div>

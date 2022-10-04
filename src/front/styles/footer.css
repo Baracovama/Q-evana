@@ -1,4 +1,4 @@
-.footer{
+/* .footer{
     background: linear-gradient( rgb(51, 49, 49), rgb(255, 255, 255));
     padding: 1em, 0;
     text-align: center;
@@ -8,4 +8,72 @@
     flex-direction: column;
     justify-content: flex-end;
     bottom: 0;
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@200&family=Staatliches&display=swap");
+
+footer {
+  background: #120312;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+footer .content {
+  margin: auto;
+  padding: 15px 40px 0px 40px;
+}
+
+footer .content .top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content .top .media-icons {
+  display: flex;
+}
+
+/* font-size cambia el tamaño de los iconos de link y git */
+.content .top .media-icons a {
+  height: 40px;
+  width: 40px;
+  margin: 0 8px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  font-size: 30px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.top .media-icons a:nth-child(1) {
+  background: #120312;
+}
+
+.top .media-icons a:nth-child(2) {
+  background: #120312;
+}
+
+footer .bottom-details {
+  width: 100%;
+  background: #120312;
+}
+
+footer .bottom-details .bottom_text {
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Public Sans", sans-serif;
+}
+
+.bottom-details .bottom_text .copyright_text {
+  font-size: 13px;
+  font-weight: 10px;
+  color: #fff;
+  opacity: 0.5;
+  text-decoration: none;
 }

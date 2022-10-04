@@ -1,9 +1,78 @@
-* {
-  margin: 0;
-  padding: 0;
-  /*box-sizing: border-box;*/
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@200&family=Staatliches&display=swap");
+
+.imagen_carrousel {
+  background-repeat: no-repeat;
+  background-color: #120312;
+  height: 60vh;
+  background-size: cover;
+  box-shadow: inset 500px 0px 150px #120312;
+  background-position: 150% 0;
 }
 
+.initial_carrousel {
+  padding: 1px;
+}
+
+.movie_code {
+  font-family: "Staatliches", cursive;
+}
+
+.categories {
+  padding-left: 60px;
+  display: flex;
+  justify-content: flex-start;
+  font-family: "Staatliches", cursive;
+}
+
+.link_cat {
+  position: relative;
+  font-size: 18px;
+  font-weight: 300;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 45px;
+}
+
+.link_cat::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  transform: scaleX(0);
+  transform-origin: top left;
+  transition: transform 0.3s ease;
+}
+
+.link_cat:hover::before {
+  transform: scaleX(1);
+}
+
+.container_title {
+  padding-left: 60px;
+  margin-top: 30px;
+  max-width: 250px;
+}
+
+.link_tit {
+  font-family: "Staatliches", cursive;
+  text-decoration: none;
+  color: #fff;
+  font-size: 40px;
+}
+
+.container_description {
+  padding-left: 60px;
+  font-family: "Public Sans", sans-serif;
+  max-width: 400px;
+  font-size: 15px;
+}
+
+/* /* k
 body {
   background-color: black;
   user-select:none ;
@@ -121,4 +190,4 @@ button {
 
 
 
-/* @media only screen and (max-width: 1250px){} */
+@media only screen and (max-width: 1250px){} */

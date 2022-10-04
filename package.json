@@ -33,6 +33,7 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/runtime": "^7.16.3",
+    "@redux-devtools/core": "^3.13.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -76,14 +77,17 @@
     "@fortawesome/fontawesome-free": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@reduxjs/toolkit": "^1.8.5",
     "boxicons": "^2.1.4",
     "jshint": "^2.13.5",
     "prop-types": "^15.6.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-polyfills": "0.0.1",
+    "react-redux": "^8.0.4",
     "react-router-dom": "^6.3.0",
     "react-slick": "^0.29.0",
+    "redux": "^4.2.0",
     "swiper": "^8.4.2"
   }
 }

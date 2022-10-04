@@ -1,267 +1,124 @@
-.nav {
-    padding-left: 5px;
-    padding-right: 25px;
-    height: 100px;
-  }
-  
-  .navbar {
-    padding-top: 0px;
-    z-index: 10;
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@200&family=Staatliches&display=swap');
+
+.container_side {
     position: relative;
-  }
-
-  #navbarTogglerDemo01{
-    padding-top: 0px;
-    background: linear-gradient(180deg, rgb(51, 49, 49) 50%, rgb(255, 255, 255,0));
-  }
-  
-  .logo {
-    margin-top: 10px;
-    width: 190px;
-    height: 90px;
-  }
-
-  .botonperfil{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-  }
-  
-  .container-fluid {
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  
-  .categorias {
-    padding: 50px 15px;
-  }
-  
-  .favoritos {
-    background-color: rgb(255, 255, 255, 0);
-    border-color: rgb(255, 255, 255, 0);
-  }
-  
-  .username {
-    background-color: rgb(255, 255, 255, 0);
-    border-color: rgb(255, 255, 255, 0);
-    color: blue;
-  }
-  
-  /* --------------Log In ----------------*/
-  
-  .botonEntrar {
-    align-items: center;
-    background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-    border: 0;
-    border-radius: 8px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    box-sizing: border-box;
-    color: #ffffff;
-    display: flex;
-    font-family: Phantomsans, sans-serif;
-    font-size: 18px;
-    justify-content: center;
-    line-height: 1em;
-    max-width: 100%;
-    min-width: 140px;
-    height: 50px;
-    padding: 3px;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .botonEntrar:active,
-  .botonEntrar:hover {
-    outline: 0;
-  }
-  
-  .botonEntrar span {
-    background-color: rgb(5, 6, 45);
-    padding: 16px 24px;
-    border-radius: 6px;
     width: 100%;
+    overflow: hidden;
+}
+
+.logo {
+  margin-top: 10px;
+  width: 80px;
+  height: 40px;
+}
+
+/* width mide el ancho del navbar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
     height: 100%;
-    transition: 300ms;
-  }
-  
-  .botonEntrar:hover span {
-    background: none;
-  }
-  
-  .botonEntrar:active {
-    transform: scale(0.9);
-  }
-  
-  /*---------------- Log Out -----------------*/
-  
-  .botonLogOut {
-    width: 150px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    background: rgb(140, 0, 255);
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px white;
-    background: rgb(5, 6, 45);
-  }
-  
-  .botonLogOut,
-  .botonLogOut span {
-    transition: 200ms;
-  }
-  
-  .botonLogOut .text {
-    transform: translateX(35px);
-    color: white;
-    font-weight: bold;
-  }
-  
-  .botonLogOut .icon {
-    position: absolute;
-    border-left: 1px solid rgb(140, 0, 255);
-    transform: translateX(110px);
-    height: 40px;
     width: 40px;
+    background: #120312;
+    z-index: 100;
+}
+
+.sidebar .logo-details {
+    height: 100px;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: white;
-  }
-  
-  .botonLogOut .fa-sign-out-alt {
-    width: 15px;
-    fill: #eee;
-  }
-  
-  .botonLogOut:hover {
-    background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-  }
-  
-  .botonLogOut:hover .text {
-    color: transparent;
-  }
-  
-  .botonLogOut:hover .icon {
-    width: 150px;
-    border-left: none;
-    transform: translateX(0);
-  }
-  
-  .botonLogOut:focus {
-    outline: none;
-  }
-  
-  .botonLogOut:active .icon .fa-sign-out-alt {
-    transform: scale(0.8);
-  }
-  
-  /* --------------Lista ------------*/
-  
-  .milist{
-      background: rgb(5, 6, 45);
-      height: 40px;
-  }
-  
-  .milist:hover {
-      background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-    }
-  
-  .listado{
-      background-image: linear-gradient(144deg, #af40ff3a, #5a42f33a 50%, #00dbeb3a);
-  }
-  
-  /*----------------Input---------------*/
-  
-  .formInput .botonInput {
-      border: none;
-      background: none;
-      color: #8b8ba7;
-    }
-    /* styling of whole input container */
-    .formInput {
-      --timing: 0.3s;
-      --width-of-input: 200px;
-      --height-of-input: 40px;
-      --border-height: 2px;
-      --input-bg: #fff;
-      --border-color: #2f2ee9;
-      --border-radius: 30px;
-      --after-border-radius: 1px;
-      position: relative;
-      width: var(--width-of-input);
-      height: var(--height-of-input);
-      display: flex;
-      align-items: center;
-      padding-inline: 0.8em;
-      border-radius: var(--border-radius);
-      transition: border-radius 0.5s ease;
-      background: var(--input-bg,#fff);
-    }
-    /* styling of Input */
-    .input {
-      font-size: 0.9rem;
-      background-color: transparent;
-      width: 100%;
-      height: 100%;
-      padding-inline: 0.5em;
-      padding-block: 0.7em;
-      border: none;
-    }
-    /* styling of animated border */
-    .formInput:before {
-      content: "";
-      position: absolute;
-      background: var(--border-color);
-      transform: scaleX(0);
-      transform-origin: center;
-      width: 100%;
-      height: var(--border-height);
-      left: 0;
-      bottom: 0;
-      border-radius: 1px;
-      transition: transform var(--timing) ease;
-    }
-    /* Hover on Input */
-    .formInput:focus-within {
-      border-radius: var(--after-border-radius);
-    }
-    
-    input:focus {
-      outline: none;
-    }
-    /* here is code of animated border */
-    .formInput:focus-within:before {
-      transform: scale(1);
-    }
-    /* styling of close button */
-    /* == you can click the close button to remove text == */
-    .reset {
-      border: none;
-      background: none;
-      opacity: 0;
-      visibility: hidden;
-    }
-    /* close button shown when typing */
-    input:not(:placeholder-shown) ~ .reset {
-      opacity: 1;
-      visibility: visible;
-    }
-    /* sizing svg icons */
-    .formInput svg {
-      width: 17px;
-      margin-top: 3px;
-    }
+}
 
-    .perfil{
-      border-color: rgba(140, 0, 255, 0);
-    }
+/* min-width centra el logo */
+.logo-details i {
+    font-size: 35px;
+    color: #fff;
+    height: 50px;
+    min-width: 39px;
+    text-align: center;
+    line-height: 50px;
+}
 
-    /* @media only screen and (max-width: 992px){} */
+.sidebar .nav-links {
+    height: 100%;
+    padding: 50px 0 150px 0;
+    overflow: auto;
+}
+
+.sidebar .nav-links {
+    overflow: visible;
+}
+
+.sidebar .nav-links li {
+    position: relative;
+    list-style: none;
+    transition: all 0.4s ease;
+}
+
+.sidebar .nav-links li:hover {
+    background: #200A20;
+}
+
+.sidebar .nav-links li .icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar.close .nav-links li .icon-link {
+    display: block
+}
+
+/* line-heat es lo que genera el espacio entre cada icono */
+/* min-width centra los iconos */
+.sidebar .nav-links li i {
+    height: 80px;
+    min-width: 39px;
+    text-align: center;
+    line-height: 78px;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-links li .linkS {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* PopUp que dice el nombre decada icono */
+/* margin top es lo que alinea el cartel del icono */
+
+.sub-menu {
+    padding: 10px 15px 10px 15px;
+    margin-top: 10px;
+    background: #fff;
+    display: none;
+    position: absolute;
+    left: 102%;
+    margin-top: 20px;
+    border-radius: 6px 6px 6px 6px;
+    opacity: 0;
+    display: block;
+    pointer-events: none;
+    transition: 0s;
+    align-items: center;
+}
+
+.nav-links li:hover .sub-menu {
+    top: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+}
+
+.sub-menu li {
+    color: #200A20;
+    pointer-events: none;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 13px;
+}

@@ -4,7 +4,7 @@ import "../../styles/cardgeneros.css";
 import "../../styles/scroll-pelis.css";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
+import { Pagination, Navigation, Grid } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -23,14 +23,15 @@ export const CardGeneros = () => {
         <h1 className="text-white">Generos</h1>
         <div className="swiper mySwiper ">
           <Swiper
-            slidesPerView={6}
+            slidesPerView={4}
             grid={{
               rows: 1,
             }}
+            spaceBetween={30}
             pagination={{
               clickable: true,
             }}
-            modules={[Navigation, Pagination]}
+            modules={[Grid, Pagination]}
             className="mySwiper"
             navigation={true}
           >

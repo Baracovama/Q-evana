@@ -35,6 +35,6 @@ body{
     
 @media (min-width: 1400px){
     .container, .container-sm {
-        max-width: 1900px;
+        max-width: 1800px;
     }
 }

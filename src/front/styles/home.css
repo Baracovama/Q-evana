@@ -13,23 +13,23 @@ body{
 
 @media (min-width: 576px){
     .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-        max-width: 540px;
+        max-width: 900px;
     } 
 }
 
 @media (min-width: 768px){
     .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 720px;
+        max-width: 1000px;
     }
 }
 @media (min-width: 992px){
     .container, .container-lg, .container-md, .container-sm {
-        max-width: 960px;
+        max-width: 1200px;
     }
 }
 @media (min-width: 1200px){
     .container, .container-md, .container-sm {
-        max-width: 1140;
+        max-width: 1800px;
     }
 }
     
@@ -37,4 +37,9 @@ body{
     .container, .container-sm {
         max-width: 1800px;
     }
+}
+
+.container.home{
+    padding-right: 0%;
+    margin-left: 1%;
 }

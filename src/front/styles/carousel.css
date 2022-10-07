@@ -8,6 +8,7 @@
   background-size: cover;
   box-shadow: inset 500px 0px 150px #120312;
   background-position: 150% 0;
+  width: 2000px;
 }
 
 .initial_carrousel {
@@ -70,6 +71,7 @@
   font-family: "Public Sans", sans-serif;
   max-width: 400px;
   font-size: 15px;
+  color:white;
 }
 
 /* /* k

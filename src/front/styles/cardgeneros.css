@@ -7,26 +7,7 @@
   color: white;
 }
 
-.tv_slide {
-  margin: 30px 30px 0px 80px;
-}
-
-.title_tvshow {
-  font-family: "Public Sans", sans-serif;
-  font-size: 16px;
-  margin-bottom: 15px;
-}
-
-.item_slidetv {
-  transition: all 0.3s;
-}
-
-.item_slidetv:hover {
-  transform: scale(1.05);
-  transition: all 0.3s;
-}
-
-/* a {
+a {
   color: white;
   text-decoration: none;
 }
@@ -44,7 +25,7 @@
   height: calc((100% - 30px) / 2) !important;
 
   /* Center slide text vertically */
-/* display: -webkit-box;
+  display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
@@ -56,4 +37,9 @@
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
-}  */
+}
+
+.container.generos{
+  margin-left: 25px;
+  margin-right: 20px;
+} 
